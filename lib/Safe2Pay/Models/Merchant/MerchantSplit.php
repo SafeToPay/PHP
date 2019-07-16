@@ -1,4 +1,4 @@
-﻿
+
 <?php
 
 namespace Safe2Pay\Models;

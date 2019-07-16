@@ -1,10 +1,15 @@
-
 <?php
+namespace Safe2Pay\Models;
+
+use Safe2Pay\Models\Customer;
+use Safe2Pay\Core\Config;
+use JsonSerializable;
+
 include_once(__DIR__.'/../../Core/Config.php');
 include_once(__DIR__.'/../General/Customer.php');
 
 
-class SubscriptionRequest 
+class SubscriptionRequest implements JsonSerializable
 {
     public $Plan;
     public $IsSandbox;
@@ -42,44 +47,15 @@ class SubscriptionRequest
         $this->SubscriptionObject = $SubscriptionObject;
     }
 
-    public function __construct()
+    public function JsonSerialize()
     {
-        $this->Customer = new Customer();  
-        $this->IsSandbox = Config :: getIsSandBox();
+        return [
+            'Plan' => $this->Plan,
+            'IsSandbox' => $this->IsSandbox,
+            'Customer' => $this->Customer,
+            'SubscriptionObject' => $this->SubscriptionObject
+        ];
     }
-
-    // public function JsonSerialize()
-    // {
-    //     return [
-    //         'Plan' => getPlan(),
-    //         'IsSandbox' => Config :: getIsSandBox(),
-    //         // 'SubscriptionObject' => [
-    //         //     "Bank"=> "341",
-    //         //     "BankAccount"=> "1234",
-    //         //     "BankAccountDigit"=> "",
-    //         //     "BankAgency"=> "7894567",
-    //         //     "BankAgencyDigit"=> "8"
-    //         // ],
-    //         'SubscriptionObject' => [
-    //             "TokenCard" => "4d8sa65d87sa8a87a5454d8911a"
-    //         ],
-    //         'Customer' => [
-    //             "Name" => $this->Customer->Name,
-    //             "Identity" => $this->Customer->Identity,
-    //             "Email" => $this->Customer->Email,
-    //             'Address' => [
-    //                 "ZipCode" => $this->Customer->Address->ZipCode,
-    //                 "Street" => $this->Customer->Address->Street,
-    //                 "Number" => $this->Customer->Address->Number,
-    //                 "Complement" => $this->Customer->Address->Complement,
-    //                 "District" => $this->Customer->Address->District,
-    //                 "StateInitials" => $this->Customer->Address->ZipCode,
-    //                 "CityName" => $this->Customer->Address->CityName,
-    //                 "CountryName" => $this->Customer->Address->CountryName,
-    //             ]
-    //         ]
-    //     ];
-    // }
 }
 
 ?>

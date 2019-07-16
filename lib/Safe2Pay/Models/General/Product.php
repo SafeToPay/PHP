@@ -1,9 +1,8 @@
-﻿<?php
+<?php 
 
 namespace Safe2Pay\Models;
 
-
-class Product
+class Product implements \JsonSerializable
 {
     private $Code;
     private $Description;
@@ -41,6 +40,27 @@ class Product
 	public function setQuantity($Quantity){
 		$this->Quantity = $Quantity;
 	}
+
+	public function __construct($Code,$Description,$UnitPrice,$Quantity)
+	{
+		$this->Code = $Code;
+		$this->Description = $Description;
+		$this->UnitPrice = $UnitPrice;
+		$this->Quantity = $Quantity;
+
+	}
+
+
+	public function jsonSerialize()
+    {
+		return[
+			"Code" => $this->Code,
+			"Description" => $this->Description,
+			"UnitPrice" => $this->UnitPrice,
+			"Quantity" => $this->Quantity
+		];     
+    }
+
 }
 
 ?>

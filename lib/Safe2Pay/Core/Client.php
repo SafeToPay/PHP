@@ -1,7 +1,8 @@
 <?php
 
-include_once(__DIR__.'/Config.php');
+namespace Safe2Pay\Core;
 
+include_once(__DIR__.'/Config.php');
 
 class Client
 {

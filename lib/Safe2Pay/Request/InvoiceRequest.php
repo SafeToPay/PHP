@@ -1,8 +1,9 @@
 <?php
 namespace Safe2Pay\Api;
+
+use Safe2Pay\Core;
+
 include_once(__DIR__.'/../Core/Client.php');
-
-
 
 class Invoice{
 

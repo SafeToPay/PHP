@@ -1,4 +1,4 @@
-﻿namespace Safe2Pay
+namespace Safe2Pay
 {
     public class Split
     {

@@ -1,7 +1,8 @@
-﻿
 <?php
 
 namespace Safe2Pay\Models;
+
+include_once(__DIR__.'/../Payment/PaymentMethod.php');
 
 class Base
 {
@@ -12,7 +13,6 @@ class Base
     private $Reference;
     private $Vendor;
     private $CallbackUrl;
-
     private $PaymentMethod;
     private $Customer;
     private $Products;
@@ -78,8 +78,8 @@ class Base
 		return $this->PaymentMethod;
 	}
 
-	public function setPaymentMethod($PaymentMethod){
-		$this->PaymentMethod = $PaymentMethod;
+	public function setPaymentMethod($Code){
+		$this->PaymentMethod = new PaymentMethod($Code);
 	}
 
 	public function getCustomer(){

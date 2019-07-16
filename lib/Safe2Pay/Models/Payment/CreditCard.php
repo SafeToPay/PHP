@@ -1,6 +1,8 @@
-﻿<?php
+<?php
 
-class CreditCard implements JsonSerializable
+namespace Safe2Pay\Models;
+
+class CreditCard  implements \JsonSerializable
 {
     private $Holder;
     private $CardNumber;

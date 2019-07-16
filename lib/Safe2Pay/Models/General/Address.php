@@ -1,7 +1,8 @@
-﻿<?php
+<?php
 
+    namespace Safe2Pay\Models;
 
-    class Address
+    class Address  implements \JsonSerializable
     {
         public $ZipCode;
         public $Street;
@@ -103,14 +104,14 @@
             $this->Country = $Country;
         }
 
-        public function __construct()
+        public function __initialize()
         {
             $this->City = new City();   
             $this->State = new State();   
             $this->Country = new State();  
         }
 
-        public function __fill($ZipCode,$Street,$Number,$Complement,$District,$StateInitials,$CityName,$CountryName)
+        public function __construct($ZipCode,$Street,$Number,$Complement,$District,$StateInitials,$CityName,$CountryName)
         {
             $this->ZipCode = $ZipCode;
             $this->Street = $Street;  
@@ -122,6 +123,20 @@
 
             $this->CityName = $CityName;
             $this->CountryName = $CountryName;  
+        }
+
+        public function jsonSerialize()
+        {
+            return[
+                "ZipCode" => $this->ZipCode,
+                "Street" => $this->Street,
+                "Number" => $this->Number,
+                "Complement" => $this->Complement,
+                "District" => $this->District,
+                "CityName" => $this->CityName,
+                "StateInitials" => $this->StateInitials,
+                "CountryName" => $this->CountryName
+            ];     
         }
     }
 

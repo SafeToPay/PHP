@@ -1,5 +1,6 @@
 <?php
 
+namespace Safe2Pay\Core;
 
 class Config
 {

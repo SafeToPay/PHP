@@ -1,6 +1,6 @@
-﻿
 <?php
 
+namespace Safe2Pay\Models;
 
 class Response
 {

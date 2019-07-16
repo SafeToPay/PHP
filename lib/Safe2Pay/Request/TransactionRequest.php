@@ -1,5 +1,10 @@
 <?php
 
+namespace Safe2Pay\Api;
+
+use Safe2Pay\Core\Client;
+use Safe2Pay\Models\Response;
+
 include_once('../Core/Client.php');
 include_once('../Models/Response/Response.php');
 
@@ -16,8 +21,5 @@ class Transaction {
         return $response; 
     }
 }
-
-//$response  =  Transaction::Get(82548);
-//var_dump(json_encode($response));
 
 ?>

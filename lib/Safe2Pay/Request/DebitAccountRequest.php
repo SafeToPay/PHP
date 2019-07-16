@@ -1,8 +1,11 @@
 <?php
 namespace Safe2Pay\Api;
-include_once(__DIR__.'/../Core/Client.php');
 
+use Safe2Pay\Core\Client;
+use Safe2Pay\Models\Response;
 
+include_once('../Core/Client.php');
+include_once('../Models/Response/Response.php');
 
 class DebitAccount{
 
@@ -18,12 +21,9 @@ class DebitAccount{
         return $response; 
     }
 
-
-    
-
     public static function Cancel($Id){
 
-        $request = Client:: HttpClient('DELETE','v2/DebitAccount/Cancel?id='.$Id, json_encode(null),false);
+        $request = Client:: HttpClient('DELETE','v2/DebitAccount/Cancel?id='.$Id, null,false);
     
         $response = new Response();
 
@@ -31,14 +31,6 @@ class DebitAccount{
 
         return response;
     }
-
-
-//$response  =  Transaction::Get(8);
-//var_dump(json_encode($response));
-
-//$response  =  Transaction::Cancel(8);
-//var_dump(json_encode($response));
-
 }
 
 

@@ -1,7 +1,36 @@
-﻿namespace Safe2Pay
+<?php
+
+namespace Safe2Pay\Models;
+
+include_once(__DIR__ . '/Base.php');
+
+class Transaction extends Base implements \JsonSerializable
 {
-    public class Transaction<T> : Base where T : new()
+
+    private $PaymentObject;
+
+    public function getPaymentObject()
     {
-        public T PaymentObject { get; set; }
+        return $this->PaymentObject;
+    }
+
+    public function setPaymentObject($PaymentObject)
+    {
+        $this->PaymentObject = $PaymentObject;
+    }
+
+    public function jsonSerialize()
+    {
+        return[
+            "PaymentObject"   => $this->getPaymentObject(),
+            "Application" => $this->getApplication(),
+            "Vendor" => $this->getVendor(),
+            "IsSandbox"   => $this->getIsSandbox(),
+            "CallbackUrl" => $this->getCallbackUrl(),
+            "PaymentMethod" => $this->getPaymentMethod(),
+            "Customer" => $this->getCustomer(),
+			"Products" => $this->getProducts(),
+			"Splits" => $this->getSplits()
+        ];     
     }
 }

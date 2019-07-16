@@ -1,9 +1,10 @@
-﻿
 <?php
+
+namespace Safe2Pay\Models;
 
 include_once(__DIR__.'/Address.php');
 
-class Customer
+class Customer implements \JsonSerializable
 {
     public $Name;
     public $Identity;
@@ -62,11 +63,30 @@ class Customer
         $this->Address = $Address;
     }
 
-    public function __construct()
+    public function __initialize()
     {
         $this->Address = new Address();   
     }
 
+    public function __construct($Name,$Identity,$Email,$Address)
+    {
+        $this->Name = $Name;
+        $this->Identity = $Identity;
+        $this->Email = $Email;
+        $this->Address = $Address;
+    }
+
+    public function jsonSerialize()
+    {
+        return 
+        [
+            "Name"   => $this->Name,
+            "Identity" => $this->Identity,
+            "Phone"   => $this->Phone,
+            "Email"   => $this->Email,
+            "Address" => $this->Address
+        ];
+    }
 }
 
 ?>

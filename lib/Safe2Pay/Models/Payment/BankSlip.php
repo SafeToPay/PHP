@@ -1,10 +1,8 @@
-﻿
 <?php
 
 namespace Safe2Pay\Models;
 
-
-class BankSlip
+class BankSlip  implements \JsonSerializable
 {
     private $Id;
     private $IdCarnet;
@@ -177,7 +175,32 @@ class BankSlip
 	public function setIdMerchant($IdMerchant){
 		$this->IdMerchant = $IdMerchant;
 	}
-    
+
+	public function __construct($DueDate,$CancelAfterDue, $IsEnablePartialPayment ,$PenaltyRate,$InterestRate, $Instruction,$Message)
+	{
+		$this->DueDate = $DueDate;
+		$this->CancelAfterDue = $CancelAfterDue;
+		$this->IsEnablePartialPayment = $IsEnablePartialPayment;
+		$this->PenaltyRate = $PenaltyRate;
+		$this->InterestRate = $InterestRate;
+		$this->Instruction = $Instruction;
+		$this->Message = $Message;
+	}
+
+	public function jsonSerialize()
+    {
+        return 
+        [
+            "DueDate"   => $this->DueDate,
+            "CancelAfterDue" => $this->CancelAfterDue,
+            "IsEnablePartialPayment"   => $this->IsEnablePartialPayment,
+            "PenaltyRate"   => $this->PenaltyRate,
+			"InterestRate" => $this->InterestRate,
+			"Instruction" => $this->Instruction,
+			"Message" => $this->Message
+        ];
+    }
+
 }
 
 ?>

@@ -1,8 +1,8 @@
-﻿<?php
+<?php
 
 namespace Safe2Pay\Models;
 
-class CreditCard
+class DebitCard implements \JsonSerializable
 {
     private $Holder;
     private $CardNumber;
@@ -58,6 +58,28 @@ class CreditCard
 	public function setAuthenticate($Authenticate){
 		$this->Authenticate = $Authenticate;
 	}   
+
+	  //Credit Card Tokenization
+	  function __construct($Holder,$CardNumber,$ExpirationDate,$SecurityCode) {
+        $this->Holder = $Holder;
+		$this->CardNumber = $CardNumber;
+        $this->ExpirationDate = $ExpirationDate;
+        $this->SecurityCode = $SecurityCode;
+	}
+
+	public function JsonSerialize()
+    {
+        return [
+                'Holder' => $this->Holder,
+				'CardNumber' => $this->CardNumber,
+				'ExpirationDate' => $this->ExpirationDate,
+				'SecurityCode' => $this->SecurityCode,
+				'Token' => $this->Token,
+				'InstallmentQuantity' =>(int) $this->InstallmentQuantity,
+				'IsRecurrence' => (bool) $this->IsRecurrence
+        ];
+    }
+	
 }
 
 ?>

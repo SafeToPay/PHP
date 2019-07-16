@@ -1,47 +1,64 @@
-﻿
 <?php
 
 namespace Safe2Pay\Models;
 
 
-class PaymentMethod
+class PaymentMethod  implements \JsonSerializable
 {
-    private $Id;
-    private $Code;
-    private $Name;
-    private $CodePaymentMethod;
+	public $Id;
+	public $Code;
+	public $Name;
+	public $CodePaymentMethod;
 
-    public function getId(){
+	public function getId()
+	{
 		return $this->Id;
 	}
 
-	public function setId($Id){
+	public function setId($Id)
+	{
 		$this->Id = $Id;
 	}
 
-	public function getCode(){
+	public function getCode()
+	{
 		return $this->Code;
 	}
 
-	public function setCode($Code){
+	public function setCode($Code)
+	{
 		$this->Code = $Code;
 	}
 
-	public function getName(){
+	public function getName()
+	{
 		return $this->Name;
 	}
 
-	public function setName($Name){
+	public function setName($Name)
+	{
 		$this->Name = $Name;
-    }
-    
-    public function getCodePaymentMethod(){
+	}
+
+	public function getCodePaymentMethod()
+	{
 		return $this->CodePaymentMethod;
 	}
 
-	public function setCodePaymentMethod($CodePaymentMethod){
+	public function setCodePaymentMethod($CodePaymentMethod)
+	{
 		$this->CodePaymentMethod = $CodePaymentMethod;
 	}
-}
 
-?>
+	public function __construct($Code)
+	{
+		$this->Code = $Code;
+	}
+
+	public function JsonSerialize()
+	{
+		return [
+			'Code' => $this->Code
+		];
+	}
+}

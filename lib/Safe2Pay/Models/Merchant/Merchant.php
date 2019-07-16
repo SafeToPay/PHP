@@ -1,9 +1,8 @@
-
 <?php
 
 namespace Safe2Pay\Models;
 
-class Merchant
+class Merchant implements \JsonSerializable
 {
     private $Name;
     private $CommercialName;
@@ -167,4 +166,41 @@ class Merchant
 	public function setIsRemoved($IsRemoved){
 		$this->IsRemoved = $IsRemoved;
 	}
+
+	public function __construct($Identity,$Name,$CommercialName,$Address,$ResponsibleName ,$ResponsibleIdentity ,$Email ,$TechName, $TechIdentity,$TechEmail,$BankData,$MerchantSplit)
+	{
+		$this->Name = $Name;
+		$this->CommercialName = $CommercialName;
+		$this->Identity = $Identity;
+		$this->Address = $Address;
+		$this->ResponsibleName = $ResponsibleName;
+		$this->ResponsibleIdentity = $ResponsibleIdentity;
+		$this->Email = $Email;
+		$this->TechName = $TechName;
+		$this->TechIdentity = $TechIdentity;
+		$this->TechEmail = $TechEmail;
+		$this->BankData = $BankData;
+		$this->MerchantSplit = $MerchantSplit;
+
+	}
+
+	public function JsonSerialize()
+    {
+        return [
+				'Name' => (string) $this->Name,
+				'Name' => (string) $this->CommercialName,
+				'Identity' =>(string) $this->Identity,
+				'ResponsibleName' =>(string) $this->ResponsibleName,
+				'ResponsibleIdentity' =>(string) $this->ResponsibleIdentity,
+				'Email' =>(string) $this->Email,
+				'TechName' =>(string) $this->TechName,
+				'TechIdentity' =>(string)  $this->TechIdentity,
+				'TechEmail' =>(string) $this->TechEmail,
+				'Address' => $this->Address,
+				'BankData' => $this->BankData,
+				'MerchantSplit' => $this->MerchantSplit
+        ];
+    }
+
+
 }

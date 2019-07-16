@@ -1,46 +1,48 @@
 <?php
 namespace Safe2Pay\Api;
 
-use Safe2Pay\Core;
+use Safe2Pay\Core\Client;
+use Safe2Pay\Models\Response;
 
-include_once(__DIR__.'/../Core/Client.php');
+include_once('../Core/Client.php');
+include_once('../Models/Response/Response.php');
 
 class Marketplace{
 
 
-    public static function Add($object){
+    public static function Add($merchant){
 
-        $request = Client:: HttpClient('POST','', json_encode(null),false);
+        $request = Client:: HttpClient('POST','v2/Marketplace/Add', json_encode($merchant),false);
         $response = json_decode($request , true);
-        return response;
+        return $response;
     }
 
-    public static function Update($object){
+    public static function Update($merchant, $Id){
 
-        $request = Client:: HttpClient('PUT','', json_encode(null),false);
+        $request = Client:: HttpClient('PUT',"/v2/Marketplace/Update?id={$Id}", json_encode($merchant),false);
         $response = json_decode($request , true);
-        return response;
+        return $response;
     }
 
-    public static function Delete($object){
+    public static function Delete($Id){
 
-        $request = Client:: HttpClient('DELETE','', json_encode(null),false);
+        $request = Client:: HttpClient("DELETE","v2/Marketplace/Delete?id={$Id}", null,false);
         $response = json_decode($request , true);
-        return response;
+        return $response;
     }
 
-    public static function Get($object){
+    public static function Get($Id){
 
-        $request = Client:: HttpClient('GET','', json_encode(null),false);
+        $request = Client:: HttpClient('GET',"v2/Marketplace/Get?id={$Id}", null,false);
         $response = json_decode($request , true);
-        return response;
+        return $response;
     }
 
-    public static function List($object){
+    public static function List($PageNumber,$RowsPage){
 
-        $request = Client:: HttpClient('GET','', json_encode(null),false);
+        $request = Client:: HttpClient('GET',"v2/Marketplace/List?PageNumber={$PageNumber}&RowsPerPage={$RowsPage}", null,false);
         $response = json_decode($request , true);
-        return response;
+        return $response;
     }
 }
 

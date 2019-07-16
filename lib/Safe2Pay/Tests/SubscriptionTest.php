@@ -33,6 +33,6 @@ class SubscriptionTest
 }
 
 
-SubscriptionTest::Get();
+//SubscriptionTest::Get();
 
-SubscriptionTest::Add();
+//SubscriptionTest::Add();

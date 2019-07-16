@@ -1,10 +1,9 @@
-
 <?php
 
 namespace Safe2Pay\Models;
 
 
-class MerchantSplit
+class MerchantSplit implements \JsonSerializable
 {
     private $PaymentMethodCode;
     private $PaymentMethod;
@@ -42,6 +41,22 @@ class MerchantSplit
 	public function setTaxes($Taxes){
 		$this->Taxes = $Taxes;
 	}
+
+	public function __construct($IsSubaccountTaxPayer,$PaymentMethodCode,$Taxes)
+	{
+		$this->IsSubaccountTaxPayer = $IsSubaccountTaxPayer;
+		$this->PaymentMethodCode = $PaymentMethodCode;
+		$this->Taxes = $Taxes;
+	}
+
+	public function JsonSerialize()
+    {
+        return [
+                'IsSubaccountTaxPayer' => (bool) $this->IsSubaccountTaxPayer,
+				'PaymentMethodCode' =>(string) $this->PaymentMethodCode,
+				'Taxes' =>(array) $this->Taxes
+        ];
+    }
 
 
 }

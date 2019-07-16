@@ -23,5 +23,5 @@ class TokenizationTest
     }
 }
 
-TokenizationTest::Create();
+//TokenizationTest::Create();
 

@@ -1,8 +1,8 @@
-﻿<?php
+<?php
 
 namespace Safe2Pay\Models;
 
-    class Bank {
+    class Bank implements \JsonSerializable{
         private $Id;
         private $Code;
         private $Name;
@@ -47,4 +47,11 @@ namespace Safe2Pay\Models;
 	public function setName($Name){
 		$this->Name = $Name;
 	}	
+
+	public function JsonSerialize()
+    {
+        return [
+                'Code' => (string) $this->Code
+        ];
+    }
 }

@@ -21,5 +21,5 @@ class DebitAccountTest
     }
 }
 
-DebitAccountTest::Get();
-DebitAccountTest::Cancel();
+//DebitAccountTest::Get();
+//DebitAccountTest::Cancel();

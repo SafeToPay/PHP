@@ -1,10 +1,9 @@
-
 <?php
 
 namespace Safe2Pay\Models;
 
 
-class MerchantSplitTax
+class MerchantSplitTax implements \JsonSerializable
 {
     private $TaxTypeName;
     private $TaxType;
@@ -33,6 +32,20 @@ class MerchantSplitTax
 	public function setTax($Tax){
 		$this->Tax = $Tax;
 	}
+
+	public function __construct($TaxTypeName,$Tax)
+	{
+		$this->TaxTypeName = $TaxTypeName;
+		$this->Tax = $Tax;
+	}
+
+	public function JsonSerialize()
+    {
+        return [
+                'TaxTypeName' => (string) $this->TaxTypeName,
+				'Tax' =>(string) $this->Tax
+        ];
+    }
 
 }
 

@@ -2,6 +2,11 @@
 <?php
 
 namespace Safe2Pay\Models;
+/**
+ * Class SingleSalePayment
+ *
+ * @package Safe2Pay\Models
+ */
 
 class SingleSalePayment
 {

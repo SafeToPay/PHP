@@ -1,6 +1,12 @@
 
 <?php
 
+namespace Safe2Pay\Models;
+/**
+ * Class CheckoutResponse
+ *
+ * @package Safe2Pay\Models
+ */
 class CheckoutResponse
 {
     private $IdTransaction;

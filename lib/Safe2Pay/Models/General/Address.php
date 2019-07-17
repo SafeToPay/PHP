@@ -1,7 +1,11 @@
 <?php
 
     namespace Safe2Pay\Models;
-
+/**
+ * Class Address
+ *
+ * @package Safe2Pay\Models
+ */
     class Address  implements \JsonSerializable
     {
         public $ZipCode;
@@ -104,13 +108,6 @@
             $this->Country = $Country;
         }
 
-        public function __initialize()
-        {
-            $this->City = new City();   
-            $this->State = new State();   
-            $this->Country = new State();  
-        }
-
         public function __construct($ZipCode,$Street,$Number,$Complement,$District,$StateInitials,$CityName,$CountryName)
         {
             $this->ZipCode = $ZipCode;
@@ -139,90 +136,3 @@
             ];     
         }
     }
-
-    class City
-    {
-        private $Id;
-        private $IdState;
-        private $CodeIBGE;
-        private $Name;
-
-        public function getId(){
-            return $this->Id;
-        }
-    
-        public function setId($Id){
-            $this->Id = $Id;
-        }
-    
-        public function getIdState(){
-            return $this->IdState;
-        }
-    
-        public function setIdState($IdState){
-            $this->IdState = $IdState;
-        }
-    
-        public function getCodeIBGE(){
-            return $this->CodeIBGE;
-        }
-    
-        public function setCodeIBGE($CodeIBGE){
-            $this->CodeIBGE = $CodeIBGE;
-        }
-    
-        public function getName(){
-            return $this->Name;
-        }
-    
-        public function setName($Name){
-            $this->Name = $Name;
-        }
-    }
-
-    class State
-    {
-        private $IdCountry;
-        private $Initials;
-
-        public function getIdCountry(){
-            return $this->IdCountry;
-        }
-    
-        public function setIdCountry($IdCountry){
-            $this->IdCountry = $IdCountry;
-        }
-    
-        public function getInitials(){
-            return $this->Initials;
-        }
-    
-        public function setInitials($Initials){
-            $this->Initials = $Initials;
-        }
-
-    }
-
-    class Country
-    {
-        private $Id;
-        private $Name;
-
-        public function getId(){
-            return $this->Id;
-        }
-    
-        public function setId($Id){
-            $this->Id = $Id;
-        }
-    
-        public function getName(){
-            return $this->Name;
-        }
-    
-        public function setName($Name){
-            $this->Name = $Name;
-        }
-    }
-
-?>

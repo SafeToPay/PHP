@@ -3,6 +3,11 @@
 
 namespace Safe2Pay\Models;
 
+/**
+ * Class DebitAccount
+ *
+ * @package Safe2Pay\Models
+ */
 class DebitAccount
 {
     private $Id;

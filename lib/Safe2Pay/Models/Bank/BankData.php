@@ -2,6 +2,11 @@
 
 namespace Safe2Pay\Models;
 
+/**
+ * Class BankData
+ *
+ * @package Safe2Pay\Models
+ */
 class BankData implements \JsonSerializable
 {
     private $Bank;

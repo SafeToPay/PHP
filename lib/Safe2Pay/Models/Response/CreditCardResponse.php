@@ -1,8 +1,11 @@
 <?php
 
 namespace Safe2Pay\Models;
-
-
+/**
+ * Class CheckoutResponse
+ *
+ * @package Safe2Pay\Models
+ */
 class CreditCardResponse
 {
     private $CardNumber;

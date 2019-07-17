@@ -8,8 +8,19 @@ use Safe2Pay\Models\Response;
 include_once('../Core/Client.php');
 include_once('../Models/Response/Response.php');;
 
-class Payment
-{
+/**
+ * Class PaymentRequest
+ *
+ * @package Safe2Pay\Api
+ */
+class PaymentRequest{
+
+    /**
+     * Get Payment Methods
+     *
+     * @param [Payment] $payment
+     * @return Array
+     */
     public static function GetPaymentMethods()
     {
         
@@ -22,6 +33,12 @@ class Payment
         return $response;
     }
 
+    /**
+     * BankSlip Sale
+     *
+     * @param [Payment] $payment
+     * @return Response
+     */
     public static function BankSlip($payment)
     {
 
@@ -34,6 +51,12 @@ class Payment
         return $response;
     }
 
+    /**
+     * CreditCard Sale
+     *
+     * @param [Payment] $payment
+     * @return Response
+     */
     public static function CreditCard($payment)
     {
 
@@ -46,6 +69,12 @@ class Payment
         return $response;
     }
 
+    /**
+     * CryptoCurrency Sale
+     *
+     * @param [Payment] $payment
+     * @return Response
+     */
     public static function CryptoCurrency($payment)
     {
 
@@ -58,6 +87,12 @@ class Payment
         return $response;
     }
 
+    /**
+     * Debit Card Sale
+     *
+     * @param [Payment] $payment
+     * @return Response
+     */
     public static function DebitCard($payment)
     {
 
@@ -70,6 +105,12 @@ class Payment
         return $response;
     }
 
+    /**
+     * Carnet Sale
+     *
+     * @param [Payment] $payment
+     * @return Response
+     */
     public static function Carnet($payment)
     {
 
@@ -82,6 +123,12 @@ class Payment
         return $response;
     }
 
+    /**
+     * Carnet Sale
+     *
+     * @param [Payment] $payment
+     * @return Response
+     */
     public static function CarnetLot($payment)
     {
 
@@ -94,6 +141,12 @@ class Payment
         return $response;
     }
 
+    /**
+     * DebitAccount Sale
+     *
+     * @param [Payment] $payment
+     * @return Response
+     */
     public static function DebitAccount($payment)
     {
 
@@ -106,6 +159,12 @@ class Payment
         return $response;
     }
 
+     /**
+     * Refund a payment
+     *
+     * @param [int] $Id
+     * @return Response
+     */
     public static function Refund($Id)
     {
 

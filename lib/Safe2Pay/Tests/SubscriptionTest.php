@@ -10,6 +10,11 @@ use Safe2Pay\Models\Address;
 include_once(__DIR__ . '/../Models/Subscription/SubscriptionRequest.php');
 include_once(__DIR__ . '/../Request/SubscriptionRequest.php');
 
+/**
+ * Class SubscriptionTest
+ *
+ * @package Safe2Pay\Test
+ */
 class SubscriptionTest
 {
     public static function Add()

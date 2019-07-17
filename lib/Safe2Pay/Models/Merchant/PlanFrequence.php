@@ -3,7 +3,11 @@
 
 namespace Safe2Pay\Models;
 
-
+/**
+ * Class PlanFrequence
+ *
+ * @package Safe2Pay\Models
+ */
 class PlanFrequence
 {
     private $Id;

@@ -8,12 +8,21 @@ use Safe2Pay\Models\Response;
 include_once('../Core/Client.php');
 include_once('../Models/Response/Response.php');
 
+/**
+ * Class Subscription
+ *
+ * @package Safe2Pay\Api
+ */
 class Subscription{
 
-
+ /**
+     * Add a Subscription Register
+     *
+     * @param [int] $Id
+     * @return Response
+     */
     public static function Add($data){
 
-        $config = new Config("77CE92E1F1044F079DFD4C3383FB5BB0");
 
         $request = Client:: HttpClient('POST','v2/subscription', json_encode($data), false);
 
@@ -24,9 +33,13 @@ class Subscription{
         return $response; 
     }
 
+    /**
+     * Get a Subscription Register
+     *
+     * @param [int] $Id
+     * @return Response
+     */
     public static function Get($Id){
-
-        $config = new Config("77CE92E1F1044F079DFD4C3383FB5BB0");
 
         $request = Client:: HttpClient('GET','v2/subscription/get?id='.$Id, null, false);
 
@@ -39,4 +52,3 @@ class Subscription{
     }
 
 }
-?>

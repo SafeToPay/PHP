@@ -3,6 +3,11 @@
 
 namespace Safe2Pay\Models;
 
+/**
+ * Class Configuration
+ *
+ * @package Safe2Pay\Models
+ */
 
 class Configuration
 {

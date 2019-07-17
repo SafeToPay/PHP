@@ -3,6 +3,11 @@
 namespace Safe2Pay\Models;
 
 
+/**
+ * Class MerchantSplit
+ *
+ * @package Safe2Pay\Models
+ */
 class MerchantSplit implements \JsonSerializable
 {
     private $PaymentMethodCode;

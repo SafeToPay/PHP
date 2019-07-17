@@ -3,7 +3,11 @@
 
 namespace Safe2Pay\Models;
 
-
+/**
+ * Class TaxType
+ *
+ * @package Safe2Pay\Models
+ */
 class TaxType
 {
     private $Id;

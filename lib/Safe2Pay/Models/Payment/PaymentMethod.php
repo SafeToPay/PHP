@@ -3,6 +3,11 @@
 namespace Safe2Pay\Models;
 
 
+/**
+ * Class PaymentMethod
+ *
+ * @package Safe2Pay\Models
+ */
 class PaymentMethod  implements \JsonSerializable
 {
 	public $Id;

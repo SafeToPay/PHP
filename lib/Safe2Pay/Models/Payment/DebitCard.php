@@ -2,6 +2,11 @@
 
 namespace Safe2Pay\Models;
 
+/**
+ * Class DebitCard
+ *
+ * @package Safe2Pay\Models
+ */
 class DebitCard implements \JsonSerializable
 {
     private $Holder;

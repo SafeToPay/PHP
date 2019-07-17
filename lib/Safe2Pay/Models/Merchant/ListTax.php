@@ -4,6 +4,12 @@
 namespace Safe2Pay\Models;
 
 
+/**
+ * Class ListTax
+ *
+ * @package Safe2Pay\Models
+ */
+
 class ListTax
 {
     private $Id;

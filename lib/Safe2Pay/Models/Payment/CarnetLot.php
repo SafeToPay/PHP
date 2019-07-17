@@ -3,6 +3,11 @@
 
 namespace Safe2Pay\Models;
 
+/**
+ * Class CarnetLot
+ *
+ * @package Safe2Pay\Models
+ */
 class CarnetLot
 {
     private $Id;

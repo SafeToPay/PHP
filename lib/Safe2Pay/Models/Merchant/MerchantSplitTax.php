@@ -2,7 +2,11 @@
 
 namespace Safe2Pay\Models;
 
-
+/**
+ * Class MerchantSplitTax
+ *
+ * @package Safe2Pay\Models
+ */
 class MerchantSplitTax implements \JsonSerializable
 {
     private $TaxTypeName;

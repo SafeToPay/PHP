@@ -2,7 +2,11 @@
 
 namespace Safe2Pay\Models;
 
-
+/**
+ * Class TransactionStatus
+ *
+ * @package Safe2Pay\Models
+ */
 class TransactionStatus
 {
     private $Id;

@@ -2,7 +2,7 @@
 
 namespace Safe2Pay\Test;
 
-use Safe2Pay\Api\Invoice;
+use Safe2Pay\Api\InvoiceRequest;
 use Safe2Pay\Models\SingleSale;
 use Safe2Pay\Models\Customer;
 use Safe2Pay\Models\Address;
@@ -16,6 +16,11 @@ include_once(__DIR__.'/../Request/InvoiceRequest.php');
 include_once(__DIR__.'/../Models/SingleSale/SingleSale.php');
 include_once(__DIR__.'/../Models/SingleSale/SingleSalePaymentMethod.php');
 
+/**
+ * Class InvoiceTest
+ *
+ * @package Safe2Pay\Test
+ */
 class InvoiceTest
 {
 
@@ -69,7 +74,7 @@ class InvoiceTest
         $singleSale->setCallbackUrl("https://safe2pay.com.br/api/Notify");
 
          var_dump(json_encode($singleSale));
-         var_dump(Invoice::Add($singleSale));
+         var_dump(InvoiceRequest::Add($singleSale));
 
     }
 
@@ -124,20 +129,20 @@ class InvoiceTest
         $singleSale->setSingleSaleHash("337b62a77c514f26be8fd33d5fdb619e");
 
          var_dump(json_encode($singleSale));
-         var_dump(Invoice::Update($singleSale));
+         var_dump(InvoiceRequest::Update($singleSale));
 
     }
 
     public static function Cancel()
     {
         $hashSale = "337b62a77c514f26be8fd33d5fdb619e";
-        var_dump(Invoice::Cancel($hashSale));
+        var_dump(InvoiceRequest::Cancel($hashSale));
     }
 
     public static function Get()
     {
         $hashSale = "337b62a77c514f26be8fd33d5fdb619e";
-        var_dump(Invoice::Get($hashSale));
+        var_dump(InvoiceRequest::Get($hashSale));
     }
 }
 

@@ -4,7 +4,11 @@
 
 namespace Safe2Pay\Models;
 
-
+/**
+ * Class MerchantPaymentDate
+ *
+ * @package Safe2Pay\Models
+ */
 class MerchantPaymentMethod
 {
     private $Id;

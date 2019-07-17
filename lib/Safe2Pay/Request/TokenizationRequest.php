@@ -8,8 +8,19 @@ use Safe2Pay\Models\Response;
 include_once('../Core/Client.php');
 include_once('../Models/Response/Response.php');
 
-class Tokenization {
+/**
+ * Class TokenizationRequest
+ *
+ * @package Safe2Pay\Api
+ */
+class TokenizationRequest {
 
+     /**
+     * Tokenization Credit Card
+     *
+     * @param [CreditCard] $data
+     * @return Response
+     */
     public static function Create($data){ 
         
         $request = Client:: HttpClient('POST','v2/token', json_encode($data), true);

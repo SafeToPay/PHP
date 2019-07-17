@@ -1,7 +1,11 @@
 <?php
 
 namespace Safe2Pay\Models;
-
+/**
+ * Class Transfer
+ *
+ * @package Safe2Pay\Models
+ */
 class Transfer
 {
     private $Id;

@@ -2,6 +2,11 @@
 
 namespace Safe2Pay\Models;
 
+/**
+ * Class BankSlip
+ *
+ * @package Safe2Pay\Models
+ */
 class BankSlip  implements \JsonSerializable
 {
     private $Id;

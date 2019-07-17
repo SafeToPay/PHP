@@ -2,7 +2,7 @@
 
 namespace Safe2Pay\Test;
 
-use Safe2Pay\Api\Payment;
+use Safe2Pay\Api\PaymentRequest;
 use Safe2Pay\Models\BankSlip;
 use Safe2Pay\Models\CreditCard;
 use Safe2Pay\Models\DebitCard;
@@ -21,13 +21,18 @@ include_once('../Models/General/Customer.php');
 include_once('../Models/General/Product.php');
 include_once('../Models/General/Address.php');
 
-include_once(__DIR__ . '/../Request/PaymentRequest.php');
+include_once(__DIR__.'/../Request/PaymentRequest.php');
 
+/**
+ * Class PaymentTest
+ *
+ * @package Safe2Pay\Test
+ */
 class PaymentTest
 {
     public static function GetPaymentMethods()
     {
-        var_dump(Payment::GetPaymentMethods());
+        var_dump(PaymentRequest::GetPaymentMethods());
     }
 
     //Boleto bancário
@@ -73,7 +78,7 @@ class PaymentTest
 
         $payload->setCustomer($Customer);
 
-        var_dump(Payment::BankSlip($payload));
+        var_dump(PaymentRequest::BankSlip($payload));
     }
 
     //Cartão de crédito
@@ -120,7 +125,7 @@ class PaymentTest
 
         $payload->setCustomer($Customer);
 
-        var_dump(Payment::BankSlip($payload));
+        var_dump(PaymentRequest::CreditCard($payload));
     }
 
     //Criptomoedas (Bitcoin)
@@ -160,7 +165,7 @@ class PaymentTest
 
         $payload->setCustomer($Customer);
 
-        var_dump(Payment::BankSlip($payload));
+        var_dump(PaymentRequest::CryptoCurrency($payload));
     }
 
     //Cartão de débito
@@ -206,12 +211,12 @@ class PaymentTest
 
         $payload->setCustomer($Customer);
 
-        var_dump(Payment::BankSlip($payload));
+        var_dump(PaymentRequest::DebitCard($payload));
     }
 
     public static function Refund()
     {
-        var_dump(Payment::Refund(516396));
+        var_dump(PaymentRequest::Refund(516396));
     }
 }
 

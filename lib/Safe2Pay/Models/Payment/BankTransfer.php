@@ -2,7 +2,11 @@
 
 namespace Safe2Pay\Models;
 
-
+/**
+ * Class BankTransfer
+ *
+ * @package Safe2Pay\Models
+ */
 class BankTransfer
 {
     private $Provider;

@@ -3,7 +3,11 @@
 
 namespace Safe2Pay\Models;
 
-
+/**
+ * Class MerchantType
+ *
+ * @package Safe2Pay\Models
+ */
 class MerchantType
 {
     private $Id;

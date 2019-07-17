@@ -9,9 +9,19 @@ use Safe2Pay\Core\Config;
 include_once('../Core/Client.php');
 include_once('../Models/Response/Response.php');
 
-
-class Transaction {
+/**
+ * Class TransactionRequest
+ *
+ * @package Safe2Pay\Api
+ */
+class TransactionRequest {
     
+    /**
+     * Get transaction register
+     *
+     * @param [int] $Id
+     * @return Response
+     */
     public static function Get($Id){ 
  
         $request = Client:: HttpClient('GET','v2/transaction/Get?Id='.$Id, null, false);

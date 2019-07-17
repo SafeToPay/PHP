@@ -1,7 +1,11 @@
 <?php 
 
 namespace Safe2Pay\Models;
-
+/**
+ * Class SingleSaleProduct
+ *
+ * @package Safe2Pay\Models
+ */
 class SingleSaleProduct implements \JsonSerializable
 {
     private $Id;

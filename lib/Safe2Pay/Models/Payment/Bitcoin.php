@@ -3,7 +3,11 @@
 
 namespace Safe2Pay\Models;
 
-
+/**
+ * Class Bitcoin
+ *
+ * @package Safe2Pay\Models
+ */
 class Bitcoin
 {
     private $AmountBitcoin;

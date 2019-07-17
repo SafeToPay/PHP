@@ -3,7 +3,11 @@
 namespace Safe2Pay\Models;
 
 include_once(__DIR__.'/../Payment/PaymentMethod.php');
-
+/**
+ * Class Base
+ *
+ * @package Safe2Pay\Models
+ */
 class Base
 {
     private $Id;

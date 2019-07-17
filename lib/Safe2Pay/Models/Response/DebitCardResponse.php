@@ -1,8 +1,11 @@
 <?php
 
 namespace Safe2Pay\Models;
-
-
+/**
+ * Class DebitCardResponse
+ *
+ * @package Safe2Pay\Models
+ */
 class DebitCardResponse
 {
     private $CardNumber;

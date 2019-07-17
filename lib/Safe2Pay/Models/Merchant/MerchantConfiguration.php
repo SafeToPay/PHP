@@ -3,6 +3,11 @@
 
 namespace Safe2Pay\Models;
 
+/**
+ * Class MerchantConfiguration
+ *
+ * @package Safe2Pay\Models
+ */
 
 class MerchantConfiguration
 {

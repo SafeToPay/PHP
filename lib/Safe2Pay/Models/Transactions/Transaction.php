@@ -3,7 +3,11 @@
 namespace Safe2Pay\Models;
 
 include_once(__DIR__ . '/Base.php');
-
+/**
+ * Class Transaction
+ *
+ * @package Safe2Pay\Models
+ */
 class Transaction extends Base implements \JsonSerializable
 {
 

@@ -2,7 +2,7 @@
 
 namespace Safe2Pay\Test;
 
-use Safe2Pay\Api\Marketplace;
+use Safe2Pay\Api\MarketplaceRequest;
 use Safe2Pay\Models\Merchant;
 use Safe2Pay\Models\Address;
 use Safe2Pay\Models\BankData;
@@ -18,6 +18,11 @@ include_once(__DIR__.'/../Models/Merchant/MerchantSplitTax.php');
 include_once(__DIR__.'/../Request/MarketplaceRequest.php');
 include_once(__DIR__.'/../Models/General/Address.php');
 
+/**
+ * Class MarketplaceTest
+ *
+ * @package Safe2Pay\Test
+ */
 class MarketplaceTest
 {
 
@@ -55,7 +60,7 @@ class MarketplaceTest
             $merchantSplit
         );
 
-        var_dump(Marketplace::Add($marketplace));
+        var_dump(MarketplaceRequest::Add($marketplace));
     }
 
     public static function Update()
@@ -92,22 +97,22 @@ class MarketplaceTest
             $merchantSplit
         );
 
-        var_dump(Marketplace::Update($marketplace, 783));
+        var_dump(MarketplaceRequest::Update($marketplace, 783));
     }
 
     public static function Delete()
     {
-        var_dump(Marketplace::Delete(717));
+        var_dump(MarketplaceRequest::Delete(717));
     }
 
     public static function List()
     {
-        var_dump(Marketplace::List(1,10));
+        var_dump(MarketplaceRequest::List(1,10));
     }
 
     public static function Get()
     {
-        var_dump(Marketplace::Get(717));
+        var_dump(MarketplaceRequest::Get(717));
     }
 }
 

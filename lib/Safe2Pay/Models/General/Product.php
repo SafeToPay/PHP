@@ -2,6 +2,12 @@
 
 namespace Safe2Pay\Models;
 
+/**
+ * Class Product
+ *
+ * @package Safe2Pay\Models
+ */
+
 class Product implements \JsonSerializable
 {
     private $Code;

@@ -2,7 +2,11 @@
 
 namespace Safe2Pay\Models;
 
-include_once(__DIR__.'/Address.php');
+/**
+ * Class Customer
+ *
+ * @package Safe2Pay\Models
+ */
 
 class Customer implements \JsonSerializable
 {

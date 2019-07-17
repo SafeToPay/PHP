@@ -11,8 +11,6 @@ include_once('../Models/Response/Response.php');
 class Tokenization {
 
     public static function Create($data){ 
-
-        $config = new Config("77CE92E1F1044F079DFD4C3383FB5BB0");
         
         $request = Client:: HttpClient('POST','v2/token', json_encode($data), true);
 

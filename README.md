@@ -6,16 +6,17 @@
 
 ## Principais recursos
 
-* [x] Pagamentos por cartão de crédito.
-* [x] Pagamentos recorrentes.
-    * [x] Com autorização na primeira recorrência.
-    * [x] Com autorização a partir da primeira recorrência.
-* [x] Pagamentos por cartão de débito.
-* [x] Pagamentos por boleto.
-* [x] Pagamentos por transferência eletrônica.
-* [x] Cancelamento de autorização.
-* [x] Consulta de pagamentos.
+* [x] Consulta de transações.
 * [x] Tokenização de cartão.
+* [x] Pagamentos.
+    * [x] Boleto bancário.
+    * [x] Cartão de crédito.
+    * [x] Bitcoin.
+    * [x] Cartão de débito.
+    * [x] Carnê.
+* [x] Gerenciamento de subcontas para Marketplace.
+* [x] Venda simples.
+* [x] Recorrência.
 
 ## Utilização
 
@@ -387,8 +388,8 @@ $response = PaymentRequest::DebitCard($payload);
 ```php
 <?php
 
-require '../Models/Payment/CreditCard.php';
-require '../Request/TokenizationRequest.php';
+require 'Models/Payment/CreditCard.php';
+require 'Request/TokenizationRequest.php';
 
 use Safe2Pay\Api\TokenizationRequest;
 use Safe2Pay\Models\CreditCard;
@@ -404,6 +405,29 @@ try {
 //Realiza a tokenização e traz o retorno 
 
     $response  =  TokenizationRequest::Create($CreditCard);
+
+} catch (Exception $e) {
+
+    echo  $e->getMessage();
+}
+// ...
+```
+
+### Consultar transação
+
+```php
+<?php
+
+require('Request/TransactionRequest.php');
+use Safe2Pay\Api\TransactionRequest;
+
+
+$IdTransaction = 82548;
+
+
+try {
+
+    $response  =  TransactionRequest::Get($IdTransaction);
 
 } catch (Exception $e) {
 

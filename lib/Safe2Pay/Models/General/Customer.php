@@ -63,11 +63,6 @@ class Customer implements \JsonSerializable
         $this->Address = $Address;
     }
 
-    public function __initialize()
-    {
-        $this->Address = new Address();   
-    }
-
     public function __construct($Name,$Identity,$Email,$Address)
     {
         $this->Name = $Name;

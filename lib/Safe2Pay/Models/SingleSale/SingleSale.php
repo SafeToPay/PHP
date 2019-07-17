@@ -1,11 +1,9 @@
-
-
 <?php
 
 namespace Safe2Pay\Models;
 
 
-class SingleSale
+class SingleSale implements \JsonSerializable
 {
     private $Merchant;
     private $Customer;
@@ -214,5 +212,39 @@ class SingleSale
 	public function setIdSubscription($IdSubscription){
 		$this->IdSubscription = $IdSubscription;
 	}
+
+	public function __construct($Customer,$Products,$ExpirationDate,$PaymentMethods,$DueDate,$Reference,$PenaltyAmount,$InterestAmount,$Emails,$Messages,$Instruction)
+	{
+		$this->Customer = $Customer;
+		$this->Products = $Products;
+		$this->ExpirationDate = $ExpirationDate;
+		$this->PaymentMethods = $PaymentMethods;
+		$this->DueDate = $DueDate;
+		$this->Reference = $Reference;
+		$this->PenaltyAmount = $PenaltyAmount;
+		$this->InterestAmount = $InterestAmount;
+		$this->Emails = $Emails;
+		$this->Messages = $Messages;
+		$this->Instruction = $Instruction;
+	}
+
+	public function JsonSerialize()
+    {
+        return [
+				'Customer' =>  $this->Customer,
+				'Products' => (array) $this->Products,
+				'ExpirationDate' => $this->ExpirationDate,
+				'PaymentMethods' =>$this->PaymentMethods,
+				'DueDate' => $this->DueDate,
+				'Reference' =>(string) $this->Reference,
+				'PenaltyAmount' => $this->PenaltyAmount,
+				'InterestAmount' => $this->InterestAmount,
+				'Emails' => $this->Emails,
+				'Messages' =>(array) $this->Messages,
+				'Instruction' => $this->Instruction,
+				'SingleSaleHash' =>(string)  $this->SingleSaleHash,
+				'CallbackUrl' =>(string) $this->CallbackUrl
+        ];
+    }
 }
 ?>

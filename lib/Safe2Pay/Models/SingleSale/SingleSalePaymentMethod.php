@@ -1,9 +1,8 @@
-
 <?php
 
 namespace Safe2Pay\Models;
 
-class SingleSalePaymentMethod
+class SingleSalePaymentMethod implements \JsonSerializable
 {
     private $Id;
     private $IdSingleSale; 
@@ -41,6 +40,18 @@ class SingleSalePaymentMethod
 	public function setPaymentMethod($PaymentMethod){
 		$this->PaymentMethod = $PaymentMethod;
 	}
+
+	public function __construct($CodePaymentMethod)
+	{
+		$this->CodePaymentMethod = $CodePaymentMethod;
+	}
+
+	public function JsonSerialize()
+    {
+        return [
+				'CodePaymentMethod' =>  $this->CodePaymentMethod
+        ];
+    }
 }
 
 ?>

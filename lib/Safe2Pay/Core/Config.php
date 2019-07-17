@@ -4,7 +4,7 @@ namespace Safe2Pay\Core;
 
 class Config
 {
-    private static $Token = "77CE92E1F1044F079DFD4C3383FB5BB0";
+    private static $Token = "INFORME SEU TOKEN";
     private static $IsSandBox = true;
 
     public static function getToken()

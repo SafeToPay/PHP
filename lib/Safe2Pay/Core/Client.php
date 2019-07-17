@@ -2,17 +2,17 @@
 
 namespace Safe2Pay\Core;
 
-include_once(__DIR__.'/Config.php');
+include_once(__DIR__ . '/Config.php');
 
 class Client
 {
 
    public static function HttpClient($method, $url, $data, $IsPayment)
    {
-      
-      $url = Client::GetWebMethodUri($IsPayment).$url;
 
-      echo   $url ;
+      $url = Client::GetWebMethodUri($IsPayment) . $url;
+
+      echo   $url;
 
       $curl = curl_init();
 
@@ -27,6 +27,9 @@ class Client
             if ($data)
                curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
             break;
+         case "DELETE":
+            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+            break;
          default:
             if ($data)
                $url = sprintf("%s?%s", $url, http_build_query($data));
@@ -35,7 +38,7 @@ class Client
       curl_setopt($curl, CURLOPT_URL, $url);
 
       curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-         'X-API-KEY: '.Config::getToken(),
+         'X-API-KEY: ' . Config::getToken(),
          'Content-Type: application/json',
       ));
 
@@ -57,10 +60,10 @@ class Client
    private static function GetWebMethodUri($IsPayment)
    {
 
-      if (!$IsPayment){
+      if (!$IsPayment) {
          return "https://api.safe2pay.com.br/";
-      }else{
+      } else {
          return "https://payment.safe2pay.com.br/";
-      }   
+      }
    }
 }

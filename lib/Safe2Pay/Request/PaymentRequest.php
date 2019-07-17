@@ -12,7 +12,7 @@ class Payment
 {
     public static function GetPaymentMethods()
     {
-
+        
         $request = Client::HttpClient('GET', 'v1/methods', null, false);
 
         $response = new Response();

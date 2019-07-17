@@ -4,8 +4,8 @@ namespace Safe2Pay\Api;
 use Safe2Pay\Core\Client;
 use Safe2Pay\Models\Response;
 
-include_once('../Core/Client.php');
-include_once('../Models/Response/Response.php');
+include_once(__DIR__.'/../Core/Client.php');
+include_once(__DIR__.'/../Models/Response/Response.php');
 
 /**
  * Class InvoiceRequest

@@ -15,14 +15,14 @@ class BankTransferRequest{
     /**
      * Get a Lot
      *
-     * @param [object] $object
+     * @param [Transfer] $object
      * @return Response
      */
-    public static function Transfer($object){
+    public static function Transfer($transfer){
 
-        $request = Client:: HttpClient('POST','', json_encode(null),false);
+        $request = Client:: HttpClient('POST','v2/transfer', json_encode($transfer),false);
         $response = json_decode($request , true);
-        return response;
+        return $response;
     }
 
 }

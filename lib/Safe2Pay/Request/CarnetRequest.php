@@ -18,9 +18,9 @@ class CarnetRequest{
      * @param [string] $identifier
      * @return Response
      */
-    public static function Get($identifier){ 
+    public static function Get($Identifier){ 
 
-        $request = Client:: HttpClient('GET','v1/carnet/'.$identifier, null, false);
+        $request = Client:: HttpClient('GET',"v1/carnet/{$Identifier}", null, false);
 
         $response = new Response();
 
@@ -35,15 +35,15 @@ class CarnetRequest{
      * @param [string] $identifier
      * @return Response
      */
-    public static function CancelLot($identifier){
+    public static function CancelLot($Identifier){
 
-        $request = Client:: HttpClient('DELETE','v1/carnet/'.$identifier, json_encode(null),false);
+        $request = Client:: HttpClient('DELETE',"v1/carnet/{$Identifier}",null,false);
     
         $response = new Response();
 
         foreach (json_decode($request , true) as $key => $value) $response->{$key} = $value;
 
-        return response;
+        return $response;
     }
 
     /**
@@ -52,9 +52,9 @@ class CarnetRequest{
      * @param [string] $identifier
      * @return Response
      */
-    public static function Cancel($identifier){
+    public static function Cancel($Identifier){
 
-        $request = Client:: HttpClient('DELETE','v1/carnet/'.$identifier, json_encode(null),false);
+        $request = Client:: HttpClient('DELETE',"v1/carnet/{$Identifier}", null,false);
     
         $response = new Response();
 

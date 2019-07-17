@@ -5,8 +5,8 @@ namespace Safe2Pay\Api;
 use Safe2Pay\Core\Client;
 use Safe2Pay\Models\Response;
 
-include_once('../Core/Client.php');
-include_once('../Models/Response/Response.php');
+include_once(__DIR__.'/../Core/Client.php');
+include_once(__DIR__.'/../Models/Response/Response.php');
 
 /**
  * Class Subscription
@@ -22,7 +22,6 @@ class Subscription{
      * @return Response
      */
     public static function Add($data){
-
 
         $request = Client:: HttpClient('POST','v2/subscription', json_encode($data), false);
 
@@ -41,7 +40,7 @@ class Subscription{
      */
     public static function Get($Id){
 
-        $request = Client:: HttpClient('GET','v2/subscription/get?id='.$Id, null, false);
+        $request = Client:: HttpClient('GET',"v2/subscription/get?id={$Id}", null, false);
 
         $response = new Response();
 

@@ -2,6 +2,16 @@
 
 namespace Safe2Pay\Test;
 
+include_once('../Models/Response/Response.php');
+include_once('../Models/Payment/CreditCard.php');
+include_once('../Models/Payment/DebitCard.php');
+include_once('../Models/Payment/BankSlip.php');
+include_once('../Models/Transactions/Transaction.php');
+include_once('../Models/General/Customer.php');
+include_once('../Models/General/Product.php');
+include_once('../Models/General/Address.php');
+include_once(__DIR__ . '/../Request/PaymentRequest.php');
+
 use Safe2Pay\Api\PaymentRequest;
 use Safe2Pay\Models\BankSlip;
 use Safe2Pay\Models\CreditCard;
@@ -11,17 +21,6 @@ use Safe2Pay\Models\Customer;
 use Safe2Pay\Models\Product;
 use Safe2Pay\Models\Address;
 use Safe2Pay\Models\PaymentMethod;
-
-include_once('../Models/Response/Response.php');
-include_once('../Models/Payment/CreditCard.php');
-include_once('../Models/Payment/DebitCard.php');
-include_once('../Models/Payment/BankSlip.php');
-include_once('../Models/Transactions/Transaction.php');
-include_once('../Models/General/Customer.php');
-include_once('../Models/General/Product.php');
-include_once('../Models/General/Address.php');
-
-include_once(__DIR__.'/../Request/PaymentRequest.php');
 
 /**
  * Class PaymentTest
@@ -59,7 +58,7 @@ class PaymentTest
 
         //Informa o objeto de pagamento
 
-        //Objeto de pagamento - para boleto bancário - 1
+        //Objeto de pagamento - para boleto bancário
         $payload->setPaymentObject(new BankSlip("16/07/2019", false, false, 2.00, 0.40, "Instrução de Exemplo", array("mensagem 1", "mensagem 2", "mensagem 3")));
 
 
@@ -71,14 +70,21 @@ class PaymentTest
         ));
 
         //Dados do cliente
-        $Customer = new Customer("Teste Cliente", "01579286000174", "Teste@Teste.com.br", null);
+        $Customer = new Customer("Teste Cliente", "01579286000174", "Teste@Teste.com.br");
         //Dados do endereço do cliente
         $Customer->setAddress(new Address("90620000", "Avenida Princesa Isabel", "828", null, "Santana", "RS", "Porto Alegre", "Brasil"));
 
 
         $payload->setCustomer($Customer);
 
-        var_dump(PaymentRequest::BankSlip($payload));
+        try {
+
+            var_dump(PaymentRequest::BankSlip($payload));
+
+        } catch (Exception $e) {
+
+            echo  $e->getMessage();
+        }   
     }
 
     //Cartão de crédito
@@ -109,6 +115,7 @@ class PaymentTest
         //Objeto de pagamento - para boleto bancário - 1
         $payload->setPaymentObject(new CreditCard("João da Silva", "4024007153763191", "12/2019", "241"));
 
+        //$payload->setPaymentObject(CreditCard::__Tokenized("841541584185418514851414965941851"));
 
         //Lista de produtos incluídos na cobrança
         $payload->setProducts(array(
@@ -118,7 +125,7 @@ class PaymentTest
         ));
 
         //Dados do cliente
-        $Customer = new Customer("Teste Cliente", "01579286000174", "Teste@Teste.com.br", null);
+        $Customer = new Customer("Teste Cliente", "01579286000174", "Teste@Teste.com.br");
         //Dados do endereço do cliente
         $Customer->setAddress(new Address("90620000", "Avenida Princesa Isabel", "828", null, "Santana", "RS", "Porto Alegre", "Brasil"));
 
@@ -158,7 +165,7 @@ class PaymentTest
         ));
 
         //Dados do cliente
-        $Customer = new Customer("Teste Cliente", "01579286000174", "Teste@Teste.com.br", null);
+        $Customer = new Customer("Teste Cliente", "01579286000174", "Teste@Teste.com.br");
         //Dados do endereço do cliente
         $Customer->setAddress(new Address("90620000", "Avenida Princesa Isabel", "828", null, "Santana", "RS", "Porto Alegre", "Brasil"));
 
@@ -204,7 +211,7 @@ class PaymentTest
         ));
 
         //Dados do cliente
-        $Customer = new Customer("Teste Cliente", "01579286000174", "Teste@Teste.com.br", null);
+        $Customer = new Customer("Teste Cliente", "01579286000174", "Teste@Teste.com.br");
         //Dados do endereço do cliente
         $Customer->setAddress(new Address("90620000", "Avenida Princesa Isabel", "828", null, "Santana", "RS", "Porto Alegre", "Brasil"));
 

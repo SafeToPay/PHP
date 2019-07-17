@@ -28,7 +28,9 @@ class CreditCard  implements \JsonSerializable
 		$this->IsRecurrence = $IsRecurrence;
 	}
 
-	function __Empty() {}
+	function __Tokenized($Token) {
+		$this->Token = $Token;
+	}
 
     //Credit Card Tokenization
     function __construct($Holder,$CardNumber,$ExpirationDate,$SecurityCode) {

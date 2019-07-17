@@ -23,7 +23,7 @@ class SubscriptionTest
         $payload->Plan = 68;
         $payload->IsSandbox = true;
         $payload->SubscriptionObject = ['TokenCard' => '4d8sa65d87sa8a87a5454d8911a'];
-        $payload->Customer = new Customer('João da Silva', '31037942000178', 'safe2pay@safe2pay.com.br', null);
+        $payload->Customer = new Customer('João da Silva', '31037942000178', 'safe2pay@safe2pay.com.br');
         $payload->Customer->Address = new Address('90670090', 'Logradouro', '123', null, 'Higienopolis', 'RS', 'Porto Alegre', 'Brasil');
 
         var_dump(json_encode($payload));

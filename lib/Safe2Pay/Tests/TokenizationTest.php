@@ -5,8 +5,8 @@ namespace Safe2Pay\Test;
 use Safe2Pay\Api\TokenizationRequest;
 use Safe2Pay\Models\CreditCard;
 
-include_once(__DIR__.'/../Models/Payment/CreditCard.php');
-include_once(__DIR__.'/../Request/TokenizationRequest.php');
+include_once('../Models/Payment/CreditCard.php');
+include_once('../Request/TokenizationRequest.php');
 
 /**
  * Class TokenizationTest
@@ -18,15 +18,22 @@ class TokenizationTest
 
     public static function Create()
     {
+        //Cria uma instância do objeto do cartão para realizar a tokenização
+        $CreditCard = new CreditCard("João da Silva", "4024007153763191", "12/2019", "241");
+        //Realiza a tokenização e traz o retorno
 
-        $CreditCard = new CreditCard("João da Silva","4024007153763191","12/2019","241");  
+        try {
 
-        $response  =  TokenizationRequest::Create($CreditCard);
+            $response  =  TokenizationRequest::Create($CreditCard);
 
-        var_dump($response);
+            var_dump($response);
 
+        } catch (Exception $e) {
+
+            echo  $e->getMessage();
+        }
+   
     }
 }
 
 //TokenizationTest::Create();
-

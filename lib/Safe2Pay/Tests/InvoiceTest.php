@@ -28,7 +28,7 @@ class InvoiceTest
     {
       
          //Dados do cliente
-         $Customer = new Customer("Teste Cliente", "01579286000174", "Teste@Teste.com.br", null);
+         $Customer = new Customer("Teste Cliente", "01579286000174", "Teste@Teste.com.br");
          //Dados do endereço do cliente
          $Customer->setAddress(new Address("90620000", "Avenida Princesa Isabel", "828", null, "Santana", "RS", "Porto Alegre", "Brasil"));
  
@@ -82,7 +82,7 @@ class InvoiceTest
     {
       
          //Dados do cliente
-         $Customer = new Customer("Teste Cliente", "01579286000174", "Teste@Teste.com.br", null);
+         $Customer = new Customer("Teste Cliente", "01579286000174", "Teste@Teste.com.br");
          //Dados do endereço do cliente
          $Customer->setAddress(new Address("90620000", "Avenida Princesa Isabel", "828", null, "Santana", "RS", "Porto Alegre", "Brasil"));
  

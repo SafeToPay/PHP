@@ -111,8 +111,6 @@ class PaymentTest
         $payload->setPaymentMethod("2");
 
         //Informa o objeto de pagamento
-
-        //Objeto de pagamento - para boleto bancário - 1
         $payload->setPaymentObject(new CreditCard("João da Silva", "4024007153763191", "12/2019", "241"));
 
         //$payload->setPaymentObject(CreditCard::__Tokenized("841541584185418514851414965941851"));

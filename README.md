@@ -1,6 +1,8 @@
-# Safe2Pay
 
-SDK API-3.0 PHP
+# Safe2Pay PHP SDK
+
+![Safe2Pay](https://safe2pay.com.br/static/img/banner-github.png)
+
 
 ## Principais recursos
 
@@ -15,51 +17,59 @@ SDK API-3.0 PHP
 * [x] Consulta de pagamentos.
 * [x] Tokenização de cartão.
 
-## Limitações
+## Utilização
 
-Por envolver a interface de usuário da aplicação, o SDK funciona apenas como um framework para criação das transações. Nos casos onde a autorização é direta, não há limitação; mas nos casos onde é necessário a autenticação ou qualquer tipo de redirecionamento do usuário, o desenvolvedor deverá utilizar o SDK para gerar o pagamento e, com o link retornado pela Cielo, providenciar o redirecionamento do usuário.
+A integração com a API do Safe2Pay se dá pelo modelo RESTful, de forma a realizar a transferência segura e simplificada dos dados pelo formato JSON. Para facilitar o envio dos dados, deve-se montar um objeto para envio baseado nos modelos disponíveis, com exemplos abaixo, e a própria chamada do método desejado realizará o tratamento e conversão deste objeto para JSON. 
+
+
+### Tratamento das respostas da API
+
+Após o envio, a própria chamada devolverá a resposta em um objeto completo com as propriedades desta, onde um cast das classes de resposta permitirá o tratamento das propriedades do objeto de retorno de forma simplificada, sem a necessidade de criar os mesmos modelos em seu projeto. Utilize a `CheckoutResponse` para transações ou `InvoiceResponse` para solicitações de cobrança.
 
 ## Dependências
 
 * PHP >= 5.6
 
-## Instalando o SDK
+## Pagamentos / Transações
 
-Se já possui um arquivo `composer.json`, basta adicionar a seguinte dependência ao seu projeto:
+A informação da forma de pagamento é dada por meio da propriedade `PaymentMethod`, onde deve ser informado o código correspondente ao método desejado:
 
-```json
-"require": {
-    "developercielo/api-3.0-php": "^1.0"
-}
-```
+1. Boleto Bancário;
+2. Cartão de Crédito;
+3. Bitcoin;
+4. Cartão de Débito
 
-Com a dependência adicionada ao `composer.json`, basta executar:
-
-```
-composer install
-```
-
-Alternativamente, você pode executar diretamente em seu terminal:
+O retorno do envio da transação trará um status para esta, que pode ser igual a:
 
 ```
-composer require "developercielo/api-3.0-php"
+1 = PENDENTE
+2 = PROCESSAMENTO
+3 = AUTORIZADO
+4 = DISPONÍVEL
+5 = EM DISPUTA
+6 = DEVOLVIDO
+7 = BAIXADO
+8 = RECUSADO
+11 = LIBERADO
+12 = EM CANCELAMENTO
 ```
-## Utilizando o SDK
-
-Para criar um pagamento simples com cartão de crédito com o SDK, basta fazer:
-
-
 
 ### Criando uma venda com Boleto
 
 ```php
 <?php
 
-require 'Models/Payment/BankSlip.php';
 require 'Models/Transactions/Transaction.php';
+require 'Models/General/Customer.php';
+require 'Models/General/Product.php';
+require 'Models/General/Address.php'
+require 'Models/Payment/BankSlip.php');
 
-use Safe2Pay\Models\BankSlip;
 use Safe2Pay\Models\Transaction;
+use Safe2Pay\Models\Customer;
+use Safe2Pay\Models\Product;
+use Safe2Pay\Models\Address;
+use Safe2Pay\Models\BankSlip;
 
 
 //Inicializar método de pagamento
@@ -120,7 +130,7 @@ $payload->setCustomer($Customer);
 
 try {
 
-$response  =  PaymentRequest::BankSlip($payload);
+$response = PaymentRequest::BankSlip($payload);
 
 } catch(Exception $e) {
 
@@ -135,12 +145,17 @@ $response  =  PaymentRequest::BankSlip($payload);
 ```php
 <?php
 
-require 'Models/Payment/BankSlip.php';
 require 'Models/Transactions/Transaction.php';
+require 'Models/General/Customer.php';
+require 'Models/General/Product.php';
+require 'Models/General/Address.php'
+require 'Models/Payment/CreditCard.php');
 
-use Safe2Pay\Models\BankSlip;
 use Safe2Pay\Models\Transaction;
-
+use Safe2Pay\Models\Customer;
+use Safe2Pay\Models\Product;
+use Safe2Pay\Models\Address;
+use Safe2Pay\Models\CreditCard;
 
 //Inicializar método de pagamento
 $payload  = new Transaction();
@@ -166,8 +181,9 @@ $payload->setPaymentMethod("2");
         "12/2019", // Data de vencimento
         "241" //Código de segurança
     ));
- //Exemplo com cartão tokenizado
 
+ //Exemplo com cartão tokenizado
+//$payload->setPaymentObject(CreditCard::__Tokenized("841541584185418514851414965941851"));
 
 
 //Insere os produtos referente a cobrança do boleto
@@ -216,11 +232,15 @@ $response  =  PaymentRequest::CreditCard($payload);
 ```php
 <?php
 
-require 'Models/Payment/BankSlip.php';
 require 'Models/Transactions/Transaction.php';
+require 'Models/General/Customer.php';
+require 'Models/General/Product.php';
+require 'Models/General/Address.php';
 
-use Safe2Pay\Models\BankSlip;
 use Safe2Pay\Models\Transaction;
+use Safe2Pay\Models\Customer;
+use Safe2Pay\Models\Product;
+use Safe2Pay\Models\Address;
 
 
 //Inicializar método de pagamento
@@ -237,7 +257,7 @@ $payload->setCallbackUrl("https://callbacks.exemplo.com.br/api/Notify");
 //Informa método de pagamento 3 para Bitcoin
 $payload->setPaymentMethod("3");
 
-//Insere os produtos referente a cobrança do boleto
+//Insere os produtos referente a cobrança
 //-Código
 //-Descrição
 //-Quantidade
@@ -268,7 +288,7 @@ $payload->setCustomer($Customer);
 
 try {
 
-$response  =  PaymentRequest::CryptoCurrency($payload);
+$response = PaymentRequest::CryptoCurrency($payload);
 
 } catch(Exception $e) {
 
@@ -278,16 +298,22 @@ $response  =  PaymentRequest::CryptoCurrency($payload);
 // ...
 ```
 
-### Criando uma venda com cartão de crédito
+### Criando uma venda com cartão de débito
 
 ```php
 <?php
 
-require 'Models/Payment/BankSlip.php';
 require 'Models/Transactions/Transaction.php';
+require 'Models/Payment/DebitCard.php';
+require 'Models/General/Customer.php';
+require 'Models/General/Product.php';
+require 'Models/General/Address.php';
 
-use Safe2Pay\Models\BankSlip;
 use Safe2Pay\Models\Transaction;
+use Safe2Pay\Models\DebitCard;
+use Safe2Pay\Models\Customer;
+use Safe2Pay\Models\Product;
+use Safe2Pay\Models\Address;
 
 
 //Inicializar método de pagamento
@@ -301,10 +327,10 @@ $payload->setVendor("João da Silva");
 //Informa Url de callback para receber notificações via Webhook
 $payload->setCallbackUrl("https://callbacks.exemplo.com.br/api/Notify");
 
-//Informa método de pagamento 2 para cartão de débito
+//Informa método de pagamento 4 para cartão de débito
 $payload->setPaymentMethod("4");
 
-//Inicializa o objeto de pagamento com uma instância de CreditCard(cartão de crédito)
+//Inicializa o objeto de pagamento com uma instância de DebitCard(cartão de débito)
 
 //Exemplo de pagamento com cartão não tokenizado
  $payload->setPaymentObject(
@@ -314,11 +340,8 @@ $payload->setPaymentMethod("4");
         "12/2019", // Data de vencimento
         "241" //Código de segurança
     ));
- //Exemplo com cartão tokenizado
 
-
-
-//Insere os produtos referente a cobrança do boleto
+//Insere os produtos referente a cobrança
 //-Código
 //-Descrição
 //-Quantidade
@@ -349,7 +372,7 @@ $payload->setCustomer($Customer);
 
 try {
 
-$response  =  PaymentRequest::CreditCard($payload);
+$response = PaymentRequest::DebitCard($payload);
 
 } catch(Exception $e) {
 

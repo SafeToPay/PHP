@@ -44,27 +44,6 @@ Alternativamente, você pode executar diretamente em seu terminal:
 ```
 composer require "developercielo/api-3.0-php"
 ```
-
-## Produtos e Bandeiras suportadas e suas constantes
-
-```php
-<?php
-require 'vendor/autoload.php';
-
-use Cielo\API30\Ecommerce\CreditCard;
-```
-
-| Bandeira         | Constante              | Crédito à vista | Crédito parcelado Loja | Débito | Voucher |
-|------------------|------------------------|-----------------|------------------------|--------|---------|
-| Visa             | CreditCard::VISA       | Sim             | Sim                    | Sim    | *Não*   |
-| Master Card      | CreditCard::MASTERCARD | Sim             | Sim                    | Sim    | *Não*   |
-| American Express | CreditCard::AMEX       | Sim             | Sim                    | *Não*  | *Não*   |
-| Elo              | CreditCard::ELO        | Sim             | Sim                    | *Não*  | *Não*   |
-| Diners Club      | CreditCard::DINERS     | Sim             | Sim                    | *Não*  | *Não*   |
-| Discover         | CreditCard::DISCOVER   | Sim             | *Não*                  | *Não*  | *Não*   |
-| JCB              | CreditCard::JCB        | Sim             | Sim                    | *Não*  | *Não*   |
-| Aura             | CreditCard::AURA       | Sim             | Sim                    | *Não*  | *Não*   |
-
 ## Utilizando o SDK
 
 Para criar um pagamento simples com cartão de crédito com o SDK, basta fazer:

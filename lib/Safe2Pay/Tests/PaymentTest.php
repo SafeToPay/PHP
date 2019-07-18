@@ -2,15 +2,15 @@
 
 namespace Safe2Pay\Test;
 
-include_once('../Models/Response/Response.php');
-include_once('../Models/Payment/CreditCard.php');
-include_once('../Models/Payment/DebitCard.php');
-include_once('../Models/Payment/BankSlip.php');
-include_once('../Models/Transactions/Transaction.php');
-include_once('../Models/General/Customer.php');
-include_once('../Models/General/Product.php');
-include_once('../Models/General/Address.php');
-include_once(__DIR__ . '/../Request/PaymentRequest.php');
+include_once(__DIR__.'/../Models/Response/Response.php');
+include_once(__DIR__.'/../Models/Payment/CreditCard.php');
+include_once(__DIR__.'/../Models/Payment/DebitCard.php');
+include_once(__DIR__.'/../Models/Payment/BankSlip.php');
+include_once(__DIR__.'/../Models/Transactions/Transaction.php');
+include_once(__DIR__.'/../Models/General/Customer.php');
+include_once(__DIR__.'/../Models/General/Product.php');
+include_once(__DIR__.'/../Models/General/Address.php');
+include_once(__DIR__.'/../Request/PaymentRequest.php');
 
 use Safe2Pay\Api\PaymentRequest;
 use Safe2Pay\Models\BankSlip;

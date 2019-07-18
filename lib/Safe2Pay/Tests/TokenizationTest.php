@@ -5,8 +5,8 @@ namespace Safe2Pay\Test;
 use Safe2Pay\Api\TokenizationRequest;
 use Safe2Pay\Models\CreditCard;
 
-include_once('../Models/Payment/CreditCard.php');
-include_once('../Request/TokenizationRequest.php');
+include_once(__DIR__.'/../Models/Payment/CreditCard.php');
+include_once(__DIR__.'/../Request/TokenizationRequest.php');
 
 /**
  * Class TokenizationTest

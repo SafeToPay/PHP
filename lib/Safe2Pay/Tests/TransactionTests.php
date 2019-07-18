@@ -16,7 +16,8 @@ class TransactionTest
 
     public static function Get()
     { 
-        var_dump(json_encode(TransactionRequest::Get(82548)));
+        $Id=82548;
+        var_dump(json_encode(TransactionRequest::Get($Id)));
 
     }
 }

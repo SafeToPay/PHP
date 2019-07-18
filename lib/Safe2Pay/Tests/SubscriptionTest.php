@@ -7,8 +7,8 @@ use Safe2Pay\Models\SubscriptionRequest;
 use Safe2Pay\Models\Customer;
 use Safe2Pay\Models\Address;
 
-include_once(__DIR__ . '/../Models/Subscription/SubscriptionRequest.php');
-include_once(__DIR__ . '/../Request/SubscriptionRequest.php');
+include_once(__DIR__.'/../Models/Subscription/SubscriptionRequest.php');
+include_once(__DIR__.'/../Request/SubscriptionRequest.php');
 
 /**
  * Class SubscriptionTest
@@ -33,7 +33,8 @@ class SubscriptionTest
 
     public static function Get()
     {
-        var_dump(Subscription::Get(825));
+        $Id = 825;
+        var_dump(Subscription::Get($Id));
     }
 }
 

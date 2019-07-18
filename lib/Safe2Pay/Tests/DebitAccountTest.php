@@ -16,13 +16,16 @@ class DebitAccountTest
 
     public static function Get()
     {
+        $Id = 8;
 
-        var_dump(DebitAccountRequest::Get(8));
+        var_dump(DebitAccountRequest::Get( $Id));
     }
 
     public static function Cancel()
     {
-        var_dump(DebitAccountRequest::Cancel(8));
+        $Id = 8;
+
+        var_dump(DebitAccountRequest::Cancel($Id));
     }
 }
 

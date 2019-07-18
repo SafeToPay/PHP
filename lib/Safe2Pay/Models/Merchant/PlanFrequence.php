@@ -1,4 +1,3 @@
-
 <?php
 
 namespace Safe2Pay\Models;
@@ -8,7 +7,7 @@ namespace Safe2Pay\Models;
  *
  * @package Safe2Pay\Models
  */
-class PlanFrequence
+class PlanFrequence implements \JsonSerializable
 {
     private $Id;
     private $Code;
@@ -37,6 +36,14 @@ class PlanFrequence
 	public function setName($Name){
 		$this->Name = $Name;
 	}
+
+	public function JsonSerialize()
+    {
+        return [
+				'Code' =>  $this->Code,
+        ];
+    }
+
 }
 
 ?>

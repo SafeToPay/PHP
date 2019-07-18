@@ -102,17 +102,22 @@ class MarketplaceTest
 
     public static function Delete()
     {
-        var_dump(MarketplaceRequest::Delete(717));
+        $Id = 717;
+        var_dump(MarketplaceRequest::Delete($Id));
     }
 
     public static function List()
     {
-        var_dump(MarketplaceRequest::List(1,10));
+        $PageNumber = 1;
+        $RowsPage = 10;
+
+        var_dump(MarketplaceRequest::List($PageNumber,$RowsPage));
     }
 
     public static function Get()
     {
-        var_dump(MarketplaceRequest::Get(717));
+        $Id = 717;
+        var_dump(MarketplaceRequest::Get($Id));
     }
 }
 

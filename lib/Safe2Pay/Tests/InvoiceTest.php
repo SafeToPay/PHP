@@ -149,4 +149,4 @@ class InvoiceTest
 //InvoiceTest::Cancel();
 //InvoiceTest::Get();
 //InvoiceTest::Add();
-InvoiceTest::Update();
+//InvoiceTest::Update();

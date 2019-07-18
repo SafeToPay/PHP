@@ -29,7 +29,9 @@ class AccountDepositTest
 
     public static function Detail()
     {
-        var_dump(AccountDepositRequest::Detail(287891));
+        $Id = 287891;
+
+        var_dump(AccountDepositRequest::Detail($Id));
     }
 
 

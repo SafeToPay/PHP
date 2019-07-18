@@ -438,6 +438,6 @@ try {
 
 ## Informações adicionais / Contato
 
-A orientação sobre a utilização da API também está disponível na documentação de referência da API, disponível aqui, porém salientamos que ela se encontra em atualização para a nova versão da API e, por isso, recomendamos a utilização do pacote da galeria do NuGet, para que você esteja sempre com a versão mais atualizada!
+A orientação sobre a utilização da API também está disponível na documentação de referência da API, disponível aqui, porém salientamos que ela se encontra em atualização para a nova versão da API.
 
 Em caso de dúvidas, ficamos à disposição em nossos canais ou diretamente pelo e-mail integracao@safe2pay.com.br.

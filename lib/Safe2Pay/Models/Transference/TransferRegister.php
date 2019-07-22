@@ -2,11 +2,11 @@
 
 namespace Safe2Pay\Models;
 /**
- * Class Transfer
+ * Class TransferRegister
  *
  * @package Safe2Pay\Models
  */
-class Transfer
+class TransferRegister
 {
     private $Id;
     private $IdTransfer;

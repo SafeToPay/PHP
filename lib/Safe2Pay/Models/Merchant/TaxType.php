@@ -8,6 +8,11 @@ namespace Safe2Pay\Models;
  *
  * @package Safe2Pay\Models
  */
+
+// Code	Name
+// 1	Percentual
+// 2	Valor
+
 class TaxType
 {
     private $Id;

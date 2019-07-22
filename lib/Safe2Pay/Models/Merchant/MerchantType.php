@@ -8,6 +8,13 @@ namespace Safe2Pay\Models;
  *
  * @package Safe2Pay\Models
  */
+
+// Code	Name
+// 1	Personal
+// 2	Business
+// 3	Marketplace
+// 4	WhiteLabel
+
 class MerchantType
 {
     private $Id;

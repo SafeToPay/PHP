@@ -9,6 +9,7 @@ class SubscriptionRequest implements \JsonSerializable
 {
     public $Plan;
     public $IsSandbox;
+    public $ChargeDate;
     public $Customer;
     public $SubscriptionObject;
 
@@ -49,6 +50,7 @@ class SubscriptionRequest implements \JsonSerializable
             'Plan' => $this->Plan,
             'IsSandbox' => $this->IsSandbox,
             'Customer' => $this->Customer,
+            'ChargeDate' => $this->ChargeDate,
             'SubscriptionObject' => $this->SubscriptionObject
         ];
     }

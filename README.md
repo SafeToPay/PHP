@@ -60,17 +60,12 @@ O retorno do envio da transação trará um status para esta, que pode ser igual
 ```php
 <?php
 
-require 'Models/Transactions/Transaction.php';
-require 'Models/General/Customer.php';
-require 'Models/General/Product.php';
-require 'Models/General/Address.php'
-require 'Models/Payment/BankSlip.php');
-
-use Safe2Pay\Models\Transaction;
-use Safe2Pay\Models\Customer;
-use Safe2Pay\Models\Product;
-use Safe2Pay\Models\Address;
-use Safe2Pay\Models\BankSlip;
+use API\PaymentRequest;
+use Models\Payment\BankSlip;
+use Models\Transactions\Transaction;
+use Models\General\Customer;
+use Models\General\Product;
+use Models\General\Address;
 
 
 //Inicializar método de pagamento
@@ -146,17 +141,12 @@ $response = PaymentRequest::BankSlip($payload);
 ```php
 <?php
 
-require 'Models/Transactions/Transaction.php';
-require 'Models/General/Customer.php';
-require 'Models/General/Product.php';
-require 'Models/General/Address.php'
-require 'Models/Payment/CreditCard.php');
-
-use Safe2Pay\Models\Transaction;
-use Safe2Pay\Models\Customer;
-use Safe2Pay\Models\Product;
-use Safe2Pay\Models\Address;
-use Safe2Pay\Models\CreditCard;
+use API\PaymentRequest;
+use Models\Payment\CreditCard;
+use Models\Transactions\Transaction;
+use Models\General\Customer;
+use Models\General\Product;
+use Models\General\Address;
 
 //Inicializar método de pagamento
 $payload  = new Transaction();
@@ -233,15 +223,11 @@ $response  =  PaymentRequest::CreditCard($payload);
 ```php
 <?php
 
-require 'Models/Transactions/Transaction.php';
-require 'Models/General/Customer.php';
-require 'Models/General/Product.php';
-require 'Models/General/Address.php';
-
-use Safe2Pay\Models\Transaction;
-use Safe2Pay\Models\Customer;
-use Safe2Pay\Models\Product;
-use Safe2Pay\Models\Address;
+use API\PaymentRequest;
+use Models\Transactions\Transaction;
+use Models\General\Customer;
+use Models\General\Product;
+use Models\General\Address;
 
 
 //Inicializar método de pagamento
@@ -304,17 +290,12 @@ $response = PaymentRequest::CryptoCurrency($payload);
 ```php
 <?php
 
-require 'Models/Transactions/Transaction.php';
-require 'Models/Payment/DebitCard.php';
-require 'Models/General/Customer.php';
-require 'Models/General/Product.php';
-require 'Models/General/Address.php';
-
-use Safe2Pay\Models\Transaction;
-use Safe2Pay\Models\DebitCard;
-use Safe2Pay\Models\Customer;
-use Safe2Pay\Models\Product;
-use Safe2Pay\Models\Address;
+use API\PaymentRequest;
+use Models\Payment\DebitCard;
+use Models\Transactions\Transaction;
+use Models\General\Customer;
+use Models\General\Product;
+use Models\General\Address;
 
 
 //Inicializar método de pagamento
@@ -388,28 +369,37 @@ $response = PaymentRequest::DebitCard($payload);
 ```php
 <?php
 
-require 'Models/Payment/CreditCard.php';
-require 'Request/TokenizationRequest.php';
+namespace Test;
 
-use Safe2Pay\Api\TokenizationRequest;
-use Safe2Pay\Models\CreditCard;
+use Models\Payment\CreditCard;
+use API\TokenizationRequest;
 
-// ...
-// ...
-//Cria uma instância do objeto do cartão passando pelo construtor as informaçõespara realizar a tokenização:
-//Nome, Número do cartão, Data de expiração e código de segurança 
-$CreditCard = new CreditCard("João da Silva", "4024007153763191", "12/2019", "241");
+/**
+ * Class TokenizationTest
+ *
+ * @package Safe2Pay\Test
+ */
+class TokenizationTest
+{
 
+    public static function Create()
+    {
+        //Cria uma instância do objeto do cartão para realizar a tokenização
+        $CreditCard = new CreditCard("João da Silva", "4024007153763191", "12/2019", "241");
+        //Realiza a tokenização e traz o retorno
 
-try {
-//Realiza a tokenização e traz o retorno 
+        try {
 
-    $response  =  TokenizationRequest::Create($CreditCard);
+            $response  = TokenizationRequest::Create($CreditCard);
 
-} catch (Exception $e) {
+        } catch (Exception $e) {
 
-    echo  $e->getMessage();
+            echo  $e->getMessage();
+        }
+   
+    }
 }
+
 // ...
 ```
 
@@ -418,21 +408,25 @@ try {
 ```php
 <?php
 
-require('Request/TransactionRequest.php');
-use Safe2Pay\Api\TransactionRequest;
+use API\TransactionRequest;
 
 
-$IdTransaction = 82548;
+/**
+ * Class TransactionTest
+ *
+ * @package Safe2Pay\Test
+ */
+class TransactionTest
+{
 
+    public static function Get()
+    { 
+        $Id=535489;
+        $response = TransactionRequest::Get($Id);
 
-try {
-
-    $response  =  TransactionRequest::Get($IdTransaction);
-
-} catch (Exception $e) {
-
-    echo  $e->getMessage();
+    }
 }
+
 // ...
 ```
 

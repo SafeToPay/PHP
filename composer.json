@@ -1,13 +1,23 @@
 {
     "name": "safe2pay/sdk",
-    "description": "SDK php para integração com as APIs Safe2Pay",
-    "authors": [
-        {
-            "name": "Lucas Diogo",
-            "email": "lucas@safe2pay.com.br"
-        }
+    "description": "Biblioteca para integração com a plataforma de pagamentos Safe2Pay",
+    "keywords": [
+        "payment",
+        "pagamento",
+        "boleto",
+        "credito",
+        "debito",
+        "recorrencia",
+        "facil",
+        "segurança"
     ],
+    "license": "MIT",
+    "authors": [{
+        "name": "Lucas Diogo",
+        "email": "lucas@safe2pay.com.br"
+    }],
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "php": ">=5.3.0"
     },

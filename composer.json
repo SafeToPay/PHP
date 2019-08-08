@@ -1,5 +1,5 @@
 {
-    "name": "safe2pay",
+    "name": "safe2pay/SDK",
     "description": "SDK php para integração com as APIs Safe2Pay",
     "authors": [
         {

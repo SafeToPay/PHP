@@ -1,8 +1,5 @@
 <?php
 
-namespace Safe2Pay\Models\General;
-
-
 namespace Models\General;
 
 

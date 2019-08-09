@@ -2,7 +2,7 @@
 
 namespace Models\Transactions;
 
-require_once './Base.php';
+require __DIR__.'\Base.php';
 /**
  * Class Transaction
  *

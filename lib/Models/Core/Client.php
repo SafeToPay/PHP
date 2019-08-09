@@ -2,7 +2,9 @@
 
 namespace Models\Core;
 
-require_once './Config.php';
+
+require __DIR__.'\Config.php';
+
 
 class Client
 {

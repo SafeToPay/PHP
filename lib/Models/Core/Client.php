@@ -2,7 +2,7 @@
 
 namespace Models\Core;
 
-require_once __DIR__ .'../../../../vendor/autoload.php';
+require_once './Config.php';
 
 class Client
 {

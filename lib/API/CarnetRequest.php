@@ -6,7 +6,8 @@ use Models\Core\Client;
 use Models\Response\Response;
 
 
-require_once __DIR__.'/../../vendor/autoload.php';
+require_once '../Models/Core/Client.php';
+require_once '../Models/Response/InvoiceResponse.php';
 
 /**
  * Class CarnetRequest

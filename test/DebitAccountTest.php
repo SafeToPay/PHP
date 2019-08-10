@@ -2,11 +2,14 @@
 
 namespace Test;
 
-require_once __DIR__.'/../vendor/autoload.php';
+
+require_once '../vendor/autoload.php';
 
 use API\DebitAccountRequest;
 
-
+use Models\Core\Config as Enviroment;
+$enviroment = new Enviroment();
+$enviroment->setAPIKEY('x-api-key');
 
 /**
  * Class DebitAccountTest
@@ -31,5 +34,5 @@ class DebitAccountTest
     }
 }
 
-// DebitAccountTest::Get();
-// DebitAccountTest::Cancel();
+ DebitAccountTest::Get();
+ DebitAccountTest::Cancel();

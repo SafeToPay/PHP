@@ -14,7 +14,7 @@
     "license": "MIT",
     "authors": [{
         "name": "Lucas Diogo",
-        "email": "lucas@safe2pay.com.br"
+        "email": "integração@safe2pay.com.br"
     }],
     "minimum-stability": "dev",
     "prefer-stable": true,

@@ -2,11 +2,15 @@
 
 namespace Test;
 
+require_once '../vendor/autoload.php';
+
 use Models\Merchant\Plan;
 use Models\Merchant\PlanFrequence;
 use API\PlanRequest;
 
-require_once __DIR__.'/../vendor/autoload.php';
+use Models\Core\Config as Enviroment;
+$enviroment = new Enviroment();
+$enviroment->setAPIKEY('x-api-key');
 
 /**
  * Class PlanTest
@@ -100,7 +104,7 @@ class PlanTest
     }
 }
 
-// PlanTest::Add();
-// PlanTest::Get();
-// PlanTest::Update();
-// PlanTest::List();
+ PlanTest::Add();
+ PlanTest::Get();
+ PlanTest::Update();
+ PlanTest::List();

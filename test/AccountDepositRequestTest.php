@@ -2,10 +2,13 @@
 
 namespace Test;
 
+require_once '../vendor/autoload.php';
+
 use API\AccountDepositRequest;
 
-require_once __DIR__.'/../vendor/autoload.php';
-
+use Models\Core\Config as Enviroment;
+$enviroment = new Enviroment();
+$enviroment->setAPIKEY('x-api-key');
 /**
  * Class AccountDepositTest
  *
@@ -36,6 +39,6 @@ class AccountDepositTest
 
 }
 
-// AccountDepositTest::GetBankAccount();
-// AccountDepositTest::List();
-// AccountDepositTest::Detail();
+ AccountDepositTest::GetBankAccount();
+ AccountDepositTest::List();
+ AccountDepositTest::Detail();

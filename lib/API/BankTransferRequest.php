@@ -4,8 +4,8 @@ namespace API;
 use Models\Core\Client;
 use Models\Response\Response;
 
-require __DIR__.'\../Models/Core/Client.php';
-require __DIR__.'\../Models/Response/Response.php';
+require_once __DIR__.'\../Models/Core/Client.php';
+require_once __DIR__.'\../Models/Response/Response.php';
 
 /**
  * Class BankTransferRequest

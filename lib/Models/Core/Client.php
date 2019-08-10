@@ -3,18 +3,14 @@
 namespace Models\Core;
 
 
-require __DIR__.'\Config.php';
-
-
 class Client
 {
+   private static $APIKEY = '';
 
    public static function HttpClient($method, $url, $data, $IsPayment)
    {
 
       $url = Client::GetWebMethodUri($IsPayment) . $url;
-
-      echo   $url;
 
       $curl = curl_init();
 
@@ -40,7 +36,7 @@ class Client
       curl_setopt($curl, CURLOPT_URL, $url);
 
       curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-         'X-API-KEY: ' . Config::getToken(),
+         'X-API-KEY: ' . Client::GetEnviroment(),
          'Content-Type: application/json',
       ));
 
@@ -57,7 +53,13 @@ class Client
       return $result;
    }
 
+   public static function SetEnviroment($Token){
+      self::$APIKEY = $Token;
+   }
 
+   private static function GetEnviroment(){
+     return self::$APIKEY;
+   }
 
    private static function GetWebMethodUri($IsPayment)
    {

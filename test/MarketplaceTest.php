@@ -2,6 +2,8 @@
 
 namespace Test;
 
+require_once '../vendor/autoload.php';
+
 use API\MarketplaceRequest;
 use Models\General\Address;
 use Models\Bank\Bank;
@@ -10,7 +12,9 @@ use Models\Merchant\Merchant;
 use Models\Merchant\MerchantSplit;
 use Models\Merchant\MerchantSplitTax;
 
-require_once __DIR__.'/../vendor/autoload.php';
+use Models\Core\Config as Enviroment;
+$enviroment = new Enviroment();
+$enviroment->setAPIKEY('x-api-key');
 
 /**
  * Class MarketplaceTest
@@ -115,8 +119,8 @@ class MarketplaceTest
     }
 }
 
-// MarketplaceTest::List();
-// MarketplaceTest::Get();
-// MarketplaceTest::Delete();
-// MarketplaceTest::Add();
-// MarketplaceTest::Update();
+ MarketplaceTest::List();
+ MarketplaceTest::Get();
+ MarketplaceTest::Delete();
+ MarketplaceTest::Add();
+ MarketplaceTest::Update();

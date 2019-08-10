@@ -2,7 +2,7 @@
 
 namespace Models\Transactions;
 
-require __DIR__.'\../Payment/PaymentMethod.php';
+require_once __DIR__.'\../Payment/PaymentMethod.php';
 
 
 use Models\Payment\PaymentMethod;

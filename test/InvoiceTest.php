@@ -2,6 +2,8 @@
 
 namespace Test;
 
+require_once '../vendor/autoload.php';
+
 use API\InvoiceRequest;
 use Models\General\Customer;
 use Models\General\Address;
@@ -9,8 +11,9 @@ use Models\SingleSale\SingleSale;
 use Models\SingleSale\SingleSaleProduct;
 use Models\SingleSale\SingleSalePaymentMethod;
 
-
-require_once __DIR__.'/../vendor/autoload.php';
+use Models\Core\Config as Enviroment;
+$enviroment = new Enviroment();
+$enviroment->setAPIKEY('x-api-key');
 
 /**
  * Class InvoiceTest
@@ -142,7 +145,7 @@ class InvoiceTest
     }
 }
 
-// InvoiceTest::Cancel();
-// InvoiceTest::Get();
-// InvoiceTest::Add();
-// InvoiceTest::Update();
+ InvoiceTest::Cancel();
+ InvoiceTest::Get();
+ InvoiceTest::Add();
+ InvoiceTest::Update();

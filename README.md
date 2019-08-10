@@ -18,6 +18,12 @@
 * [x] Venda simples.
 * [x] Recorrência.
 
+
+## Utilização
+
+composer require safe2pay/sdk
+
+
 ## Utilização
 
 A integração com a API do Safe2Pay se dá pelo modelo RESTful, de forma a realizar a transferência segura e simplificada dos dados pelo formato JSON. Para facilitar o envio dos dados, deve-se montar um objeto para envio baseado nos modelos disponíveis, com exemplos abaixo, e a própria chamada do método desejado realizará o tratamento e conversão deste objeto para JSON. 
@@ -60,12 +66,18 @@ O retorno do envio da transação trará um status para esta, que pode ser igual
 ```php
 <?php
 
+require_once 'vendor/autoload.php';
+
 use API\PaymentRequest;
 use Models\Payment\BankSlip;
 use Models\Transactions\Transaction;
 use Models\General\Customer;
 use Models\General\Product;
 use Models\General\Address;
+
+use Models\Core\Config as Enviroment;
+$enviroment = new Enviroment();
+$enviroment->setAPIKEY('x-api-key');
 
 
 //Inicializar método de pagamento
@@ -141,12 +153,18 @@ $response = PaymentRequest::BankSlip($payload);
 ```php
 <?php
 
+require_once 'vendor/autoload.php';
+
 use API\PaymentRequest;
 use Models\Payment\CreditCard;
 use Models\Transactions\Transaction;
 use Models\General\Customer;
 use Models\General\Product;
 use Models\General\Address;
+
+use Models\Core\Config as Enviroment;
+$enviroment = new Enviroment();
+$enviroment->setAPIKEY('x-api-key');
 
 //Inicializar método de pagamento
 $payload  = new Transaction();
@@ -223,12 +241,17 @@ $response  =  PaymentRequest::CreditCard($payload);
 ```php
 <?php
 
+require_once 'vendor/autoload.php';
+
 use API\PaymentRequest;
 use Models\Transactions\Transaction;
 use Models\General\Customer;
 use Models\General\Product;
 use Models\General\Address;
 
+use Models\Core\Config as Enviroment;
+$enviroment = new Enviroment();
+$enviroment->setAPIKEY('x-api-key');
 
 //Inicializar método de pagamento
 $payload  = new Transaction();
@@ -290,6 +313,8 @@ $response = PaymentRequest::CryptoCurrency($payload);
 ```php
 <?php
 
+require_once 'vendor/autoload.php';
+
 use API\PaymentRequest;
 use Models\Payment\DebitCard;
 use Models\Transactions\Transaction;
@@ -297,6 +322,9 @@ use Models\General\Customer;
 use Models\General\Product;
 use Models\General\Address;
 
+use Models\Core\Config as Enviroment;
+$enviroment = new Enviroment();
+$enviroment->setAPIKEY('x-api-key');
 
 //Inicializar método de pagamento
 $payload  = new Transaction();
@@ -371,8 +399,15 @@ $response = PaymentRequest::DebitCard($payload);
 
 namespace Test;
 
+require_once 'vendor/autoload.php';
+
 use Models\Payment\CreditCard;
 use API\TokenizationRequest;
+
+use Models\Core\Config as Enviroment;
+$enviroment = new Enviroment();
+$enviroment->setAPIKEY('x-api-key');
+
 
 /**
  * Class TokenizationTest
@@ -408,9 +443,13 @@ class TokenizationTest
 ```php
 <?php
 
+require_once 'vendor/autoload.php';
+
 use API\TransactionRequest;
 
-
+use Models\Core\Config as Enviroment;
+$enviroment = new Enviroment();
+$enviroment->setAPIKEY('x-api-key');
 /**
  * Class TransactionTest
  *

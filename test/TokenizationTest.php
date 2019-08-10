@@ -2,10 +2,15 @@
 
 namespace Test;
 
-require_once __DIR__.'/../vendor/autoload.php';
 
-use Models\Payment\CreditCard;
-use API\TokenizationRequest;
+require_once '../vendor/autoload.php';
+
+use Models\Payment\CreditCard as CreditCard;
+use API\TokenizationRequest as TokenizationRequest;
+
+use Models\Core\Config as Enviroment;
+$enviroment = new Enviroment();
+$enviroment->setAPIKEY('x-api-key');
 
 /**
  * Class TokenizationTest
@@ -35,4 +40,4 @@ class TokenizationTest
     }
 }
 
-// TokenizationTest::Create();
+TokenizationTest::Create();

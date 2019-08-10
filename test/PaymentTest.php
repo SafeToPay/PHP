@@ -2,7 +2,8 @@
 
 namespace Test;
 
-require_once __DIR__.'/../vendor/autoload.php';
+
+require_once '../vendor/autoload.php';
 
 use API\PaymentRequest;
 use Models\Payment\BankSlip;
@@ -13,7 +14,9 @@ use Models\General\Customer;
 use Models\General\Product;
 use Models\General\Address;
 
-
+use Models\Core\Config as Enviroment;
+$enviroment = new Enviroment();
+$enviroment->setAPIKEY('x-api-key');
 /**
  * Class PaymentTest
  *
@@ -218,9 +221,9 @@ class PaymentTest
 }
 
 
-// PaymentTest::GetPaymentMethods();
-// PaymentTest::BankSlip();
-// PaymentTest::CreditCard();
-// PaymentTest::CryptoCurrency();
-// PaymentTest::DebitCard();
-// PaymentTest::Refund();
+ PaymentTest::GetPaymentMethods();
+ PaymentTest::BankSlip();
+ PaymentTest::CreditCard();
+ PaymentTest::CryptoCurrency();
+ PaymentTest::DebitCard();
+ PaymentTest::Refund();

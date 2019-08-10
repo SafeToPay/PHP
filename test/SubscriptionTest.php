@@ -2,12 +2,17 @@
 
 namespace Test;
 
+require_once '../vendor/autoload.php';
+
 use API\Subscription;
 use Models\Subscription\SubscriptionRequest;
 use Models\General\Customer;
 use Models\General\Address;
 
-require_once __DIR__.'/../vendor/autoload.php';
+use Models\Core\Config as Enviroment;
+$enviroment = new Enviroment();
+$enviroment->setAPIKEY('x-api-key');
+
 
 /**
  * Class SubscriptionTest
@@ -50,6 +55,6 @@ class SubscriptionTest
 }
 
 
-// SubscriptionTest::Get();
+ SubscriptionTest::Get();
 
-// SubscriptionTest::Add();
+ SubscriptionTest::Add();

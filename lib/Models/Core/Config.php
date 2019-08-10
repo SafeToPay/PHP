@@ -1,19 +1,17 @@
 <?php
-
 namespace Models\Core;
+
+require_once __DIR__.'\Client.php';
+
+use Models\Core\Client as Enviroment;
 
 class Config
 {
-    private static $Token = "x-api-key";
-    private static $IsSandBox = true;
 
-    public static function getToken()
-    {
-        return self::$Token;
-    }
+    private  $Token = "x-api-key";
 
-    public static function getIsSandBox()
-    {
-        return self::$IsSandBox;
-    }
+	public function setAPIKEY($Token){
+        $this->Token = $Token;
+        Enviroment::SetEnviroment($this->Token);
+	}
 }

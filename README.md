@@ -21,7 +21,7 @@
 
 ## Utilização
 
-composer config prefer-stable true
+composer config minimum-stability dev
 
 composer require safe2pay/sdk
 

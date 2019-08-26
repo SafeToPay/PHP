@@ -20,7 +20,7 @@ use Safe2Pay\Models\Core\Config as Enviroment;
 use Safe2Pay\Models\Payment\CarnetBankslip;
 
 $enviroment = new Enviroment();
-$enviroment->setAPIKEY('5A3A044DE838403F9566BDFBEE9DE763');
+$enviroment->setAPIKEY('x-api-key');
 /**
  * Class PaymentTest
  *

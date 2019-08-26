@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Models\Bank;
+namespace Safe2Pay\Models\Bank;
 
 /**
  * Class BankData

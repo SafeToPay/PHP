@@ -70,14 +70,14 @@ O retorno do envio da transação trará um status para esta, que pode ser igual
 
 require_once 'vendor/autoload.php';
 
-use API\PaymentRequest;
-use Models\Payment\BankSlip;
-use Models\Transactions\Transaction;
-use Models\General\Customer;
-use Models\General\Product;
-use Models\General\Address;
+use Safe2Pay\API\PaymentRequest;
+use Safe2Pay\Models\Payment\BankSlip;
+use Safe2Pay\Models\Transactions\Transaction;
+use Safe2Pay\Models\General\Customer;
+use Safe2Pay\Models\General\Product;
+use Safe2Pay\Models\General\Address;
 
-use Models\Core\Config as Enviroment;
+use Safe2Pay\Models\Core\Config as Enviroment;
 $enviroment = new Enviroment();
 $enviroment->setAPIKEY('x-api-key');
 
@@ -157,14 +157,14 @@ $response = PaymentRequest::BankSlip($payload);
 
 require_once 'vendor/autoload.php';
 
-use API\PaymentRequest;
-use Models\Payment\CreditCard;
-use Models\Transactions\Transaction;
-use Models\General\Customer;
-use Models\General\Product;
-use Models\General\Address;
+use Safe2Pay\API\PaymentRequest;
+use Safe2Pay\Models\Payment\CreditCard;
+use Safe2Pay\Models\Transactions\Transaction;
+use Safe2Pay\Models\General\Customer;
+use Safe2Pay\Models\General\Product;
+use Safe2Pay\Models\General\Address;
 
-use Models\Core\Config as Enviroment;
+use Safe2Pay\Models\Core\Config as Enviroment;
 $enviroment = new Enviroment();
 $enviroment->setAPIKEY('x-api-key');
 
@@ -245,13 +245,13 @@ $response  =  PaymentRequest::CreditCard($payload);
 
 require_once 'vendor/autoload.php';
 
-use API\PaymentRequest;
-use Models\Transactions\Transaction;
-use Models\General\Customer;
-use Models\General\Product;
-use Models\General\Address;
+use Safe2Pay\API\PaymentRequest;
+use Safe2Pay\Models\Transactions\Transaction;
+use Safe2Pay\Models\General\Customer;
+use Safe2Pay\Models\General\Product;
+use Safe2Pay\Models\General\Address;
 
-use Models\Core\Config as Enviroment;
+use Safe2Pay\Models\Core\Config as Enviroment;
 $enviroment = new Enviroment();
 $enviroment->setAPIKEY('x-api-key');
 
@@ -317,14 +317,14 @@ $response = PaymentRequest::CryptoCurrency($payload);
 
 require_once 'vendor/autoload.php';
 
-use API\PaymentRequest;
-use Models\Payment\DebitCard;
-use Models\Transactions\Transaction;
-use Models\General\Customer;
-use Models\General\Product;
-use Models\General\Address;
+use Safe2Pay\API\PaymentRequest;
+use Safe2Pay\Models\Payment\DebitCard;
+use Safe2Pay\Models\Transactions\Transaction;
+use Safe2Pay\Models\General\Customer;
+use Safe2Pay\Models\General\Product;
+use Safe2Pay\Models\General\Address;
 
-use Models\Core\Config as Enviroment;
+use Safe2Pay\ Models\Core\Config as Enviroment;
 $enviroment = new Enviroment();
 $enviroment->setAPIKEY('x-api-key');
 
@@ -399,14 +399,12 @@ $response = PaymentRequest::DebitCard($payload);
 ```php
 <?php
 
-namespace Test;
-
 require_once 'vendor/autoload.php';
 
-use Models\Payment\CreditCard;
-use API\TokenizationRequest;
+use Safe2Pay\Models\Payment\CreditCard;
+use Safe2Pay\API\TokenizationRequest;
 
-use Models\Core\Config as Enviroment;
+use Safe2Pay\Models\Core\Config as Enviroment;
 $enviroment = new Enviroment();
 $enviroment->setAPIKEY('x-api-key');
 
@@ -447,9 +445,9 @@ class TokenizationTest
 
 require_once 'vendor/autoload.php';
 
-use API\TransactionRequest;
+use Safe2Pay\API\TransactionRequest;
 
-use Models\Core\Config as Enviroment;
+use Safe2Pay\Models\Core\Config as Enviroment;
 $enviroment = new Enviroment();
 $enviroment->setAPIKEY('x-api-key');
 /**

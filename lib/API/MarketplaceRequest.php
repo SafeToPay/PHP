@@ -1,10 +1,10 @@
 <?php
 
 
-namespace API;
+namespace Safe2Pay\API;
 
-use Models\Core\Client;
-use Models\Response\Response;
+use Safe2Pay\Models\Core\Client;
+use Safe2Pay\Models\Response\Response;
 
 
 require_once __DIR__.'\../Models/Core/Client.php';
@@ -25,7 +25,7 @@ class MarketplaceRequest{
      */
     public static function Add($merchant){
 
-        $request = Client:: HttpClient('POST','v2/Marketplace/Add', json_encode($merchant),false);
+        $request = Client:: HttpClient('POST','v2/Marketplace/Add',$merchant ,false);
         $response = json_decode($request , true);
         return $response;
     }
@@ -39,7 +39,7 @@ class MarketplaceRequest{
      */
     public static function Update($merchant, $Id){
 
-        $request = Client:: HttpClient('PUT',"/v2/Marketplace/Update?id={$Id}", json_encode($merchant),false);
+        $request = Client:: HttpClient('PUT',"/v2/Marketplace/Update?id={$Id}", $merchant,false);
         $response = json_decode($request , true);
         return $response;
     }

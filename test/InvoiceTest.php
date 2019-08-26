@@ -1,17 +1,17 @@
 <?php
 
-namespace Test;
+namespace Safe2Pay\Test;
 
 require_once '../vendor/autoload.php';
 
-use API\InvoiceRequest;
-use Models\General\Customer;
-use Models\General\Address;
-use Models\SingleSale\SingleSale;
-use Models\SingleSale\SingleSaleProduct;
-use Models\SingleSale\SingleSalePaymentMethod;
+use Safe2Pay\API\InvoiceRequest;
+use Safe2Pay\Models\General\Customer;
+use Safe2Pay\Models\General\Address;
+use Safe2Pay\Models\SingleSale\SingleSale;
+use Safe2Pay\Models\SingleSale\SingleSaleProduct;
+use Safe2Pay\Models\SingleSale\SingleSalePaymentMethod;
 
-use Models\Core\Config as Enviroment;
+use Safe2Pay\Models\Core\Config as Enviroment;
 $enviroment = new Enviroment();
 $enviroment->setAPIKEY('x-api-key');
 
@@ -143,9 +143,16 @@ class InvoiceTest
         $hashSale = "9166d462f3c440c6adebff2f2fe82b35";
         var_dump(InvoiceRequest::Get($hashSale));
     }
+
+    public static function Resend()
+    {
+        $hashSale = "9166d462f3c440c6adebff2f2fe82b35";
+        var_dump(InvoiceRequest::Resend($hashSale));
+    }
 }
 
  InvoiceTest::Cancel();
  InvoiceTest::Get();
  InvoiceTest::Add();
  InvoiceTest::Update();
+ InvoiceTest::Resend();

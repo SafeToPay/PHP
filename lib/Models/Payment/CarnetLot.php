@@ -1,12 +1,12 @@
 <?php
 
-namespace Models\Payment;
+namespace Safe2Pay\Models\Payment;
 /**
  * Class CarnetLot
  *
  * @package Safe2Pay\Models
  */
-class CarnetLot
+class CarnetLot implements \JsonSerializable
 {
     private $Id;
     private $IdMerchant;
@@ -107,6 +107,20 @@ class CarnetLot
 	public function setApiVersion($ApiVersion){
 		$this->ApiVersion = $ApiVersion;
 	}
+
+	public function JsonSerialize()
+    {
+        return [
+				'Id' => (int) $this->Id,
+				'IdMerchant' =>(int) $this->IdMerchant,
+				'Identifier' => (string) $this->Identifier,
+				'CallbackUrl' => (string) $this->CallbackUrl,
+				'IsProcessed' => (bool) $this->IsProcessed,
+				'Items' => (array) $this->Items,
+				'Carnets' => (array) $this->Carnets,
+				'ApiVersion' => (string) $this->ApiVersion,
+        ];
+    } 
 }
 
 

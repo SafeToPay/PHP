@@ -1,9 +1,9 @@
 <?php
 
-namespace API;
+namespace Safe2Pay\API;
 
-use Models\Core\Client;
-use Models\Response\Response;
+use Safe2Pay\Models\Core\Client;
+use Safe2Pay\Models\Response\Response;
 
 
 require_once __DIR__.'\../Models/Core/Client.php';
@@ -24,7 +24,7 @@ class PlanRequest{
      */
     public static function Add($plan){
 
-        $request = Client:: HttpClient('POST','v2/Plan/Add', json_encode($plan), false);
+        $request = Client:: HttpClient('POST','v2/Plan/Add', $plan, false);
 
         $response = new Response();
 
@@ -41,7 +41,7 @@ class PlanRequest{
      */
     public static function Update($plan){
 
-        $request = Client:: HttpClient('PUT','v2/Plan/Update', json_encode($plan), false);
+        $request = Client:: HttpClient('PUT','v2/Plan/Update', $plan, false);
 
         $response = new Response();
 

@@ -1,5 +1,5 @@
 <?php
-namespace Models\Subscription;
+namespace Safe2Pay\Models\Subscription;
 /**
  * Class SubscriptionRequest
  *

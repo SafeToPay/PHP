@@ -1,6 +1,6 @@
 <?php
 
-namespace Models\Transactions;
+namespace Safe2Pay\Models\Transactions;
 
 require_once __DIR__.'\Base.php';
 /**

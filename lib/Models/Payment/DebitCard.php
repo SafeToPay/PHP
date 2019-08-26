@@ -1,6 +1,6 @@
 <?php
 
-namespace Models\Payment;
+namespace Safe2Pay\Models\Payment;
 /**
  * Class DebitCard
  *
@@ -13,7 +13,9 @@ class DebitCard implements \JsonSerializable
     private $ExpirationDate;  
     private $SecurityCode;       
     private $Token;  
-    private $Authenticate;  
+	private $Authenticate;  
+	private $InstallmentQuantity;
+	private $IsRecurrence;
 
     public function getHolder(){
 		return $this->Holder;
@@ -62,6 +64,22 @@ class DebitCard implements \JsonSerializable
 	public function setAuthenticate($Authenticate){
 		$this->Authenticate = $Authenticate;
 	}   
+
+	public function getInstallmentQuantity(){
+		return $this->InstallmentQuantity;
+	}
+
+	public function setInstallmentQuantity($InstallmentQuantity){
+		$this->InstallmentQuantity = $InstallmentQuantity;
+	}
+
+	public function getIsRecurrence(){
+		return $this->IsRecurrence;
+	}
+
+	public function setIsRecurrence($IsRecurrence){
+		$this->IsRecurrence = $IsRecurrence;
+	}
 
 	  //Credit Card Tokenization
 	  function __construct($Holder,$CardNumber,$ExpirationDate,$SecurityCode) {

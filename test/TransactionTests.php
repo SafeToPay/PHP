@@ -1,12 +1,12 @@
 <?php
 
-namespace Test;
+namespace Safe2Pay\Test;
 
 require_once '../vendor/autoload.php';
 
-use API\TransactionRequest;
+use Safe2Pay\API\TransactionRequest;
 
-use Models\Core\Config as Enviroment;
+use Safe2Pay\Models\Core\Config as Enviroment;
 $enviroment = new Enviroment();
 $enviroment->setAPIKEY('x-api-key');
 

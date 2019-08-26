@@ -1,6 +1,6 @@
 <?php
 
-namespace Models\Core;
+namespace Safe2Pay\Models\Core;
 
 
 class Client
@@ -13,6 +13,12 @@ class Client
       $url = Client::GetWebMethodUri($IsPayment) . $url;
 
       $curl = curl_init();
+
+
+      if($data != null){
+         $data =  json_encode($data);
+      }
+         
 
       switch ($method) {
          case "POST":

@@ -1,18 +1,18 @@
 <?php
 
-namespace Test;
+namespace Safe2Pay\Test;
 
 require_once '../vendor/autoload.php';
 
-use API\MarketplaceRequest;
-use Models\General\Address;
-use Models\Bank\Bank;
-use Models\Bank\BankData;
-use Models\Merchant\Merchant;
-use Models\Merchant\MerchantSplit;
-use Models\Merchant\MerchantSplitTax;
+use Safe2Pay\API\MarketplaceRequest;
+use Safe2Pay\Models\General\Address;
+use Safe2Pay\Models\Bank\Bank;
+use Safe2Pay\Models\Bank\BankData;
+use Safe2Pay\Models\Merchant\Merchant;
+use Safe2Pay\Models\Merchant\MerchantSplit;
+use Safe2Pay\Models\Merchant\MerchantSplitTax;
 
-use Models\Core\Config as Enviroment;
+use Safe2Pay\Models\Core\Config as Enviroment;
 $enviroment = new Enviroment();
 $enviroment->setAPIKEY('x-api-key');
 

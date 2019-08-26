@@ -1,6 +1,6 @@
 <?php
 
-namespace Models\Response;
+namespace Safe2Pay\Models\Response;
 /**
  * Class CheckoutResponse
  *

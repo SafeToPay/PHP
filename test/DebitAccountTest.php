@@ -1,13 +1,13 @@
 <?php
 
-namespace Test;
+namespace Safe2Pay\Test;
 
 
 require_once '../vendor/autoload.php';
 
-use API\DebitAccountRequest;
+use Safe2Pay\API\DebitAccountRequest;
 
-use Models\Core\Config as Enviroment;
+use Safe2Pay\Models\Core\Config as Enviroment;
 $enviroment = new Enviroment();
 $enviroment->setAPIKEY('x-api-key');
 

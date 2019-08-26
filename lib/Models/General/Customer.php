@@ -1,6 +1,6 @@
 <?php
 
-namespace Models\General;
+namespace Safe2Pay\Models\General;
 
 /**
  * Class Customer

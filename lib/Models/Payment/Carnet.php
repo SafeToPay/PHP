@@ -1,12 +1,15 @@
 <?php
 
-namespace Models\Payment;
+namespace Safe2Pay\Models\Payment;
+
+use DateTime;
+
 /**
  * Class Carnet
  *
  * @package Safe2Pay\Models
  */
-class Carnet
+class Carnet implements \JsonSerializable
 {
     private $Id;
     private $IdCarnetLot;
@@ -19,7 +22,8 @@ class Carnet
     private $InterestAmount;  
     private $PayableAfterDue;   
     private $IsEnablePartialPayment;  
-    private $BankSlips;   
+	private $BankSlips;   
+	private $Emails;   
     
 
     public function getId(){
@@ -28,6 +32,14 @@ class Carnet
 
 	public function setId($Id){
 		$this->Id = $Id;
+	}
+
+	public function getEmails(){
+		return $this->Emails;
+	}
+
+	public function setEmails($Emails){
+		$this->Emails = $Emails;
 	}
 
 	public function getIdCarnetLot(){
@@ -117,17 +129,44 @@ class Carnet
 	public function setBankSlips($BankSlips){
 		$this->BankSlips = $BankSlips;
 	}
-    
+
+
+	public function JsonSerialize()
+    {
+        return [
+				'Id' =>(int) $this->Id,
+				'IdCarnetLot' => (int) $this->IdCarnetLot,
+				'Identifier' => (string) $this->Identifier,
+				'Reference' => (string) $this->Reference,
+				'IsProcessed' => (bool) $this->IsProcessed,
+				'IsAsync' => (bool) $this->IsAsync,
+				'PenaltyAmount' => (int) $this->PenaltyAmount,
+				'InterestAmount' => (int) $this->InterestAmount,
+				'PayableAfterDue' =>(bool)  $this->PayableAfterDue,
+				'IsEnablePartialPayment' =>(bool)  $this->IsEnablePartialPayment,
+				'Emails' => $this->Emails,
+				'BankSlips' =>(array)  $this->BankSlips
+        ];
+    }   
 }
 
-class CarnetBankslip
+class CarnetBankslip implements \JsonSerializable
 {
     private $IdTransaction;
     private $IdMerchant;
     private $Amount;  
     private $DueDate;   
     private $Instruction;  
-    private $Message;   
+	private $Message;   
+	
+	public function __construct($Amount,$DueDate, $Instruction ,$Message){
+
+		$this->Amount = $Amount;
+		$this->DueDate =  $DueDate;
+		$this->Instruction = $Instruction;
+		$this->Message = $Message;
+	}
+
 
     public function getIdTransaction(){
 		return $this->IdTransaction;
@@ -158,6 +197,7 @@ class CarnetBankslip
 	}
 
 	public function setDueDate($DueDate){
+
 		$this->DueDate = $DueDate;
 	}
 
@@ -176,6 +216,19 @@ class CarnetBankslip
 	public function setMessage($Message){
 		$this->Message = $Message;
 	}
+
+	public function JsonSerialize()
+    {
+        return [
+				'Amount' => $this->Amount,
+				'DueDate' =>   $this->DueDate,
+				'IdMerchant' => (int) $this->IdMerchant,
+				'IdTransaction' => (int) $this->IdTransaction,
+				'Instruction' => (string) $this->Instruction,
+				'Message' => (array) $this->Message,
+        ];
+    }   
+
 }
 
 ?>

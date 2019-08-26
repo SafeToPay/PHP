@@ -1,9 +1,9 @@
 <?php
 
-namespace API;
+namespace Safe2Pay\API;
 
-use Models\Core\Client;
-use Models\Response\Response;
+use Safe2Pay\Models\Core\Client;
+use Safe2Pay\Models\Response\Response;
 
 
 require_once __DIR__.'\../Models/Core/Client.php';
@@ -115,7 +115,7 @@ class PaymentRequest{
     public static function Carnet($payment)
     {
 
-        $request = Client::HttpClient('POST', 'v2/Carnet', json_encode($payment), true);
+        $request = Client::HttpClient('POST', 'v2/Carnet', $payment, true);
 
         $response = new Response();
 
@@ -133,7 +133,7 @@ class PaymentRequest{
     public static function CarnetLot($payment)
     {
 
-        $request = Client::HttpClient('POST', 'v2/Carnet', json_encode($payment), true);
+        $request = Client::HttpClient('POST', 'v2/carnetasync/', $payment, true);
 
         $response = new Response();
 
@@ -151,7 +151,7 @@ class PaymentRequest{
     public static function DebitAccount($payment)
     {
 
-        $request = Client::HttpClient('POST', 'v2/payment', json_encode($payment), true);
+        $request = Client::HttpClient('POST', 'v2/payment', $payment, true);
 
         $response = new Response();
 

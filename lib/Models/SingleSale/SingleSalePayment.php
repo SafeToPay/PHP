@@ -1,5 +1,5 @@
 <?php
-namespace Models\SingleSale;
+namespace Safe2Pay\Models\SingleSale;
 /**
  * Class SingleSalePayment
  *

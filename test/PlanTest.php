@@ -1,14 +1,14 @@
 <?php
 
-namespace Test;
+namespace Safe2Pay\Test;
 
 require_once '../vendor/autoload.php';
 
-use Models\Merchant\Plan;
-use Models\Merchant\PlanFrequence;
-use API\PlanRequest;
+use Safe2Pay\Models\Merchant\Plan;
+use Safe2Pay\Models\Merchant\PlanFrequence;
+use Safe2Pay\API\PlanRequest;
 
-use Models\Core\Config as Enviroment;
+use Safe2Pay\Models\Core\Config as Enviroment;
 $enviroment = new Enviroment();
 $enviroment->setAPIKEY('x-api-key');
 

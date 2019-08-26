@@ -1,9 +1,9 @@
 <?php
-namespace Models\Core;
+namespace Safe2Pay\Models\Core;
 
 require_once __DIR__.'\Client.php';
 
-use Models\Core\Client as Enviroment;
+use Safe2Pay\Models\Core\Client as Enviroment;
 
 class Config
 {

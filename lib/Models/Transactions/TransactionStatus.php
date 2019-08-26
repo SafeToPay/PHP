@@ -1,5 +1,5 @@
 <?php
-namespace Models\Transactions;
+namespace Safe2Pay\Models\Transactions;
 
 /**
  * Class TransactionStatus

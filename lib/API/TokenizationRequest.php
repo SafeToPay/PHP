@@ -1,9 +1,9 @@
 <?php
 
-namespace API;
+namespace Safe2Pay\API;
 
-use Models\Core\Client;
-use Models\Response\Response;
+use Safe2Pay\Models\Core\Client;
+use Safe2Pay\Models\Response\Response;
 
 require_once __DIR__.'\../Models/Core/Client.php';
 require_once __DIR__.'\../Models/Response/Response.php';
@@ -23,7 +23,7 @@ class TokenizationRequest {
      */
     public static function Create($data){ 
         
-        $request = Client:: HttpClient('POST','v2/token', json_encode($data), true);
+        $request = Client:: HttpClient('POST','v2/token', $data, true);
 
         $response = new Response();
 

@@ -1,8 +1,8 @@
 <?php
-namespace API;
+namespace Safe2Pay\API;
 
-use Models\Core\Client;
-use Models\Response\Response;
+use Safe2Pay\Models\Core\Client;
+use Safe2Pay\Models\Response\Response;
 
 
 require_once __DIR__.'\../Models/Core/Client.php';

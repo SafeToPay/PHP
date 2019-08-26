@@ -1,14 +1,14 @@
 <?php
 
-namespace Test;
+namespace Safe2Pay\Test;
 
 
 require_once '../vendor/autoload.php';
 
-use Models\Payment\CreditCard as CreditCard;
-use API\TokenizationRequest as TokenizationRequest;
+use Safe2Pay\Models\Payment\CreditCard as CreditCard;
+use Safe2Pay\API\TokenizationRequest as TokenizationRequest;
 
-use Models\Core\Config as Enviroment;
+use Safe2Pay\Models\Core\Config as Enviroment;
 $enviroment = new Enviroment();
 $enviroment->setAPIKEY('x-api-key');
 

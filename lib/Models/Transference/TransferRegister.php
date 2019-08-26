@@ -1,6 +1,6 @@
 <?php
 
-namespace Models\Transference;
+namespace Safe2Pay\Models\Transference;
 /**
  * Class TransferRegister
  *

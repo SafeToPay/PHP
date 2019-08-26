@@ -1,15 +1,15 @@
 <?php
 
-namespace Test;
+namespace Safe2Pay\Test;
 
 require_once '../vendor/autoload.php';
 
-use API\Subscription;
-use Models\Subscription\SubscriptionRequest;
-use Models\General\Customer;
-use Models\General\Address;
+use Safe2Pay\API\Subscription;
+use Safe2Pay\Models\Subscription\SubscriptionRequest;
+use Safe2Pay\Models\General\Customer;
+use Safe2Pay\Models\General\Address;
 
-use Models\Core\Config as Enviroment;
+use Safe2Pay\Models\Core\Config as Enviroment;
 $enviroment = new Enviroment();
 $enviroment->setAPIKEY('x-api-key');
 

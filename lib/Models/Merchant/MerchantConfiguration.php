@@ -1,6 +1,6 @@
 <?php
 
-namespace Models\Merchant;
+namespace Safe2Pay\Models\Merchant;
 
 /**
  * Class MerchantConfiguration

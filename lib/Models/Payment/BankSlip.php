@@ -1,6 +1,6 @@
 <?php
 
-namespace Models\Payment;
+namespace Safe2Pay\Models\Payment;
 
 /**
  * Class BankSlip

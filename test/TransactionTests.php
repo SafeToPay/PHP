@@ -22,7 +22,7 @@ class TransactionTest
     { 
         $Id=535489;
        
-        var_dump(json_encode(TransactionRequest::Get($Id)));
+        var_dump((TransactionRequest::Get($Id)));
 
     }
 }

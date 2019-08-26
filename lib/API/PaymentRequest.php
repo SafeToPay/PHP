@@ -43,7 +43,7 @@ class PaymentRequest{
     public static function BankSlip($payment)
     {
 
-        $request = Client::HttpClient('POST', 'v2/Payment', json_encode($payment), true);
+        $request = Client::HttpClient('POST', 'v2/Payment', $payment, true);
 
         $response = new Response();
 
@@ -61,7 +61,7 @@ class PaymentRequest{
     public static function CreditCard($payment)
     {
 
-        $request = Client::HttpClient('POST', 'v2/Payment', json_encode($payment), true);
+        $request = Client::HttpClient('POST', 'v2/Payment', $payment, true);
 
         $response = new Response();
 
@@ -79,7 +79,7 @@ class PaymentRequest{
     public static function CryptoCurrency($payment)
     {
 
-        $request = Client::HttpClient('POST', 'v2/Payment', json_encode($payment), true);
+        $request = Client::HttpClient('POST', 'v2/Payment', $payment, true);
 
         $response = new Response();
 
@@ -97,7 +97,7 @@ class PaymentRequest{
     public static function DebitCard($payment)
     {
 
-        $request = Client::HttpClient('POST', 'v2/Payment', json_encode($payment), true);
+        $request = Client::HttpClient('POST', 'v2/Payment', $payment, true);
 
         $response = new Response();
 

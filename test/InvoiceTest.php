@@ -72,7 +72,6 @@ class InvoiceTest
 
         $singleSale->setCallbackUrl("https://safe2pay.com.br/api/Notify");
 
-         var_dump(json_encode($singleSale));
          var_dump(InvoiceRequest::Add($singleSale));
 
     }
@@ -127,7 +126,6 @@ class InvoiceTest
         //Necessário para atualizar a cobrança
         $singleSale->setSingleSaleHash("9166d462f3c440c6adebff2f2fe82b35");
 
-         var_dump(json_encode($singleSale));
          var_dump(InvoiceRequest::Update($singleSale));
 
     }

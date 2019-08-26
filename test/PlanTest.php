@@ -49,7 +49,6 @@ class PlanTest
         $plan -> setCallbackUrl("https://webhook.site/251107e2-bdb1-480d-934c-bab0eb413318"); // URL de callback para notificação via Webhook
         $plan -> setExpirationDate("2019-08-10"); //Data de expiração do plano
     
-        var_dump(json_encode($plan));
 
         var_dump(PlanRequest::Add($plan));
     }
@@ -85,7 +84,6 @@ class PlanTest
         $plan -> setCallbackUrl("https://webhook.site/251107e2-bdb1-480d-934c-bab0eb413318"); // URL de callback para notificação via Webhook
         $plan -> setExpirationDate("2019-08-10"); //Data de expiração do plano
     
-       var_dump(json_encode($plan));
 
         var_dump(PlanRequest::Update($plan));
     }

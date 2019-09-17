@@ -4,8 +4,8 @@ namespace Safe2Pay\API;
 use Safe2Pay\Models\Core\Client;
 use Safe2Pay\Models\Response\Response;
 
-require_once __DIR__.'\../Models/Core/Client.php';
-require_once __DIR__.'\../Models/Response/Response.php';
+require_once __DIR__.'/../Models/Core/Client.php';
+require_once __DIR__.'/../Models/Response/Response.php';
 
 /**
  * Class AccountDepositRequest
@@ -14,31 +14,33 @@ require_once __DIR__.'\../Models/Response/Response.php';
  */
 class AccountDepositRequest{
 
-    /**
-     * Detail a deposit
+ /**
+     * List deposit Register
      *
-     * @param [int] $Id
+     * @param [int] $day
+     * @param [int] $month
+     * @param [int] $year
+     * @param [int] $page
+     * @param [int] $rowsPerPage
      * @return Response
      */
-    public static function Detail($Id){
+    public static function GetListDetailsDeposits($day,$month,$year,$page,$rowsPerPage){
 
-        $request = Client:: HttpClient('GET',"v2/Transfer/Get?Id={$Id}", null,false);
+        $request = Client:: HttpClient('GET',"v2/CheckingAccount/GetListDetailsDeposits?day={$day}&month={$month}&year={$year}&page={$page}&rowsPerPage={$rowsPerPage}", null,false);
         $response = json_decode($request , true);
-        return  $response;
+        return $response;
     }
 
     /**
      * List deposit Register
      *
-     * @param [date] $CreatedDateInitial
-     * @param [date] $CreatedDateEnd
-     * @param [int] $PageNumber
-     * @param [int] $RowsPerPage
+     * @param [int] $day
+     * @param [int] $month
      * @return Response
      */
-    public static function List($CreatedDateInitial,$CreatedDateEnd,$PageNumber,$RowsPerPage){
+    public static function GetListDeposits($month,$year){
 
-        $request = Client:: HttpClient('GET',"v2/Transfer/List?CreatedDateInitial={$CreatedDateInitial}&CreatedDateEnd={$CreatedDateEnd}&PageNumber={$PageNumber}&RowsPerPage={$RowsPerPage}", null,false);
+        $request = Client:: HttpClient('GET',"v2/CheckingAccount/GetListDeposits?month={$month}&year={$year}", null,false);
         $response = json_decode($request , true);
         return $response;
     }

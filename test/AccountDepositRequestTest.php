@@ -21,24 +21,26 @@ class AccountDepositTest
         var_dump(AccountDepositRequest::GetBankAccount());
     }
 
-    public static function List()
+    public static function GetListDeposits()
     {
-        $CreatedDateInitial = "2019-07-01";
-        $CreatedDateEnd = "2019-07-16";
-        $PageNumber = 1;
-        $RowsPerPage = 10;
-        var_dump(AccountDepositRequest::List($CreatedDateInitial,$CreatedDateEnd,$PageNumber,$RowsPerPage));
+        $month = 5;
+        $year = 2019;
+        var_dump(AccountDepositRequest::GetListDeposits($month,$year));
     }
 
-    public static function Detail()
+    public static function GetListDetailsDeposits()
     {
-        $Id = 287891;
+        $day = 17;
+        $month = 9;
+        $year = 2019;
+        $page = 1;
+        $RowsPerPage = 100;
 
-        var_dump(AccountDepositRequest::Detail($Id));
+        var_dump(AccountDepositRequest::GetListDetailsDeposits($day, $month,$year,$page,$RowsPerPage));
     }
 
 }
 
  AccountDepositTest::GetBankAccount();
- AccountDepositTest::List();
- AccountDepositTest::Detail();
+ AccountDepositTest::GetListDeposits();
+ AccountDepositTest::GetListDetailsDeposits();

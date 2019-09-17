@@ -6,8 +6,8 @@ use Safe2Pay\Models\Core\Client;
 use Safe2Pay\Models\Response\Response;
 
 
-require_once __DIR__.'\../Models/Core/Client.php';
-require_once __DIR__.'\../Models/Response/Response.php';
+require_once __DIR__.'/../Models/Core/Client.php';
+require_once __DIR__.'/../Models/Response/Response.php';
 
 /**
  * Class PaymentRequest

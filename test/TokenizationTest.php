@@ -9,6 +9,7 @@ use Safe2Pay\Models\Payment\CreditCard as CreditCard;
 use Safe2Pay\API\TokenizationRequest as TokenizationRequest;
 
 use Safe2Pay\Models\Core\Config as Enviroment;
+
 $enviroment = new Enviroment();
 $enviroment->setAPIKEY('x-api-key');
 
@@ -23,20 +24,12 @@ class TokenizationTest
     public static function Create()
     {
         //Cria uma instância do objeto do cartão para realizar a tokenização
-        $CreditCard = new CreditCard("João da Silva", "4024007153763191", "12/2019", "241");
+        $CreditCard = new CreditCard("João da Silva", "4024007153763191", "12/2019", "241", null);
         //Realiza a tokenização e traz o retorno
 
-        try {
+        $response  = TokenizationRequest::Create($CreditCard);
 
-            $response  = TokenizationRequest::Create($CreditCard);
-
-            var_dump($response);
-
-        } catch (Exception $e) {
-
-            echo  $e->getMessage();
-        }
-   
+        echo (json_encode($response));
     }
 }
 

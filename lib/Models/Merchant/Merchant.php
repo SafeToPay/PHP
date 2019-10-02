@@ -9,24 +9,33 @@ namespace Safe2Pay\Models\Merchant;
 
 class Merchant implements \JsonSerializable
 {
-    private $Name;
-    private $CommercialName;
-    private $Identity;
-    private $ResponsibleName;
-    private $ResponsibleIdentity;
-    private $Email;
-    private $TechName;
-    private $TechIdentity;
-    private $TechEmail;
+	public $Id;
+    public $Name;
+    public $CommercialName;
+    public $Identity;
+    public $ResponsibleName;
+    public $ResponsibleIdentity;
+    public $Email;
+    public $TechName;
+    public $TechIdentity;
+    public $TechEmail;
     private $Token;
     private $SecretKey;
     private $TokenSandbox;
-    private $SecretKeySandbox;
-    private $BankData;
-    private $Address;
-    private $Configuration;
-    private $MerchantSplit;
-    private $IsRemoved;
+    public $SecretKeySandbox;
+    public $BankData;
+    public $Address;
+    public $Configuration;
+    public $MerchantSplit;
+	public $IsRemoved;
+	
+	public function getId(){
+		return $this->Id;
+	}
+
+	public function setId($Id){
+		$this->Id = $Id;
+	}
 
     public function getName(){
 		return $this->Name;
@@ -172,28 +181,12 @@ class Merchant implements \JsonSerializable
 		$this->IsRemoved = $IsRemoved;
 	}
 
-	public function __construct($Identity,$Name,$CommercialName,$Address,$ResponsibleName ,$ResponsibleIdentity ,$Email ,$TechName, $TechIdentity,$TechEmail,$BankData,$MerchantSplit)
-	{
-		$this->Name = $Name;
-		$this->CommercialName = $CommercialName;
-		$this->Identity = $Identity;
-		$this->Address = $Address;
-		$this->ResponsibleName = $ResponsibleName;
-		$this->ResponsibleIdentity = $ResponsibleIdentity;
-		$this->Email = $Email;
-		$this->TechName = $TechName;
-		$this->TechIdentity = $TechIdentity;
-		$this->TechEmail = $TechEmail;
-		$this->BankData = $BankData;
-		$this->MerchantSplit = $MerchantSplit;
-
-	}
-
 	public function JsonSerialize()
     {
         return [
+				'Id' => (int) $this->Id,
 				'Name' => (string) $this->Name,
-				'Name' => (string) $this->CommercialName,
+				'CommercialName' => (string) $this->CommercialName,
 				'Identity' =>(string) $this->Identity,
 				'ResponsibleName' =>(string) $this->ResponsibleName,
 				'ResponsibleIdentity' =>(string) $this->ResponsibleIdentity,

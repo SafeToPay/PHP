@@ -181,17 +181,6 @@ class BankSlip  implements \JsonSerializable
 		$this->IdMerchant = $IdMerchant;
 	}
 
-	public function __construct($DueDate,$CancelAfterDue, $IsEnablePartialPayment ,$PenaltyRate,$InterestRate, $Instruction,$Message)
-	{
-		$this->DueDate = $DueDate;
-		$this->CancelAfterDue = $CancelAfterDue;
-		$this->IsEnablePartialPayment = $IsEnablePartialPayment;
-		$this->PenaltyRate = $PenaltyRate;
-		$this->InterestRate = $InterestRate;
-		$this->Instruction = $Instruction;
-		$this->Message = $Message;
-	}
-
 	public function jsonSerialize()
     {
         return 

@@ -14,32 +14,16 @@ class CreditCard  implements \JsonSerializable
     private $SecurityCode;       
     private $Token;  
     private $InstallmentQuantity;  
-    private $IsRecurrence; 
 
 
-    function __fill($Holder,$CardNumber,$ExpirationDate,$SecurityCode,$Token,$InstallmentQuantity,$IsRecurrence) {
-		$this->Holder = $Holder;
-		$this->CardNumber = $CardNumber;
-        $this->ExpirationDate = $ExpirationDate;
-        $this->SecurityCode = $SecurityCode;
-        $this->Token = $Token;
-        $this->InstallmentQuantity = $InstallmentQuantity;
-		$this->IsRecurrence = $IsRecurrence;
-	}
-
-	function __Tokenized($Token) {
-		$this->Token = $Token;
-	}
-
-    //Credit Card Tokenization
-    function __construct($Holder,$CardNumber,$ExpirationDate,$SecurityCode) {
+	function __construct($Holder,$CardNumber,$ExpirationDate,$SecurityCode,$InstallmentQuantity) {
         $this->Holder = $Holder;
 		$this->CardNumber = $CardNumber;
         $this->ExpirationDate = $ExpirationDate;
-        $this->SecurityCode = $SecurityCode;
+		$this->SecurityCode = $SecurityCode;
+		$this->InstallmentQuantity = $InstallmentQuantity;
 	}
 	
-
     public function getHolder(){
 		return $this->Holder;
 	}
@@ -87,14 +71,6 @@ class CreditCard  implements \JsonSerializable
 	public function setInstallmentQuantity($InstallmentQuantity){
 		$this->InstallmentQuantity = $InstallmentQuantity;
 	}
-
-	public function getIsRecurrence(){
-		return $this->IsRecurrence;
-	}
-
-	public function setIsRecurrence($IsRecurrence){
-		$this->IsRecurrence = $IsRecurrence;
-	}
 	
 	public function JsonSerialize()
     {
@@ -104,8 +80,7 @@ class CreditCard  implements \JsonSerializable
 				'ExpirationDate' => $this->ExpirationDate,
 				'SecurityCode' => $this->SecurityCode,
 				'Token' => $this->Token,
-				'InstallmentQuantity' =>(int) $this->InstallmentQuantity,
-				'IsRecurrence' => (bool) $this->IsRecurrence
+				'InstallmentQuantity' =>(int) $this->InstallmentQuantity
         ];
     }
 }

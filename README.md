@@ -13,10 +13,8 @@
     * [x] Cartão de crédito.
     * [x] Bitcoin.
     * [x] Cartão de débito.
-    * [x] Carnê.
 * [x] Gerenciamento de subcontas para Marketplace.
 * [x] Venda simples.
-* [x] Recorrência.
 
 
 ## Utilização
@@ -33,7 +31,7 @@ A integração com a API do Safe2Pay se dá pelo modelo RESTful, de forma a real
 
 ### Tratamento das respostas da API
 
-Após o envio, a própria chamada devolverá a resposta em um objeto completo com as propriedades desta, onde um cast das classes de resposta permitirá o tratamento das propriedades do objeto de retorno de forma simplificada, sem a necessidade de criar os mesmos modelos em seu projeto. Utilize a `CheckoutResponse` para transações ou `InvoiceResponse` para solicitações de cobrança.
+Após o envio, a própria chamada devolverá a resposta em um objeto completo com as propriedades desta, onde um cast das classes de resposta permitirá o tratamento das propriedades do objeto de retorno de forma simplificada, sem a necessidade de criar os mesmos modelos em seu projeto.
 
 ## Dependências
 
@@ -61,6 +59,7 @@ O retorno do envio da transação trará um status para esta, que pode ser igual
 8 = RECUSADO
 11 = LIBERADO
 12 = EM CANCELAMENTO
+13 = CHARGEBACK
 ```
 
 ### Criando uma venda com Boleto
@@ -81,71 +80,84 @@ use Safe2Pay\Models\Core\Config as Enviroment;
 $enviroment = new Enviroment();
 $enviroment->setAPIKEY('x-api-key');
 
-
 //Inicializar método de pagamento
 $payload  = new Transaction();
-//Informa se será em ambiente de sandbox ou produção
+//Ambiente de homologação
 $payload->setIsSandbox(true);
 //Descrição geral 
 $payload->setApplication("Teste SDK PHP");
 //Nome do vendedor
 $payload->setVendor("João da Silva");
-//Informa Url de callback para receber notificações via Webhook
+//Url de callback
 $payload->setCallbackUrl("https://callbacks.exemplo.com.br/api/Notify");
 
-//Informa método de pagamento 1 para boleto
+//Código da forma de pagamento
+// 1 - Boleto bancário
+// 2 - Cartão de crédito
+// 3 - Criptomoeda
+// 4 - Cartão de débito 
 $payload->setPaymentMethod("1");
 
-//Inicializa o objeto de pagamento com uma instância de Bankslip(Boleto)
-$payload->setPaymentObject(
-    new BankSlip(
-        "16/07/2019",   //Data de vencimento
-        false,          //Cancelar após a data de vencimento  
-        false,          //Pagamento parcial
-        2.00,           //Multa após o atraso
-        0.40,           //Multa por dia de atraso
-        "Instrução de Exemplo", //Instrução
-        array("mensagem 1", "mensagem 2", "mensagem 3") //array de mensagens
-    ));
-
-
-//Insere os produtos referente a cobrança do boleto
-//-Código
-//-Descrição
-//-Quantidade
-//-Preço unitário
-$payload->setProducts(array(
-    new Product("001", "Teste 1", 10, 1.99),
-    new Product("002", "Teste 2", 3, 2.50),
-    new Product("003", "Teste 3", 7, 1)
+//Informa o objeto de pagamento
+$BankSlip = new BankSlip();
+//Data de vencimento
+$BankSlip->setDueDate("16/10/2019");
+//Instrução
+$BankSlip->setInstruction("Instrução de Exemplo");
+//Multa
+$BankSlip->setPenaltyRate(2.00);
+//Juros
+$BankSlip->setInterestRate(4.00);
+//Cancelar após o vencimento
+$BankSlip->setCancelAfterDue(false);
+//Pagamento parcial
+$BankSlip->setIsEnablePartialPayment(false);
+//Mensagens
+$BankSlip->setMessage(array(
+    "mensagem 1",
+    "mensagem 2",
+    "mensagem 3"
 ));
 
-//Inicializa o construtor com o Nome, documento e Email do cliente
-$Customer = new Customer("Teste Cliente", "01579286000174", "Teste@Teste.com.br");
+//Objeto de pagamento - para boleto bancário
+$payload->setPaymentObject($BankSlip);
 
-//Informa o endereço do cliente 
-$Customer->setAddress(new Address(
-    "90620000", //CEP
-    "Avenida Princesa Isabel",  //Logradouro
-    "828", // Número
-    "Complemento", //Complemento
-    "Santana",  // Bairro
-    "RS",   // Estado
-    "Porto Alegre", // Cidade
-    "Brasil"    //País
-));
+$Products = array();
 
-//Insere o objeto do cliente na cobrança
+for ($i = 0; $i < 10; $i++) {
+
+    $payloadProduct = new Product();
+    $payloadProduct->setCode($i + 1);
+    $payloadProduct->setDescription("Produto " . ($i + 1));
+    $payloadProduct->setUnitPrice(2.50);
+    $payloadProduct->setQuantity(2);
+
+    array_push($Products, $payloadProduct);
+};
+
+$payload->setProducts($Products);
+
+//Customer
+$Customer =  new Customer();
+$Customer->setName("Teste Cliente");
+$Customer->setIdentity("01579286000174");
+$Customer->setEmail("Teste@Teste.com.br");
+$Customer->setPhone("51999999999");
+
+$Customer->Address = new Address();
+$Customer->Address->setZipCode("90620000");
+$Customer->Address->setStreet("Avenida Princesa Isabel");
+$Customer->Address->setNumber("828");
+$Customer->Address->setComplement("Lado B");
+$Customer->Address->setDistrict("Santana");
+$Customer->Address->setStateInitials("RS");
+$Customer->Address->setCityName("Porto Alegre");
+$Customer->Address->setCountryName("Brasil");
+
+
 $payload->setCustomer($Customer);
 
-try {
-
-$response = PaymentRequest::BankSlip($payload);
-
-} catch(Exception $e) {
-
-    echo  $e->getMessage();
-}
+$response  = PaymentRequest::CreatePayment($payload);
 
 // ...
 ```
@@ -170,70 +182,63 @@ $enviroment->setAPIKEY('x-api-key');
 
 //Inicializar método de pagamento
 $payload  = new Transaction();
-//Informa se será em ambiente de sandbox ou produção
+//Ambiente de homologação
 $payload->setIsSandbox(true);
 //Descrição geral 
 $payload->setApplication("Teste SDK PHP");
 //Nome do vendedor
 $payload->setVendor("João da Silva");
-//Informa Url de callback para receber notificações via Webhook
+//Url de callback
 $payload->setCallbackUrl("https://callbacks.exemplo.com.br/api/Notify");
 
-//Informa método de pagamento 2 para boleto
+//Código da forma de pagamento
+// 1 - Boleto bancário
+// 2 - Cartão de crédito
+// 3 - Criptomoeda
+// 4 - Cartão de débito 
 $payload->setPaymentMethod("2");
 
-//Inicializa o objeto de pagamento com uma instância de CreditCard(Cartão de crédito)
+$CreditCard = new CreditCard("João da Silva", "4024007153763191", "12/2019", "241", 2);
 
-//Exemplo de pagamento com cartão não tokenizado
- $payload->setPaymentObject(
-    new CreditCard(
-        "João da Silva",  // Nome
-        "4024007153763191", // Número 
-        "12/2019", // Data de vencimento
-        "241" //Código de segurança
-    ));
+//Objeto de pagamento - para boleto bancário
+$payload->setPaymentObject($CreditCard);
 
- //Exemplo com cartão tokenizado
-//$payload->setPaymentObject(CreditCard::__Tokenized("841541584185418514851414965941851"));
+$Products = array();
+
+for ($i = 0; $i < 10; $i++) {
+
+    $payloadProduct = new Product();
+    $payloadProduct->setCode($i + 1);
+    $payloadProduct->setDescription("Produto " . ($i + 1));
+    $payloadProduct->setUnitPrice(2.50);
+    $payloadProduct->setQuantity(2);
+
+    array_push($Products, $payloadProduct);
+};
+
+$payload->setProducts($Products);
+
+//Customer
+$Customer =  new Customer();
+$Customer->setName("Teste Cliente");
+$Customer->setIdentity("01579286000174");
+$Customer->setEmail("Teste@Teste.com.br");
+$Customer->setPhone("51999999999");
+
+$Customer->Address = new Address();
+$Customer->Address->setZipCode("90620000");
+$Customer->Address->setStreet("Avenida Princesa Isabel");
+$Customer->Address->setNumber("828");
+$Customer->Address->setComplement("Lado B");
+$Customer->Address->setDistrict("Santana");
+$Customer->Address->setStateInitials("RS");
+$Customer->Address->setCityName("Porto Alegre");
+$Customer->Address->setCountryName("Brasil");
 
 
-//Insere os produtos referente a cobrança do boleto
-//-Código
-//-Descrição
-//-Quantidade
-//-Preço unitário
-$payload->setProducts(array(
-    new Product("001", "Teste 1", 10, 1.99),
-    new Product("002", "Teste 2", 3, 2.50),
-    new Product("003", "Teste 3", 7, 1)
-));
-
-//Inicializa o construtor com o Nome, documento e Email do cliente
-$Customer = new Customer("Teste Cliente", "01579286000174", "Teste@Teste.com.br");
-
-//Informa o endereço do cliente 
-$Customer->setAddress(new Address(
-    "90620000", //CEP
-    "Avenida Princesa Isabel",  //Logradouro
-    "828", // Número
-    "Complemento", //Complemento
-    "Santana",  // Bairro
-    "RS",   // Estado
-    "Porto Alegre", // Cidade
-    "Brasil"    //País
-));
-
-//Insere o objeto do cliente na cobrança
 $payload->setCustomer($Customer);
 
-try {
-
-$response  =  PaymentRequest::CreditCard($payload);
-
-} catch(Exception $e) {
-
-    echo  $e->getMessage();
-}
+$response  = PaymentRequest::CreatePayment($payload);
 
 // ...
 ```
@@ -257,55 +262,63 @@ $enviroment->setAPIKEY('x-api-key');
 
 //Inicializar método de pagamento
 $payload  = new Transaction();
-//Informa se será em ambiente de sandbox ou produção
+//Ambiente de homologação
 $payload->setIsSandbox(true);
 //Descrição geral 
 $payload->setApplication("Teste SDK PHP");
 //Nome do vendedor
 $payload->setVendor("João da Silva");
-//Informa Url de callback para receber notificações via Webhook
+//Url de callback
 $payload->setCallbackUrl("https://callbacks.exemplo.com.br/api/Notify");
 
-//Informa método de pagamento 3 para Bitcoin
+//Código da forma de pagamento
+// 1 - Boleto bancário
+// 2 - Cartão de crédito
+// 3 - Criptomoeda
+// 4 - Cartão de débito 
 $payload->setPaymentMethod("3");
 
-//Insere os produtos referente a cobrança
-//-Código
-//-Descrição
-//-Quantidade
-//-Preço unitário
-$payload->setProducts(array(
-    new Product("001", "Teste 1", 10, 1.99),
-    new Product("002", "Teste 2", 3, 2.50),
-    new Product("003", "Teste 3", 7, 1)
-));
+$CreditCard = new CreditCard("João da Silva", "4024007153763191", "12/2019", "241", 2);
 
-//Inicializa o construtor com o Nome, documento e Email do cliente
-$Customer = new Customer("Teste Cliente", "01579286000174", "Teste@Teste.com.br");
+//Objeto de pagamento - para boleto bancário
+$payload->setPaymentObject($CreditCard);
 
-//Informa o endereço do cliente 
-$Customer->setAddress(new Address(
-    "90620000", //CEP
-    "Avenida Princesa Isabel",  //Logradouro
-    "828", // Número
-    "Complemento", //Complemento
-    "Santana",  // Bairro
-    "RS",   // Estado
-    "Porto Alegre", // Cidade
-    "Brasil"    //País
-));
+$Products = array();
 
-//Insere o objeto do cliente na cobrança
+for ($i = 0; $i < 10; $i++) {
+
+    $payloadProduct = new Product();
+    $payloadProduct->setCode($i + 1);
+    $payloadProduct->setDescription("Produto " . ($i + 1));
+    $payloadProduct->setUnitPrice(2.50);
+    $payloadProduct->setQuantity(2);
+
+    array_push($Products, $payloadProduct);
+};
+
+$payload->setProducts($Products);
+
+//Customer
+$Customer =  new Customer();
+$Customer->setName("Teste Cliente");
+$Customer->setIdentity("01579286000174");
+$Customer->setEmail("Teste@Teste.com.br");
+$Customer->setPhone("51999999999");
+
+$Customer->Address = new Address();
+$Customer->Address->setZipCode("90620000");
+$Customer->Address->setStreet("Avenida Princesa Isabel");
+$Customer->Address->setNumber("828");
+$Customer->Address->setComplement("Lado B");
+$Customer->Address->setDistrict("Santana");
+$Customer->Address->setStateInitials("RS");
+$Customer->Address->setCityName("Porto Alegre");
+$Customer->Address->setCountryName("Brasil");
+
+
 $payload->setCustomer($Customer);
 
-try {
-
-$response = PaymentRequest::CryptoCurrency($payload);
-
-} catch(Exception $e) {
-
-    echo  $e->getMessage();
-}
+$response  = PaymentRequest::CreatePayment($payload);
 
 // ...
 ```
@@ -330,66 +343,65 @@ $enviroment->setAPIKEY('x-api-key');
 
 //Inicializar método de pagamento
 $payload  = new Transaction();
-//Informa se será em ambiente de sandbox ou produção
+//Ambiente de homologação
 $payload->setIsSandbox(true);
+//Débito autenticado
+$payload->setAuthenticate(true);
 //Descrição geral 
 $payload->setApplication("Teste SDK PHP");
 //Nome do vendedor
 $payload->setVendor("João da Silva");
-//Informa Url de callback para receber notificações via Webhook
+//Url de callback
 $payload->setCallbackUrl("https://callbacks.exemplo.com.br/api/Notify");
 
-//Informa método de pagamento 4 para cartão de débito
+//Código da forma de pagamento
+// 1 - Boleto bancário
+// 2 - Cartão de crédito
+// 3 - Criptomoeda
+// 4 - Cartão de débito 
 $payload->setPaymentMethod("4");
 
-//Inicializa o objeto de pagamento com uma instância de DebitCard(cartão de débito)
+$CreditCard = new DebitCard("João da Silva", "4024007153763191", "12/2019", "241");
 
-//Exemplo de pagamento com cartão não tokenizado
- $payload->setPaymentObject(
-    new DebitCard(
-        "João da Silva",  // Nome
-        "4024007153763191", // Número 
-        "12/2019", // Data de vencimento
-        "241" //Código de segurança
-    ));
+//Objeto de pagamento - para boleto bancário
+$payload->setPaymentObject($CreditCard);
 
-//Insere os produtos referente a cobrança
-//-Código
-//-Descrição
-//-Quantidade
-//-Preço unitário
-$payload->setProducts(array(
-    new Product("001", "Teste 1", 10, 1.99),
-    new Product("002", "Teste 2", 3, 2.50),
-    new Product("003", "Teste 3", 7, 1)
-));
+$Products = array();
 
-//Inicializa o construtor com o Nome, documento e Email do cliente
-$Customer = new Customer("Teste Cliente", "01579286000174", "Teste@Teste.com.br");
+for ($i = 0; $i < 10; $i++) {
 
-//Informa o endereço do cliente 
-$Customer->setAddress(new Address(
-    "90620000", //CEP
-    "Avenida Princesa Isabel",  //Logradouro
-    "828", // Número
-    "Complemento", //Complemento
-    "Santana",  // Bairro
-    "RS",   // Estado
-    "Porto Alegre", // Cidade
-    "Brasil"    //País
-));
+    $payloadProduct = new Product();
+    $payloadProduct->setCode($i + 1);
+    $payloadProduct->setDescription("Produto " . ($i + 1));
+    $payloadProduct->setUnitPrice(2.50);
+    $payloadProduct->setQuantity(2);
 
-//Insere o objeto do cliente na cobrança
+    array_push($Products, $payloadProduct);
+};
+
+$payload->setProducts($Products);
+
+//Customer
+$Customer =  new Customer();
+$Customer->setName("Teste Cliente");
+$Customer->setIdentity("01579286000174");
+$Customer->setEmail("Teste@Teste.com.br");
+$Customer->setPhone("51999999999");
+
+$Customer->Address = new Address();
+$Customer->Address->setZipCode("90620000");
+$Customer->Address->setStreet("Avenida Princesa Isabel");
+$Customer->Address->setNumber("828");
+$Customer->Address->setComplement("Lado B");
+$Customer->Address->setDistrict("Santana");
+$Customer->Address->setStateInitials("RS");
+$Customer->Address->setCityName("Porto Alegre");
+$Customer->Address->setCountryName("Brasil");
+
+
 $payload->setCustomer($Customer);
 
-try {
-
-$response = PaymentRequest::DebitCard($payload);
-
-} catch(Exception $e) {
-
-    echo  $e->getMessage();
-}
+$response  = PaymentRequest::CreatePayment($payload);
 
 // ...
 ```
@@ -419,18 +431,13 @@ class TokenizationTest
 
     public static function Create()
     {
-        //Cria uma instância do objeto do cartão para realizar a tokenização
-        $CreditCard = new CreditCard("João da Silva", "4024007153763191", "12/2019", "241");
+         //Cria uma instância do objeto do cartão para realizar a tokenização
+        $CreditCard = new CreditCard("João da Silva", "4024007153763191", "12/2019", "241", null);
         //Realiza a tokenização e traz o retorno
 
-        try {
+        $response  = TokenizationRequest::Create($CreditCard);
 
-            $response  = TokenizationRequest::Create($CreditCard);
-
-        } catch (Exception $e) {
-
-            echo  $e->getMessage();
-        }
+        //...
    
     }
 }
@@ -461,8 +468,10 @@ class TransactionTest
     public static function Get()
     { 
         $Id=535489;
-        $response = TransactionRequest::Get($Id);
+       
+        $response =TransactionRequest::Get($Id);
 
+        //...
     }
 }
 
@@ -471,6 +480,6 @@ class TransactionTest
 
 ## Informações adicionais / Contato
 
-A orientação sobre a utilização da API também está disponível na documentação de referência da API, disponível aqui, porém salientamos que ela se encontra em atualização para a nova versão da API.
+Em caso de dúvidas, ficamos à disposição em nossos canais ou diretamente pelo e-mail integracao@safe2pay.com.br. 
 
-Em caso de dúvidas, ficamos à disposição em nossos canais ou diretamente pelo e-mail integracao@safe2pay.com.br.
+Para mais informações acesse: https://safe2pay.com.br

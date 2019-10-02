@@ -3,11 +3,8 @@
 namespace Safe2Pay\API;
 
 use Safe2Pay\Models\Core\Client;
-use Safe2Pay\Models\Response\Response;
-
 
 require_once __DIR__.'/../Models/Core/Client.php';
-require_once __DIR__.'/../Models/Response/Response.php';
 
 /**
  * Class PaymentRequest
@@ -23,139 +20,20 @@ class PaymentRequest{
      * @return Array
      */
     public static function GetPaymentMethods()
-    {
-        
-        $request = Client::HttpClient('GET', 'v2/MerchantPaymentMethod/List', null, false);
-
-        $response = new Response();
-
-        foreach (json_decode($request, true) as $key => $value) $response->{$key} = $value;
-
+    {   
+        $response = Client::HttpClient('GET', 'MerchantPaymentMethod/List', null, false);
         return $response;
     }
 
     /**
-     * BankSlip Sale
+     * Create Payment
      *
      * @param [Payment] $payment
      * @return Response
      */
-    public static function BankSlip($payment)
+    public static function CreatePayment($payment)
     {
-
-        $request = Client::HttpClient('POST', 'v2/Payment', $payment, true);
-
-        $response = new Response();
-
-        foreach (json_decode($request, true) as $key => $value) $response->{$key} = $value;
-
-        return $response;
-    }
-
-    /**
-     * CreditCard Sale
-     *
-     * @param [Payment] $payment
-     * @return Response
-     */
-    public static function CreditCard($payment)
-    {
-
-        $request = Client::HttpClient('POST', 'v2/Payment', $payment, true);
-
-        $response = new Response();
-
-        foreach (json_decode($request, true) as $key => $value) $response->{$key} = $value;
-
-        return $response;
-    }
-
-    /**
-     * CryptoCurrency Sale
-     *
-     * @param [Payment] $payment
-     * @return Response
-     */
-    public static function CryptoCurrency($payment)
-    {
-
-        $request = Client::HttpClient('POST', 'v2/Payment', $payment, true);
-
-        $response = new Response();
-
-        foreach (json_decode($request, true) as $key => $value) $response->{$key} = $value;
-
-        return $response;
-    }
-
-    /**
-     * Debit Card Sale
-     *
-     * @param [Payment] $payment
-     * @return Response
-     */
-    public static function DebitCard($payment)
-    {
-
-        $request = Client::HttpClient('POST', 'v2/Payment', $payment, true);
-
-        $response = new Response();
-
-        foreach (json_decode($request, true) as $key => $value) $response->{$key} = $value;
-
-        return $response;
-    }
-
-    /**
-     * Carnet Sale
-     *
-     * @param [Payment] $payment
-     * @return Response
-     */
-    public static function Carnet($payment)
-    {
-
-        $request = Client::HttpClient('POST', 'v2/Carnet', $payment, true);
-
-        $response = new Response();
-
-        foreach (json_decode($request, true) as $key => $value) $response->{$key} = $value;
-
-        return $response;
-    }
-
-    /**
-     * Carnet Sale
-     *
-     * @param [Payment] $payment
-     * @return Response
-     */
-    public static function CarnetLot($payment)
-    {
-
-        $request = Client::HttpClient('POST', 'v2/carnetasync/', $payment, true);
-
-        $response = new Response();
-
-        foreach (json_decode($request, true) as $key => $value) $response->{$key} = $value;
-
-        return $response;
-    }
-
-    /**
-     * DebitAccount Sale
-     *
-     * @param [Payment] $payment
-     * @return Response
-     */
-    public static function DebitAccount($payment)
-    {
-
-        $request = Client::HttpClient('POST', 'v2/payment', $payment, true);
-
-        $response = new Response();
-
-        foreach (json_decode($request, true) as $key => $value) $response->{$key} = $value;
+        $response = Client::HttpClient('POST', 'Payment', $payment, true);
 
         return $response;
     }
@@ -166,18 +44,136 @@ class PaymentRequest{
      * @param [int] $Id
      * @return Response
      */
-    public static function Refund($Id)
+    public static function Refund($Id, $type)
+    {
+        $response = null;
+
+        switch ($type) {
+            case RefundType::DEBIT:
+            $response = Client::HttpClient('DELETE', "CreditCard/Cancel/{$Id}", null, false);
+                break;
+            case RefundType::CREDIT:
+
+            $response = Client::HttpClient('DELETE', "DebitCard/Cancel/{$Id}", null, false);
+                break;
+            case RefundType::BANKSLIP:
+            $response = Client::HttpClient('DELETE', "BankSlip/WriteOffBankSlip?idTransaction={$Id}", null, false);
+                break;
+            default:
+                return "Payment method type to be refunded was not entered";
+        }
+        return  $response;
+    }
+
+/**===============================================Initial Carnet Methods================================================== */
+    
+    /**
+     * Carnet Sale
+     *
+     * @param [Payment] $payment
+     * @return Response
+     */
+    public static function Carnet($payment)
     {
 
-        $request = Client::HttpClient('DELETE', "v2/CreditCard/Cancel/{$Id}", null, false);
-
-        $response = new Response();
-
-        foreach (json_decode($request, true) as $key => $value) $response->{$key} = $value;
+        $response = Client::HttpClient('POST', 'Carnet', $payment, true);
 
         return $response;
     }
 
-   
+    /**
+     * Carnet Lot Sale
+     *
+     * @param [Payment] $payment
+     * @return Response
+     */
+    public static function CarnetLot($payment)
+    {
+
+        $response = Client::HttpClient('POST', 'carnetasync', $payment, true);
+
+        return $response;
+    }
+
+  /**
+     * Carnet Get 
+     *
+     * @param [Payment] $payment
+     * @return Response
+     */
+    public static function GetCarnet($identifier)
+    {
+        $response = Client::HttpClient('GET', "Carnet/Get?identifier={$identifier}", null, false);
+
+        return $response;
+    }
+
+
+  /**
+     * Carnet Async Get 
+     *
+     * @param [Payment] $payment
+     * @return Response
+     */
+    public static function GetCarnetAsync($identifier)
+    {
+
+        $response = Client::HttpClient('GET', "carnetasync/Get?identifier={$identifier}", null, false);
+
+        return $response;
+    }
+
+
+/**
+     * Resend Carnet 
+     *
+     * @param [Payment] $payment
+     * @return Response
+     */
+    public static function ResendCarnet($identifier)
+    {
+
+        $response = Client::HttpClient('GET', "carnet/Resend?identifier={$identifier}", null, false);
+
+        return $response;
+    }
+
+    /**
+     * Cancel Carnet 
+     *
+     * @param [Payment] $payment
+     * @return Response
+     */
+    public static function CancelCarnet($identifier)
+    {
+
+        $response = Client::HttpClient('DELETE', "Carnet/Delete?identifier={$identifier}", null, false);
+
+        return $response;
+    }
+
+       /**
+     * Cancel Carnet Lot 
+     *
+     * @param [Payment] $payment
+     * @return Response
+     */
+    public static function CancelCarnetLot($identifier)
+    {
+
+        $response = Client::HttpClient('DELETE', "CarnetAsync/Delete?identifier={$identifier}", null, false);
+
+        return $response;
+    }
+/**===============================================END Carnet Methods================================================== */
+
+}
+
+
+class RefundType
+{
+    public const DEBIT = 'DEBIT';
+    public const CREDIT = 'CREDIT';
+    public const BANKSLIP = 'BANKSLIP';
 }
 

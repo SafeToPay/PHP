@@ -1,6 +1,9 @@
 <?php
-
 namespace Safe2Pay\Models\Core;
+
+require_once __DIR__.'/../Response/Response.php';
+use Safe2Pay\Models\Response\Response;
+
 
 
 class Client
@@ -13,7 +16,6 @@ class Client
       $url = Client::GetWebMethodUri($IsPayment) . $url;
 
       $curl = curl_init();
-
 
       if($data != null){
          $data =  json_encode($data);
@@ -56,7 +58,12 @@ class Client
       }
 
       curl_close($curl);
-      return $result;
+
+      $response = new Response();
+
+      foreach (json_decode($result , true) as $key => $value) $response->{$key} = $value;
+
+      return $response;
    }
 
    public static function SetEnviroment($Token){
@@ -71,9 +78,9 @@ class Client
    {
 
       if (!$IsPayment) {
-         return "https://api.safe2pay.com.br/";
+         return "https://api.safe2pay.com.br/v2/";
       } else {
-         return "https://payment.safe2pay.com.br/";
+         return "https://payment.safe2pay.com.br/v2/";
       }
    }
 }

@@ -22,10 +22,24 @@ class TransactionTest
     { 
         $Id=535489;
        
-        var_dump((TransactionRequest::Get($Id)));
+        $response =TransactionRequest::Get($Id);
+
+        echo (json_encode($response));
 
     }
+
+
+    public static function GetByReference()
+    { 
+        $reference='1059856';
+       
+        $response = TransactionRequest::GetByRefeference($reference);
+
+        echo (json_encode($response));
+    }
+
 }
 
  TransactionTest::Get();
+ TransactionTest::GetByReference();
 ?>

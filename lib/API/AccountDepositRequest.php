@@ -2,10 +2,8 @@
 namespace Safe2Pay\API;
 
 use Safe2Pay\Models\Core\Client;
-use Safe2Pay\Models\Response\Response;
 
 require_once __DIR__.'/../Models/Core/Client.php';
-require_once __DIR__.'/../Models/Response/Response.php';
 
 /**
  * Class AccountDepositRequest
@@ -26,8 +24,7 @@ class AccountDepositRequest{
      */
     public static function GetListDetailsDeposits($day,$month,$year,$page,$rowsPerPage){
 
-        $request = Client:: HttpClient('GET',"v2/CheckingAccount/GetListDetailsDeposits?day={$day}&month={$month}&year={$year}&page={$page}&rowsPerPage={$rowsPerPage}", null,false);
-        $response = json_decode($request , true);
+        $response = Client:: HttpClient('GET',"CheckingAccount/GetListDetailsDeposits?day={$day}&month={$month}&year={$year}&page={$page}&rowsPerPage={$rowsPerPage}", null,false);
         return $response;
     }
 
@@ -40,8 +37,7 @@ class AccountDepositRequest{
      */
     public static function GetListDeposits($month,$year){
 
-        $request = Client:: HttpClient('GET',"v2/CheckingAccount/GetListDeposits?month={$month}&year={$year}", null,false);
-        $response = json_decode($request , true);
+        $response = Client:: HttpClient('GET',"CheckingAccount/GetListDeposits?month={$month}&year={$year}", null,false);
         return $response;
     }
 
@@ -51,8 +47,17 @@ class AccountDepositRequest{
      */
     public static function GetBankAccount(){
 
-        $request = Client:: HttpClient('GET','v2/MerchantBankData/Get', null,false);
-        $response = json_decode($request , true);
+        $response = Client:: HttpClient('GET','MerchantBankData/Get', null,false);
+        return  $response;
+    }
+
+     /**
+     * Get the bank account details 
+     * @return Response
+     */
+    public static function GetDepositDetail($id){
+
+        $response = Client:: HttpClient('GET',"Transfer/Get?Id={$id}", null,false);
         return  $response;
     }
 

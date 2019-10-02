@@ -216,21 +216,6 @@ class SingleSale implements \JsonSerializable
 		$this->IdSubscription = $IdSubscription;
 	}
 
-	public function __construct($Customer,$Products,$ExpirationDate,$PaymentMethods,$DueDate,$Reference,$PenaltyAmount,$InterestAmount,$Emails,$Messages,$Instruction)
-	{
-		$this->Customer = $Customer;
-		$this->Products = $Products;
-		$this->ExpirationDate = $ExpirationDate;
-		$this->PaymentMethods = $PaymentMethods;
-		$this->DueDate = $DueDate;
-		$this->Reference = $Reference;
-		$this->PenaltyAmount = $PenaltyAmount;
-		$this->InterestAmount = $InterestAmount;
-		$this->Emails = $Emails;
-		$this->Messages = $Messages;
-		$this->Instruction = $Instruction;
-	}
-
 	public function JsonSerialize()
     {
         return [

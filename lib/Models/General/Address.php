@@ -18,9 +18,6 @@ namespace Safe2Pay\Models\General;
         public $CityName;
         public $StateInitials;
         public $CountryName;
-        public $City;
-        public $State;
-        public $Country;
         
         public function getZipCode(){
             return $this->ZipCode;
@@ -84,45 +81,7 @@ namespace Safe2Pay\Models\General;
     
         public function setCountryName($CountryName){
             $this->CountryName = $CountryName;
-        }
-    
-        public function getCity(){
-            return $this->City;
-        }
-    
-        public function setCity($City){
-            $this->City = $City;
-        }
-    
-        public function getState(){
-            return $this->State;
-        }
-    
-        public function setState($State){
-            $this->State = $State;
-        }
-    
-        public function getCountry(){
-            return $this->Country;
-        }
-    
-        public function setCountry($Country){
-            $this->Country = $Country;
-        }
-
-        public function __construct($ZipCode,$Street,$Number,$Complement,$District,$StateInitials,$CityName,$CountryName)
-        {
-            $this->ZipCode = $ZipCode;
-            $this->Street = $Street;  
-            $this->Number = $Number;
-
-            $this->Complement = $Complement;
-            $this->District = $District;  
-            $this->StateInitials = $StateInitials;
-
-            $this->CityName = $CityName;
-            $this->CountryName = $CountryName;  
-        }
+        } 
 
         public function jsonSerialize()
         {

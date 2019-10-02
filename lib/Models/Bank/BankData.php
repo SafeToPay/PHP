@@ -17,16 +17,6 @@ class BankData implements \JsonSerializable
     private $BankAccountDigit;
     private $Operation;
 
-    function __construct($Bank, $BankAgency, $BankAgencyDigit, $BankAccount, $BankAccountDigit, $Operation)
-    {
-        $this->Bank = $Bank;
-        $this->BankAgency = $BankAgency;
-        $this->BankAgencyDigit = $BankAgencyDigit;
-        $this->BankAccount = $BankAccount;
-        $this->BankAccountDigit = $BankAccountDigit;
-        $this->Operation = $Operation;
-    }
-
     public function getBank()
     {
         return $this->Bank;

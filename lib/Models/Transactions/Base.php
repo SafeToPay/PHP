@@ -15,14 +15,15 @@ use Safe2Pay\Models\Payment\PaymentMethod;
 
 class Base
 {
-    private $Id;
+	private $Id;
+	private $Authenticate;
     private $IdTransaction;
     private $IsSandbox;
     private $Application;
     private $Reference;
     private $Vendor;
     private $CallbackUrl;
-    private $PaymentMethod;
+    public $PaymentMethod;
     private $Customer;
     private $Products;
     private $Splits;
@@ -88,7 +89,11 @@ class Base
 	}
 
 	public function setPaymentMethod($Code){
-		$this->PaymentMethod = new PaymentMethod($Code);
+
+		if($Code != null){
+			$this->PaymentMethod = new PaymentMethod($Code);
+		}
+	
 	}
 
 	public function getCustomer(){
@@ -113,6 +118,14 @@ class Base
 
 	public function setSplits($Splits){
 		$this->Splits = $Splits;
+	}
+
+	public function getAuthenticate(){
+		return $this->Authenticate;
+	}
+
+	public function setAuthenticate($Authenticate){
+		$this->Authenticate = $Authenticate;
 	}
 }
 

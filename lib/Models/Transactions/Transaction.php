@@ -34,7 +34,8 @@ class Transaction extends Base implements \JsonSerializable
             "PaymentMethod" => $this->getPaymentMethod(),
             "Customer" => $this->getCustomer(),
 			"Products" => $this->getProducts(),
-			"Splits" => $this->getSplits()
+            "Splits" => $this->getSplits(),
+            "Authenticate" =>(Boolean) $this->getAuthenticate()
         ];     
     }
 }

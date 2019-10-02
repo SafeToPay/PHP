@@ -24,8 +24,7 @@ class InvoiceRequest{
      */
     public static function Add($SingleSale){
 
-        $request = Client:: HttpClient('POST','v2/SingleSale/Add', $SingleSale,false);
-        $response = json_decode($request , true);
+        $response = Client:: HttpClient('POST','SingleSale/Add', $SingleSale,false);
         return  $response;
     }
 
@@ -37,8 +36,7 @@ class InvoiceRequest{
      */
     public static function Get($HashSale){
 
-        $request = Client:: HttpClient('GET',"v2/SingleSale/Get?singleSaleHash={$HashSale}", null,false);
-        $response = json_decode($request , true);
+        $response = Client:: HttpClient('GET',"SingleSale/Get?singleSaleHash={$HashSale}", null,false);
         return $response;
     }
 
@@ -50,8 +48,7 @@ class InvoiceRequest{
      */
     public static function Update($SingleSale){
 
-        $request = Client:: HttpClient('PUT',"v2/SingleSale/Update", $SingleSale,false);
-        $response = json_decode($request , true);
+        $response = Client:: HttpClient('PUT',"SingleSale/Update", $SingleSale,false);
         return $response;
     }
 
@@ -63,8 +60,7 @@ class InvoiceRequest{
      */
     public static function Cancel($HashSale){
 
-        $request = Client:: HttpClient('DELETE',"v2/SingleSale/Delete?singleSaleHash={$HashSale}", null,false);
-        $response = json_decode($request , true);
+        $response = Client:: HttpClient('DELETE',"SingleSale/Delete?singleSaleHash={$HashSale}", null,false);
         return $response;
     }
 
@@ -76,8 +72,7 @@ class InvoiceRequest{
      */
     public static function Resend($HashSale){
 
-        $request = Client:: HttpClient('GET',"v2/SingleSale/Resend?singleSaleHash={$HashSale}", null,false);
-        $response = json_decode($request , true);
+        $response = Client:: HttpClient('GET',"SingleSale/Resend?singleSaleHash={$HashSale}", null,false);
         return $response;
     }
 }

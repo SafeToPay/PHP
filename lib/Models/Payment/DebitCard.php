@@ -77,11 +77,6 @@ class DebitCard implements \JsonSerializable
 		return $this->IsRecurrence;
 	}
 
-	public function setIsRecurrence($IsRecurrence){
-		$this->IsRecurrence = $IsRecurrence;
-	}
-
-	  //Credit Card Tokenization
 	  function __construct($Holder,$CardNumber,$ExpirationDate,$SecurityCode) {
         $this->Holder = $Holder;
 		$this->CardNumber = $CardNumber;
@@ -97,8 +92,7 @@ class DebitCard implements \JsonSerializable
 				'ExpirationDate' => $this->ExpirationDate,
 				'SecurityCode' => $this->SecurityCode,
 				'Token' => $this->Token,
-				'InstallmentQuantity' =>(int) $this->InstallmentQuantity,
-				'IsRecurrence' => (bool) $this->IsRecurrence
+				'InstallmentQuantity' =>(int) $this->InstallmentQuantity
         ];
     }
 	

@@ -25,5 +25,8 @@
         "classmap": [
             "./lib/"
         ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "8"
     }
 }

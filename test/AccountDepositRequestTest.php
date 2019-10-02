@@ -8,7 +8,7 @@ use Safe2Pay\API\AccountDepositRequest;
 
 use Safe2Pay\Models\Core\Config as Enviroment;
 $enviroment = new Enviroment();
-$enviroment->setAPIKEY('x-api-key');
+$enviroment->setAPIKEY('5325F24FD8A0402D8BF6362C489C66F7');
 /**
  * Class AccountDepositTest
  *
@@ -18,14 +18,20 @@ class AccountDepositTest
 {
     public static function GetBankAccount()
     {
-        var_dump(AccountDepositRequest::GetBankAccount());
+
+        $response  = AccountDepositRequest::GetBankAccount();
+
+        echo (json_encode($response));
     }
 
     public static function GetListDeposits()
     {
         $month = 5;
         $year = 2019;
-        var_dump(AccountDepositRequest::GetListDeposits($month,$year));
+
+        $response  = AccountDepositRequest::GetListDeposits($month,$year);
+
+        echo (json_encode($response));
     }
 
     public static function GetListDetailsDeposits()
@@ -36,11 +42,23 @@ class AccountDepositTest
         $page = 1;
         $RowsPerPage = 100;
 
-        var_dump(AccountDepositRequest::GetListDetailsDeposits($day, $month,$year,$page,$RowsPerPage));
+        $response  = AccountDepositRequest::GetListDetailsDeposits($day, $month,$year,$page,$RowsPerPage);
+
+        echo (json_encode($response));
+    }
+
+    public static function GetTransferDetail()
+    {
+        $Id = 1049319;
+
+        $response  = AccountDepositRequest::GetDepositDetail($Id);
+
+        echo (json_encode($response));
     }
 
 }
 
- AccountDepositTest::GetBankAccount();
- AccountDepositTest::GetListDeposits();
- AccountDepositTest::GetListDetailsDeposits();
+ //AccountDepositTest::GetBankAccount();
+//AccountDepositTest::GetListDeposits();
+//AccountDepositTest::GetListDetailsDeposits();
+//AccountDepositTest::GetTransferDetail();

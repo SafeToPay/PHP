@@ -47,16 +47,6 @@ class Product implements \JsonSerializable
 		$this->Quantity = $Quantity;
 	}
 
-	public function __construct($Code,$Description,$UnitPrice,$Quantity)
-	{
-		$this->Code = $Code;
-		$this->Description = $Description;
-		$this->UnitPrice = $UnitPrice;
-		$this->Quantity = $Quantity;
-
-	}
-
-
 	public function jsonSerialize()
     {
 		return[

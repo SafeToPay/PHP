@@ -158,14 +158,6 @@ class CarnetBankslip implements \JsonSerializable
     private $DueDate;   
     private $Instruction;  
 	private $Message;   
-	
-	public function __construct($Amount,$DueDate, $Instruction ,$Message){
-
-		$this->Amount = $Amount;
-		$this->DueDate =  $DueDate;
-		$this->Instruction = $Instruction;
-		$this->Message = $Message;
-	}
 
 
     public function getIdTransaction(){

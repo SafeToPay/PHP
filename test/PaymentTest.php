@@ -6,6 +6,7 @@ namespace Safe2Pay\Test;
 require_once '../vendor/autoload.php';
 
 use Safe2Pay\API\PaymentRequest;
+use Safe2Pay\API\RefundType;
 use Safe2Pay\Models\Payment\BankSlip;
 use Safe2Pay\Models\Payment\CreditCard;
 use Safe2Pay\Models\Payment\DebitCard;
@@ -30,7 +31,9 @@ class PaymentTest
 {
     public static function GetPaymentMethods()
     {
-        var_dump(PaymentRequest::GetPaymentMethods());
+        $response = PaymentRequest::GetPaymentMethods();
+
+        echo (json_encode($response));
     }
 
     //Boleto bancário
@@ -52,37 +55,70 @@ class PaymentTest
         // 2 - Cartão de crédito
         // 3 - Criptomoeda
         // 4 - Cartão de débito 
-        // 10 - Débito em conta 
         $payload->setPaymentMethod("1");
 
         //Informa o objeto de pagamento
-
-        //Objeto de pagamento - para boleto bancário
-        $payload->setPaymentObject(new BankSlip("16/07/2019", false, false, 2.00, 0.40, "Instrução de Exemplo", array("mensagem 1", "mensagem 2", "mensagem 3")));
-
-
-        //Lista de produtos incluídos na cobrança
-        $payload->setProducts(array(
-            new Product("001", "Teste 1", 10, 1.99),
-            new Product("002", "Teste 2", 3, 2.50),
-            new Product("003", "Teste 3", 7, 1)
+        $BankSlip = new BankSlip();
+        //Data de vencimento
+        $BankSlip->setDueDate("16/10/2019");
+        //Instrução
+        $BankSlip->setInstruction("Instrução de Exemplo");
+        //Multa
+        $BankSlip->setPenaltyRate(2.00);
+        //Juros
+        $BankSlip->setInterestRate(4.00);
+        //Cancelar após o vencimento
+        $BankSlip->setCancelAfterDue(false);
+        //Pagamento parcial
+        $BankSlip->setIsEnablePartialPayment(false);
+        //Mensagens
+        $BankSlip->setMessage(array(
+            "mensagem 1",
+            "mensagem 2",
+            "mensagem 3"
         ));
 
-        //Dados do cliente
-        $Customer = new Customer("Teste Cliente", "01579286000174", "Teste@Teste.com.br");
-        //Dados do endereço do cliente
-        $Customer->setAddress(new Address("90620000", "Avenida Princesa Isabel", "828", null, "Santana", "RS", "Porto Alegre", "Brasil"));
+        //Objeto de pagamento - para boleto bancário
+        $payload->setPaymentObject($BankSlip);
+
+        $Products = array();
+
+        for ($i = 0; $i < 10; $i++) {
+
+            $payloadProduct = new Product();
+            $payloadProduct->setCode($i + 1);
+            $payloadProduct->setDescription("Produto " . ($i + 1));
+            $payloadProduct->setUnitPrice(2.50);
+            $payloadProduct->setQuantity(2);
+
+            array_push($Products, $payloadProduct);
+        };
+
+        $payload->setProducts($Products);
+
+        //Customer
+        $Customer =  new Customer();
+        $Customer->setName("Teste Cliente");
+        $Customer->setIdentity("01579286000174");
+        $Customer->setEmail("Teste@Teste.com.br");
+        $Customer->setPhone("51999999999");
+
+        $Customer->Address = new Address();
+        $Customer->Address->setZipCode("90620000");
+        $Customer->Address->setStreet("Avenida Princesa Isabel");
+        $Customer->Address->setNumber("828");
+        $Customer->Address->setComplement("Lado B");
+        $Customer->Address->setDistrict("Santana");
+        $Customer->Address->setStateInitials("RS");
+        $Customer->Address->setCityName("Porto Alegre");
+        $Customer->Address->setCountryName("Brasil");
 
 
         $payload->setCustomer($Customer);
 
-        try {
+        $response  = PaymentRequest::CreatePayment($payload);
 
-            var_dump(PaymentRequest::BankSlip($payload));
-        } catch (Exception $e) {
-
-            echo  $e->getMessage();
-        }
+        echo (json_encode($response));
     }
 
     //Cartão de crédito
@@ -105,35 +141,57 @@ class PaymentTest
         // 2 - Cartão de crédito
         // 3 - Criptomoeda
         // 4 - Cartão de débito 
-        // 10 - Débito em conta 
         $payload->setPaymentMethod("2");
 
-        //Informa o objeto de pagamento
-        $payload->setPaymentObject(new CreditCard("João da Silva", "4024007153763191", "12/2019", "241"));
+        $CreditCard = new CreditCard("João da Silva", "4024007153763191", "12/2019", "241", 2);
 
-        //$payload->setPaymentObject(CreditCard::__Tokenized("841541584185418514851414965941851"));
+        //Objeto de pagamento - para boleto bancário
+        $payload->setPaymentObject($CreditCard);
 
-        //Lista de produtos incluídos na cobrança
-        $payload->setProducts(array(
-            new Product("001", "Teste 1", 10, 1.99),
-            new Product("002", "Teste 2", 3, 2.50),
-            new Product("003", "Teste 3", 7, 1)
-        ));
+        $Products = array();
 
-        //Dados do cliente
-        $Customer = new Customer("Teste Cliente", "01579286000174", "Teste@Teste.com.br");
-        //Dados do endereço do cliente
-        $Customer->setAddress(new Address("90620000", "Avenida Princesa Isabel", "828", null, "Santana", "RS", "Porto Alegre", "Brasil"));
+        for ($i = 0; $i < 10; $i++) {
+
+            $payloadProduct = new Product();
+            $payloadProduct->setCode($i + 1);
+            $payloadProduct->setDescription("Produto " . ($i + 1));
+            $payloadProduct->setUnitPrice(2.50);
+            $payloadProduct->setQuantity(2);
+
+            array_push($Products, $payloadProduct);
+        };
+
+        $payload->setProducts($Products);
+
+        //Customer
+        $Customer =  new Customer();
+        $Customer->setName("Teste Cliente");
+        $Customer->setIdentity("01579286000174");
+        $Customer->setEmail("Teste@Teste.com.br");
+        $Customer->setPhone("51999999999");
+
+        $Customer->Address = new Address();
+        $Customer->Address->setZipCode("90620000");
+        $Customer->Address->setStreet("Avenida Princesa Isabel");
+        $Customer->Address->setNumber("828");
+        $Customer->Address->setComplement("Lado B");
+        $Customer->Address->setDistrict("Santana");
+        $Customer->Address->setStateInitials("RS");
+        $Customer->Address->setCityName("Porto Alegre");
+        $Customer->Address->setCountryName("Brasil");
 
 
         $payload->setCustomer($Customer);
 
-        var_dump(PaymentRequest::CreditCard($payload));
+        $response  = PaymentRequest::CreatePayment($payload);
+
+        echo (json_encode($response));
     }
 
     //Criptomoedas (Bitcoin)
     public static function CryptoCurrency()
     {
+
         //Inicializar método de pagamento
         $payload  = new Transaction();
         //Ambiente de homologação
@@ -150,25 +208,51 @@ class PaymentTest
         // 2 - Cartão de crédito
         // 3 - Criptomoeda
         // 4 - Cartão de débito 
-        // 10 - Débito em conta 
         $payload->setPaymentMethod("3");
 
-        //Lista de produtos incluídos na cobrança
-        $payload->setProducts(array(
-            new Product("001", "Teste 1", 10, 1.99),
-            new Product("002", "Teste 2", 3, 2.50),
-            new Product("003", "Teste 3", 7, 1)
-        ));
+        $CreditCard = new CreditCard("João da Silva", "4024007153763191", "12/2019", "241", 2);
 
-        //Dados do cliente
-        $Customer = new Customer("Teste Cliente", "01579286000174", "Teste@Teste.com.br");
-        //Dados do endereço do cliente
-        $Customer->setAddress(new Address("90620000", "Avenida Princesa Isabel", "828", null, "Santana", "RS", "Porto Alegre", "Brasil"));
+        //Objeto de pagamento - para boleto bancário
+        $payload->setPaymentObject($CreditCard);
+
+        $Products = array();
+
+        for ($i = 0; $i < 10; $i++) {
+
+            $payloadProduct = new Product();
+            $payloadProduct->setCode($i + 1);
+            $payloadProduct->setDescription("Produto " . ($i + 1));
+            $payloadProduct->setUnitPrice(2.50);
+            $payloadProduct->setQuantity(2);
+
+            array_push($Products, $payloadProduct);
+        };
+
+        $payload->setProducts($Products);
+
+        //Customer
+        $Customer =  new Customer();
+        $Customer->setName("Teste Cliente");
+        $Customer->setIdentity("01579286000174");
+        $Customer->setEmail("Teste@Teste.com.br");
+        $Customer->setPhone("51999999999");
+
+        $Customer->Address = new Address();
+        $Customer->Address->setZipCode("90620000");
+        $Customer->Address->setStreet("Avenida Princesa Isabel");
+        $Customer->Address->setNumber("828");
+        $Customer->Address->setComplement("Lado B");
+        $Customer->Address->setDistrict("Santana");
+        $Customer->Address->setStateInitials("RS");
+        $Customer->Address->setCityName("Porto Alegre");
+        $Customer->Address->setCountryName("Brasil");
 
 
         $payload->setCustomer($Customer);
 
-        var_dump(PaymentRequest::CryptoCurrency($payload));
+        $response  = PaymentRequest::CreatePayment($payload);
+
+        echo (json_encode($response));
     }
 
     //Cartão de débito
@@ -178,6 +262,8 @@ class PaymentTest
         $payload  = new Transaction();
         //Ambiente de homologação
         $payload->setIsSandbox(true);
+        //Débito autenticado
+        $payload->setAuthenticate(true);
         //Descrição geral 
         $payload->setApplication("Teste SDK PHP");
         //Nome do vendedor
@@ -190,32 +276,66 @@ class PaymentTest
         // 2 - Cartão de crédito
         // 3 - Criptomoeda
         // 4 - Cartão de débito 
-        // 10 - Débito em conta 
         $payload->setPaymentMethod("4");
 
-        //Informa o objeto de pagamento
+        $CreditCard = new DebitCard("João da Silva", "4024007153763191", "12/2019", "241");
 
-        //Objeto de pagamento - para boleto bancário - 1
-        $payload->setPaymentObject(new DebitCard("João da Silva", "4024007153763191", "12/2019", "241"));
+        //Objeto de pagamento - para boleto bancário
+        $payload->setPaymentObject($CreditCard);
 
+        $Products = array();
 
-        //Lista de produtos incluídos na cobrança
-        $payload->setProducts(array(
-            new Product("001", "Teste 1", 10, 1.99),
-            new Product("002", "Teste 2", 3, 2.50),
-            new Product("003", "Teste 3", 7, 1)
-        ));
+        for ($i = 0; $i < 10; $i++) {
 
-        //Dados do cliente
-        $Customer = new Customer("Teste Cliente", "01579286000174", "Teste@Teste.com.br");
-        //Dados do endereço do cliente
-        $Customer->setAddress(new Address("90620000", "Avenida Princesa Isabel", "828", null, "Santana", "RS", "Porto Alegre", "Brasil"));
+            $payloadProduct = new Product();
+            $payloadProduct->setCode($i + 1);
+            $payloadProduct->setDescription("Produto " . ($i + 1));
+            $payloadProduct->setUnitPrice(2.50);
+            $payloadProduct->setQuantity(2);
+
+            array_push($Products, $payloadProduct);
+        };
+
+        $payload->setProducts($Products);
+
+        //Customer
+        $Customer =  new Customer();
+        $Customer->setName("Teste Cliente");
+        $Customer->setIdentity("01579286000174");
+        $Customer->setEmail("Teste@Teste.com.br");
+        $Customer->setPhone("51999999999");
+
+        $Customer->Address = new Address();
+        $Customer->Address->setZipCode("90620000");
+        $Customer->Address->setStreet("Avenida Princesa Isabel");
+        $Customer->Address->setNumber("828");
+        $Customer->Address->setComplement("Lado B");
+        $Customer->Address->setDistrict("Santana");
+        $Customer->Address->setStateInitials("RS");
+        $Customer->Address->setCityName("Porto Alegre");
+        $Customer->Address->setCountryName("Brasil");
 
 
         $payload->setCustomer($Customer);
 
-        var_dump(PaymentRequest::DebitCard($payload));
+        $response  = PaymentRequest::CreatePayment($payload);
+
+        echo (json_encode($response));
     }
+
+    public static function Refund()
+    {
+        $Id = 1093075;
+        $type = RefundType::BANKSLIP;
+        // $type = RefundType::BANKSLIP;
+        // $type = RefundType::DEBIT;
+
+        $response  = PaymentRequest::Refund($Id, $type);
+
+        echo (json_encode($response));
+    }
+
+    //===========================================CARNET METHODS====================================================//
 
     public static function Carnet()
     {
@@ -236,7 +356,6 @@ class PaymentTest
         // 3 - Criptomoeda
         // 4 - Cartão de débito 
         // 10 - Débito em conta 
-        $payload->setPaymentMethod("1");
 
         //Informa o objeto de pagamento
         $carnet = new Carnet();
@@ -248,34 +367,65 @@ class PaymentTest
         $carnet->setIsEnablePartialPayment(false);
         $carnet->setPayableAfterDue(false);
 
-        $carnet->setBankSlips(array(
-            new CarnetBankslip(1.99, "2019-09-13", "Instrução de Exemplo", array("mensagem 1", "mensagem 2", "mensagem 3")),
-            new CarnetBankslip(1.99, "2019-09-13", "Instrução de Exemplo", array("mensagem 1", "mensagem 2", "mensagem 3")),
-            new CarnetBankslip(1.99, "2019-09-13", "Instrução de Exemplo", array("mensagem 1", "mensagem 2", "mensagem 3"))
-        ));
+        $bankslips = array();
 
+        for ($i = 0; $i < 3; $i++) {
+            $carnetBankslip = new CarnetBankslip();
+            $carnetBankslip->setAmount(1.99);
+            $carnetBankslip->setDueDate("2020-" . ($i + 1) . "-13");
+            $carnetBankslip->setInstruction("Instrução de Exemplo");
+            $carnetBankslip->setMessage = array(
+                "mensagem 1",
+                "mensagem 2",
+                "mensagem 3",
+            );
 
+            array_push($bankslips, $carnetBankslip);
+        }
+
+        $carnet->setBankSlips($bankslips);
 
         //Objeto de pagamento - para boleto bancário - 1
         $payload->setPaymentObject($carnet);
 
+        $Products = array();
 
-        //Lista de produtos incluídos na cobrança
-        $payload->setProducts(array(
-            new Product("001", "Teste 1", 10, 1.99),
-            new Product("002", "Teste 2", 3, 2.50),
-            new Product("003", "Teste 3", 7, 1)
-        ));
+        for ($i = 0; $i < 3; $i++) {
 
-        //Dados do cliente
-        $Customer = new Customer("Teste Cliente", "01579286000174", "Teste@Teste.com.br");
-        //Dados do endereço do cliente
-        $Customer->setAddress(new Address("90620000", "Avenida Princesa Isabel", "828", null, "Santana", "RS", "Porto Alegre", "Brasil"));
+            $payloadProduct = new Product();
+            $payloadProduct->setCode($i + 1);
+            $payloadProduct->setDescription("Produto " . ($i + 1));
+            $payloadProduct->setUnitPrice(2.50);
+            $payloadProduct->setQuantity(2);
+
+            array_push($Products, $payloadProduct);
+        };
+
+        $payload->setProducts($Products);
+
+        //Customer
+        $Customer =  new Customer();
+        $Customer->setName("Teste Cliente");
+        $Customer->setIdentity("01579286000174");
+        $Customer->setEmail("Teste@Teste.com.br");
+        $Customer->setPhone("51999999999");
+
+        $Customer->Address = new Address();
+        $Customer->Address->setZipCode("90620000");
+        $Customer->Address->setStreet("Avenida Princesa Isabel");
+        $Customer->Address->setNumber("828");
+        $Customer->Address->setComplement("Lado B");
+        $Customer->Address->setDistrict("Santana");
+        $Customer->Address->setStateInitials("RS");
+        $Customer->Address->setCityName("Porto Alegre");
+        $Customer->Address->setCountryName("Brasil");
 
 
         $payload->setCustomer($Customer);
 
-        var_dump(PaymentRequest::Carnet($payload));
+        $response  = PaymentRequest::Carnet($payload);
+
+        echo (json_encode($response));
     }
 
     public static function CarnetLot()
@@ -297,6 +447,8 @@ class PaymentTest
             $payload->setApplication("Teste SDK PHP");
             //Nome do vendedor
             $payload->setVendor("João da Silva");
+            //Url de callback
+            $payload->setCallbackUrl("https://callbacks.exemplo.com.br/api/Notify");
 
             //Código da forma de pagamento
             // 1 - Boleto bancário
@@ -304,7 +456,6 @@ class PaymentTest
             // 3 - Criptomoeda
             // 4 - Cartão de débito 
             // 10 - Débito em conta 
-            $payload->setPaymentMethod("1");
 
             //Informa o objeto de pagamento
             $carnet = new Carnet();
@@ -316,31 +467,58 @@ class PaymentTest
             $carnet->setIsEnablePartialPayment(false);
             $carnet->setPayableAfterDue(false);
 
-            $carnet->setBankSlips(array(
-                new CarnetBankslip(1.99, "2019-09-13", "Instrução de Exemplo", array("mensagem 1", "mensagem 2", "mensagem 3")),
-                new CarnetBankslip(1.99, "2019-09-13", "Instrução de Exemplo", array("mensagem 1", "mensagem 2", "mensagem 3")),
-                new CarnetBankslip(1.99, "2019-09-13", "Instrução de Exemplo", array("mensagem 1", "mensagem 2", "mensagem 3"))
-            ));
+            $bankslips = array();
 
+            for ($i = 0; $i < 3; $i++) {
+                $carnetBankslip = new CarnetBankslip();
+                $carnetBankslip->setAmount(1.99);
+                $carnetBankslip->setDueDate("2020-" . ($i + 1) . "-13");
+                $carnetBankslip->setInstruction("Instrução de Exemplo");
+                $carnetBankslip->setMessage = array(
+                    "mensagem 1",
+                    "mensagem 2",
+                    "mensagem 3",
+                );
 
+                array_push($bankslips, $carnetBankslip);
+            }
+
+            $carnet->setBankSlips($bankslips);
 
             //Objeto de pagamento - para boleto bancário - 1
             $payload->setPaymentObject($carnet);
 
+            $Products = array();
 
-            //Lista de produtos incluídos na cobrança
-            $payload->setProducts(array(
-                new Product("001", "Teste 1", 10, 1.99),
-                new Product("002", "Teste 2", 3, 2.50),
-                new Product("003", "Teste 3", 7, 1)
-            ));
+            for ($i = 0; $i < 3; $i++) {
 
-            //Dados do cliente
-            $Customer = new Customer("Teste Cliente", "01579286000174", "Teste@Teste.com.br");
-            //Dados do endereço do cliente
-            $Customer->setAddress(new Address("90620000", "Avenida Princesa Isabel", "828", null, "Santana", "RS", "Porto Alegre", "Brasil"));
+                $payloadProduct = new Product();
+                $payloadProduct->setCode($i + 1);
+                $payloadProduct->setDescription("Produto " . ($i + 1));
+                $payloadProduct->setUnitPrice(2.50);
+                $payloadProduct->setQuantity(2);
 
+                array_push($Products, $payloadProduct);
+            };
 
+            $payload->setProducts($Products);
+
+            //Customer
+            $Customer =  new Customer();
+            $Customer->setName("Teste Cliente");
+            $Customer->setIdentity("01579286000174");
+            $Customer->setEmail("Teste@Teste.com.br");
+            $Customer->setPhone("51999999999");
+
+            $Customer->Address = new Address();
+            $Customer->Address->setZipCode("90620000");
+            $Customer->Address->setStreet("Avenida Princesa Isabel");
+            $Customer->Address->setNumber("828");
+            $Customer->Address->setComplement("Lado B");
+            $Customer->Address->setDistrict("Santana");
+            $Customer->Address->setStateInitials("RS");
+            $Customer->Address->setCityName("Porto Alegre");
+            $Customer->Address->setCountryName("Brasil");
             $payload->setCustomer($Customer);
 
             array_push($transactions, $payload);
@@ -348,22 +526,68 @@ class PaymentTest
 
         $lote->setItems($transactions);
 
+        $response  = PaymentRequest::CarnetLot($lote);
 
-        var_dump(PaymentRequest::CarnetLot($payload));
+        echo (json_encode($response));
     }
 
-    public static function Refund()
+    public static function GetCarnet()
     {
-        var_dump(PaymentRequest::Refund(516396));
+        $Identifier = "b46b36865edf44e0acd240057d858745";
+
+        $response  = PaymentRequest::GetCarnet($Identifier);
+
+        echo (json_encode($response));
+    }
+
+    public static function GetCarnetAsync()
+    {
+        $Identifier = "cddb9c4cde4446ae91ba6a8dd157853e";
+
+        $response  = PaymentRequest::GetCarnetAsync($Identifier);
+
+        echo (json_encode($response));
+    }
+
+    public static function ResendCarnet()
+    {
+        $Identifier = "4b9d8c72e9474f53910af6a27bf7000b";
+
+        $response  = PaymentRequest::ResendCarnet($Identifier);
+
+        echo (json_encode($response));
+    }
+
+    public static function CancelCarnet()
+    {
+        $Identifier = "4b9d8c72e9474f53910af6a27bf7000b";
+
+        $response  = PaymentRequest::CancelCarnet($Identifier);
+
+        echo (json_encode($response));
+    }
+
+    public static function CancelCarnetLot()
+    {
+        $Identifier = "cddb9c4cde4446ae91ba6a8dd157853e";
+
+        $response  = PaymentRequest::CancelCarnetLot($Identifier);
+
+        echo (json_encode($response));
     }
 }
 
 
-//  PaymentTest::GetPaymentMethods();
-//  PaymentTest::BankSlip();
-//  PaymentTest::CreditCard();
-//  PaymentTest::CryptoCurrency();
-//  PaymentTest::DebitCard();
-//  PaymentTest::Refund();
-//  PaymentTest::Carnet();
-//  PaymentTest::CarnetLot();
+//PaymentTest::GetPaymentMethods();
+//PaymentTest::BankSlip();
+//PaymentTest::CreditCard();
+//PaymentTest::CryptoCurrency();
+//PaymentTest::DebitCard();
+//PaymentTest::Refund();
+//PaymentTest::Carnet();
+//PaymentTest::CarnetLot();
+//PaymentTest::GetCarnet();
+//PaymentTest::GetCarnetAsync();
+//PaymentTest::ResendCarnet();
+//PaymentTest::CancelCarnet();
+//PaymentTest::CancelCarnetLot();

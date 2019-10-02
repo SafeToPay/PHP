@@ -118,7 +118,7 @@ class CarnetLot implements \JsonSerializable
 				'IsProcessed' => (bool) $this->IsProcessed,
 				'Items' => (array) $this->Items,
 				'Carnets' => (array) $this->Carnets,
-				'ApiVersion' => (string) $this->ApiVersion,
+				'ApiVersion' => (int) $this->ApiVersion,
         ];
     } 
 }

@@ -3,10 +3,8 @@
 namespace Safe2Pay\API;
 
 use Safe2Pay\Models\Core\Client;
-use Safe2Pay\Models\Response\Response;
 
 require_once __DIR__.'/../Models/Core/Client.php';
-require_once __DIR__.'/../Models/Response/Response.php';
 /**
  * Class TransactionRequest
  *
@@ -22,11 +20,20 @@ class TransactionRequest {
      */
     public static function Get($Id){ 
  
-        $request = Client:: HttpClient('GET',"v2/transaction/Get?Id={$Id}", null, false);
+        $response = Client:: HttpClient('GET',"transaction/Get?Id={$Id}", null, false);
 
-        $response = new Response();
+        return $response; 
+    }
 
-        foreach (json_decode($request , true) as $key => $value) $response->{$key} = $value;
+      /**
+     * Get transaction register by ref
+     *
+     * @param [int] $reference
+     * @return Response
+     */
+    public static function GetByRefeference($reference){ 
+ 
+        $response = Client:: HttpClient('GET',"transaction/Reference?reference={$reference}", null, false);
 
         return $response; 
     }

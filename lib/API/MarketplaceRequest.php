@@ -25,8 +25,7 @@ class MarketplaceRequest{
      */
     public static function Add($merchant){
 
-        $request = Client:: HttpClient('POST','v2/Marketplace/Add',$merchant ,false);
-        $response = json_decode($request , true);
+        $response = Client:: HttpClient('POST','Marketplace/Add',$merchant ,false);
         return $response;
     }
 
@@ -37,10 +36,9 @@ class MarketplaceRequest{
      * @param [int] $Id
      * @return Response
      */
-    public static function Update($merchant, $Id){
+    public static function Update($merchant){
 
-        $request = Client:: HttpClient('PUT',"/v2/Marketplace/Update?id={$Id}", $merchant,false);
-        $response = json_decode($request , true);
+        $response = Client:: HttpClient('PUT',"Marketplace/Update?id={$merchant->Id}", $merchant,false);
         return $response;
     }
 
@@ -52,8 +50,7 @@ class MarketplaceRequest{
      */
     public static function Delete($Id){
 
-        $request = Client:: HttpClient("DELETE","v2/Marketplace/Delete?id={$Id}", null,false);
-        $response = json_decode($request , true);
+        $response = Client:: HttpClient("DELETE","Marketplace/Delete?id={$Id}", null,false);
         return $response;
     }
 
@@ -65,8 +62,7 @@ class MarketplaceRequest{
      */
     public static function Get($Id){
 
-        $request = Client:: HttpClient('GET',"v2/Marketplace/Get?id={$Id}", null,false);
-        $response = json_decode($request , true);
+        $response = Client:: HttpClient('GET',"Marketplace/Get?id={$Id}", null,false);
         return $response;
     }
 
@@ -79,8 +75,7 @@ class MarketplaceRequest{
      */
     public static function List($PageNumber,$RowsPage){
 
-        $request = Client:: HttpClient('GET',"v2/Marketplace/List?PageNumber={$PageNumber}&RowsPerPage={$RowsPage}", null,false);
-        $response = json_decode($request , true);
+        $response = Client:: HttpClient('GET',"Marketplace/List?PageNumber={$PageNumber}&RowsPerPage={$RowsPage}", null,false);
         return $response;
     }
 }

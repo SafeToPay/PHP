@@ -124,16 +124,13 @@ $payload->setPaymentObject($BankSlip);
 
 $Products = array();
 
-for ($i = 0; $i < 10; $i++) {
+ $payloadProduct = new Product();
+ $payloadProduct->setCode(1);
+ $payloadProduct->setDescription("Produto 1");
+ $payloadProduct->setUnitPrice(2.50);
+ $payloadProduct->setQuantity(2);
 
-    $payloadProduct = new Product();
-    $payloadProduct->setCode($i + 1);
-    $payloadProduct->setDescription("Produto " . ($i + 1));
-    $payloadProduct->setUnitPrice(2.50);
-    $payloadProduct->setQuantity(2);
-
-    array_push($Products, $payloadProduct);
-};
+ array_push($Products, $payloadProduct);
 
 $payload->setProducts($Products);
 
@@ -205,16 +202,13 @@ $payload->setPaymentObject($CreditCard);
 
 $Products = array();
 
-for ($i = 0; $i < 10; $i++) {
+ $payloadProduct = new Product();
+ $payloadProduct->setCode(1);
+ $payloadProduct->setDescription("Produto 1");
+ $payloadProduct->setUnitPrice(2.50);
+ $payloadProduct->setQuantity(2);
 
-    $payloadProduct = new Product();
-    $payloadProduct->setCode($i + 1);
-    $payloadProduct->setDescription("Produto " . ($i + 1));
-    $payloadProduct->setUnitPrice(2.50);
-    $payloadProduct->setQuantity(2);
-
-    array_push($Products, $payloadProduct);
-};
+ array_push($Products, $payloadProduct);
 
 $payload->setProducts($Products);
 
@@ -285,16 +279,15 @@ $payload->setPaymentObject($CreditCard);
 
 $Products = array();
 
-for ($i = 0; $i < 10; $i++) {
+$Products = array();
 
-    $payloadProduct = new Product();
-    $payloadProduct->setCode($i + 1);
-    $payloadProduct->setDescription("Produto " . ($i + 1));
-    $payloadProduct->setUnitPrice(2.50);
-    $payloadProduct->setQuantity(2);
+ $payloadProduct = new Product();
+ $payloadProduct->setCode(1);
+ $payloadProduct->setDescription("Produto 1");
+ $payloadProduct->setUnitPrice(2.50);
+ $payloadProduct->setQuantity(2);
 
-    array_push($Products, $payloadProduct);
-};
+ array_push($Products, $payloadProduct);
 
 $payload->setProducts($Products);
 
@@ -368,16 +361,15 @@ $payload->setPaymentObject($CreditCard);
 
 $Products = array();
 
-for ($i = 0; $i < 10; $i++) {
+$Products = array();
 
-    $payloadProduct = new Product();
-    $payloadProduct->setCode($i + 1);
-    $payloadProduct->setDescription("Produto " . ($i + 1));
-    $payloadProduct->setUnitPrice(2.50);
-    $payloadProduct->setQuantity(2);
+ $payloadProduct = new Product();
+ $payloadProduct->setCode(1);
+ $payloadProduct->setDescription("Produto 1");
+ $payloadProduct->setUnitPrice(2.50);
+ $payloadProduct->setQuantity(2);
 
-    array_push($Products, $payloadProduct);
-};
+ array_push($Products, $payloadProduct);
 
 $payload->setProducts($Products);
 

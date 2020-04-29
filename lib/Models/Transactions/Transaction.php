@@ -2,15 +2,12 @@
 
 namespace Safe2Pay\Models\Transactions;
 
-require_once __DIR__.'/Base.php';
+require_once __DIR__ . '/Base.php';
 /**
- * Class Transaction
- *
- * @package Safe2Pay\Models
+ * Class Transaction.
  */
 class Transaction extends Base implements \JsonSerializable
 {
-
     private $PaymentObject;
 
     public function getPaymentObject()
@@ -26,16 +23,17 @@ class Transaction extends Base implements \JsonSerializable
     public function jsonSerialize()
     {
         return[
-            "PaymentObject"   => $this->getPaymentObject(),
-            "Application" => $this->getApplication(),
-            "Vendor" => $this->getVendor(),
-            "IsSandbox"   => $this->getIsSandbox(),
-            "CallbackUrl" => $this->getCallbackUrl(),
-            "PaymentMethod" => $this->getPaymentMethod(),
-            "Customer" => $this->getCustomer(),
-			"Products" => $this->getProducts(),
-            "Splits" => $this->getSplits(),
-            "Authenticate" =>(Boolean) $this->getAuthenticate()
-        ];     
+            'PaymentObject' => $this->getPaymentObject(),
+            'Application' => $this->getApplication(),
+            'Vendor' => $this->getVendor(),
+            'Reference' => $this->getReference(),
+            'IsSandbox' => $this->getIsSandbox(),
+            'CallbackUrl' => $this->getCallbackUrl(),
+            'PaymentMethod' => $this->getPaymentMethod(),
+            'Customer' => $this->getCustomer(),
+            'Products' => $this->getProducts(),
+            'Splits' => $this->getSplits(),
+            'Authenticate' => (bool) $this->getAuthenticate(),
+        ];
     }
 }

@@ -1,10 +1,9 @@
 <?php
+
 namespace Safe2Pay\Models\Transactions;
 
 /**
- * Class TransactionStatus
- *
- * @package Safe2Pay\Models
+ * Class TransactionStatus.
  */
 class TransactionStatus
 {
@@ -12,29 +11,33 @@ class TransactionStatus
     private $Code;
     private $Name;
 
-    public function getId(){
-		return $this->Id;
-	}
+    public function getId()
+    {
+        return $this->Id;
+    }
 
-	public function setId($Id){
-		$this->Id = $Id;
-	}
+    public function setId($Id)
+    {
+        $this->Id = $Id;
+    }
 
-	public function getCode(){
-		return $this->Code;
-	}
+    public function getCode()
+    {
+        return $this->Code;
+    }
 
-	public function setCode($Code){
-		$this->Code = $Code;
-	}
+    public function setCode($Code)
+    {
+        $this->Code = $Code;
+    }
 
-	public function getName(){
-		return $this->Name;
-	}
+    public function getName()
+    {
+        return $this->Name;
+    }
 
-	public function setName($Name){
-		$this->Name = $Name;
-	}
+    public function setName($Name)
+    {
+        $this->Name = $Name;
+    }
 }
-
-?>

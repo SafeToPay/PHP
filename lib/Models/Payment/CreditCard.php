@@ -13,10 +13,9 @@ class CreditCard  implements \JsonSerializable
     private $ExpirationDate;  
     private $SecurityCode;       
     private $Token;  
-    private $InstallmentQuantity;  
+    private $InstallmentQuantity;
 
-
-	function __construct($Holder,$CardNumber,$ExpirationDate,$SecurityCode,$InstallmentQuantity) {
+    function __construct($Holder,$CardNumber,$ExpirationDate,$SecurityCode,$InstallmentQuantity) {
         $this->Holder = $Holder;
 		$this->CardNumber = $CardNumber;
         $this->ExpirationDate = $ExpirationDate;

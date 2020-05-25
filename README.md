@@ -237,7 +237,7 @@ $response  = PaymentRequest::CreatePayment($payload);
 // ...
 ```
 
-### Criando uma venda com Bitcoin
+### Criando uma venda com Criptomoedas
 
 ```php
 <?php
@@ -272,10 +272,10 @@ $payload->setCallbackUrl("https://callbacks.exemplo.com.br/api/Notify");
 // 4 - Cartão de débito 
 $payload->setPaymentMethod("3");
 
-$CreditCard = new CreditCard("João da Silva", "4024007153763191", "12/2019", "241", 2);
+$CryptoCoin = new Cryptocoin("LTC");
 
-//Objeto de pagamento - para boleto bancário
-$payload->setPaymentObject($CreditCard);
+//Objeto de pagamento - para Criptomoedas
+$payload->setPaymentObject($CryptoCoin);
 
 $Products = array();
 

@@ -8,6 +8,7 @@ require_once '../vendor/autoload.php';
 use Safe2Pay\API\PaymentRequest;
 use Safe2Pay\API\RefundType;
 use Safe2Pay\Models\Payment\BankSlip;
+use Safe2Pay\Models\Payment\Cryptocoin;
 use Safe2Pay\Models\Payment\CreditCard;
 use Safe2Pay\Models\Payment\DebitCard;
 use Safe2Pay\Models\Payment\Carnet;
@@ -188,7 +189,7 @@ class PaymentTest
         echo (json_encode($response));
     }
 
-    //Criptomoedas (Bitcoin)
+    //Criptomoedas
     public static function CryptoCurrency()
     {
 
@@ -210,10 +211,10 @@ class PaymentTest
         // 4 - Cartão de débito 
         $payload->setPaymentMethod("3");
 
-        $CreditCard = new CreditCard("João da Silva", "4024007153763191", "12/2019", "241", 2);
+        $CryptoCoin = new Cryptocoin("LTC");
 
-        //Objeto de pagamento - para boleto bancário
-        $payload->setPaymentObject($CreditCard);
+        //Objeto de pagamento - para Criptomoedas
+        $payload->setPaymentObject($CryptoCoin);
 
         $Products = array();
 

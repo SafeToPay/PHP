@@ -28,6 +28,7 @@ class Merchant implements \JsonSerializable
     public $Configuration;
     public $MerchantSplit;
 	public $IsRemoved;
+	protected $IsPanelRestricted;
 	
 	public function getId(){
 		return $this->Id;
@@ -181,6 +182,14 @@ class Merchant implements \JsonSerializable
 		$this->IsRemoved = $IsRemoved;
 	}
 
+	public function getIsPanelRestricted(){
+		return $this->IsPanelRestricted;
+	}
+
+	public function setIsPanelRestricted($IsPanelRestricted){
+		$this->IsPanelRestricted = $IsPanelRestricted;
+	}
+
 	public function JsonSerialize()
     {
         return [
@@ -196,7 +205,8 @@ class Merchant implements \JsonSerializable
 				'TechEmail' =>(string) $this->TechEmail,
 				'Address' => $this->Address,
 				'BankData' => $this->BankData,
-				'MerchantSplit' => $this->MerchantSplit
+				'MerchantSplit' => $this->MerchantSplit,
+				'IsPanelRestricted' => $this->IsPanelRestricted,
         ];
     }
 

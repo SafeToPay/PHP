@@ -13,6 +13,7 @@ use Safe2Pay\Models\Payment\CreditCard;
 use Safe2Pay\Models\Payment\DebitCard;
 use Safe2Pay\Models\Payment\Carnet;
 use Safe2Pay\Models\Payment\CarnetLot;
+use Safe2Pay\Models\Transactions\Splits;
 use Safe2Pay\Models\Transactions\Transaction;
 use Safe2Pay\Models\General\Customer;
 use Safe2Pay\Models\General\Product;
@@ -96,6 +97,18 @@ class PaymentTest
         };
 
         $payload->setProducts($Products);
+
+        $splits = new Splits();
+            $splits->setIdReceiver(123);
+            $splits->setIdentity(99999999999);
+            $splits->setName('Recebedor do split');
+            $splits->setCodeReceiverType('1');
+            $splits->setCodeTaxType('1');
+            $splits->setAmount(100.00);
+            $splits->setAmount(100.00);
+            $splits->setIsPayTax(false);
+
+        $payload->setSplits($splits);
 
         //Customer
         $Customer =  new Customer();

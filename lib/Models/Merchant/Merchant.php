@@ -28,7 +28,7 @@ class Merchant implements \JsonSerializable
     public $Configuration;
     public $MerchantSplit;
 	public $IsRemoved;
-	protected $IsPanelRestricted;
+    public $IsPanelRestricted;
 	
 	public function getId(){
 		return $this->Id;
@@ -186,7 +186,7 @@ class Merchant implements \JsonSerializable
 		return $this->IsPanelRestricted;
 	}
 
-	public function setIsPanelRestricted($IsPanelRestricted){
+	public function setIsPanelRestricted($IsPanelRestricted = false){
 		$this->IsPanelRestricted = $IsPanelRestricted;
 	}
 

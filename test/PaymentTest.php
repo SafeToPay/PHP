@@ -24,6 +24,7 @@ use Safe2Pay\Models\Payment\CarnetBankslip;
 
 $enviroment = new Enviroment();
 $enviroment->setAPIKEY('x-api-key');
+
 /**
  * Class PaymentTest
  *
@@ -35,14 +36,14 @@ class PaymentTest
     {
         $response = PaymentRequest::GetPaymentMethods();
 
-        echo (json_encode($response));
+        echo(json_encode($response));
     }
 
     //Boleto bancário
     public static function BankSlip()
     {
         //Inicializar método de pagamento
-        $payload  = new Transaction();
+        $payload = new Transaction();
         //Ambiente de homologação
         $payload->setIsSandbox(true);
         //Descrição geral 
@@ -80,7 +81,7 @@ class PaymentTest
             "mensagem 3"
         ));
 
-        //Objeto de pagamento - para boleto bancário
+        //Objeto de pagamento para boleto bancário
         $payload->setPaymentObject($BankSlip);
 
         $Products = array();
@@ -98,20 +99,28 @@ class PaymentTest
 
         $payload->setProducts($Products);
 
-        $splits = new Splits();
-            $splits->setIdReceiver(123);
-            $splits->setIdentity(99999999999);
-            $splits->setName('Recebedor do split');
-            $splits->setCodeReceiverType('1');
-            $splits->setCodeTaxType('1');
-            $splits->setAmount(100.00);
-            $splits->setAmount(100.00);
-            $splits->setIsPayTax(false);
+        $split1 = new Splits();
+        $split1->setIdReceiver(123);
+        $split1->setName('Recebedor do split 1');
+        $split1->setCodeReceiverType('1');
+        $split1->setCodeTaxType('2');
+        $split1->setAmount(50.00);
+        $split1->setIsPayTax(false);
+
+        $split2 = new Splits();
+        $split2->setIdentity('99999999999');
+        $split2->setName('Recebedor do split 2');
+        $split2->setCodeReceiverType('2');
+        $split2->setCodeTaxType('1');
+        $split2->setAmount(100.00);
+        $split2->setIsPayTax(true);
+
+        $splits = array($split1, $split2);
 
         $payload->setSplits($splits);
 
         //Customer
-        $Customer =  new Customer();
+        $Customer = new Customer();
         $Customer->setName("Teste Cliente");
         $Customer->setIdentity("01579286000174");
         $Customer->setEmail("Teste@Teste.com.br");
@@ -130,9 +139,9 @@ class PaymentTest
 
         $payload->setCustomer($Customer);
 
-        $response  = PaymentRequest::CreatePayment($payload);
+        $response = PaymentRequest::CreatePayment($payload);
 
-        echo (json_encode($response));
+        echo(json_encode($response));
     }
 
     //Cartão de crédito
@@ -140,7 +149,7 @@ class PaymentTest
     {
 
         //Inicializar método de pagamento
-        $payload  = new Transaction();
+        $payload = new Transaction();
         //Ambiente de homologação
         $payload->setIsSandbox(true);
         //Descrição geral 
@@ -178,7 +187,7 @@ class PaymentTest
         $payload->setProducts($Products);
 
         //Customer
-        $Customer =  new Customer();
+        $Customer = new Customer();
         $Customer->setName("Teste Cliente");
         $Customer->setIdentity("01579286000174");
         $Customer->setEmail("Teste@Teste.com.br");
@@ -197,9 +206,9 @@ class PaymentTest
 
         $payload->setCustomer($Customer);
 
-        $response  = PaymentRequest::CreatePayment($payload);
+        $response = PaymentRequest::CreatePayment($payload);
 
-        echo (json_encode($response));
+        echo(json_encode($response));
     }
 
     //Criptomoedas
@@ -207,7 +216,7 @@ class PaymentTest
     {
 
         //Inicializar método de pagamento
-        $payload  = new Transaction();
+        $payload = new Transaction();
         //Ambiente de homologação
         $payload->setIsSandbox(true);
         //Descrição geral 
@@ -245,7 +254,7 @@ class PaymentTest
         $payload->setProducts($Products);
 
         //Customer
-        $Customer =  new Customer();
+        $Customer = new Customer();
         $Customer->setName("Teste Cliente");
         $Customer->setIdentity("01579286000174");
         $Customer->setEmail("Teste@Teste.com.br");
@@ -264,16 +273,16 @@ class PaymentTest
 
         $payload->setCustomer($Customer);
 
-        $response  = PaymentRequest::CreatePayment($payload);
+        $response = PaymentRequest::CreatePayment($payload);
 
-        echo (json_encode($response));
+        echo(json_encode($response));
     }
 
     //Cartão de débito
     public static function DebitCard()
     {
         //Inicializar método de pagamento
-        $payload  = new Transaction();
+        $payload = new Transaction();
         //Ambiente de homologação
         $payload->setIsSandbox(true);
         //Débito autenticado
@@ -313,7 +322,7 @@ class PaymentTest
         $payload->setProducts($Products);
 
         //Customer
-        $Customer =  new Customer();
+        $Customer = new Customer();
         $Customer->setName("Teste Cliente");
         $Customer->setIdentity("01579286000174");
         $Customer->setEmail("Teste@Teste.com.br");
@@ -332,9 +341,9 @@ class PaymentTest
 
         $payload->setCustomer($Customer);
 
-        $response  = PaymentRequest::CreatePayment($payload);
+        $response = PaymentRequest::CreatePayment($payload);
 
-        echo (json_encode($response));
+        echo(json_encode($response));
     }
 
     public static function Refund()
@@ -344,9 +353,9 @@ class PaymentTest
         // $type = RefundType::BANKSLIP;
         // $type = RefundType::DEBIT;
 
-        $response  = PaymentRequest::Refund($Id, $type);
+        $response = PaymentRequest::Refund($Id, $type);
 
-        echo (json_encode($response));
+        echo(json_encode($response));
     }
 
     //===========================================CARNET METHODS====================================================//
@@ -354,7 +363,7 @@ class PaymentTest
     public static function Carnet()
     {
         //Inicializar método de pagamento
-        $payload  = new Transaction();
+        $payload = new Transaction();
         //Ambiente de homologação
         $payload->setIsSandbox(true);
         //Descrição geral 
@@ -418,7 +427,7 @@ class PaymentTest
         $payload->setProducts($Products);
 
         //Customer
-        $Customer =  new Customer();
+        $Customer = new Customer();
         $Customer->setName("Teste Cliente");
         $Customer->setIdentity("01579286000174");
         $Customer->setEmail("Teste@Teste.com.br");
@@ -437,24 +446,24 @@ class PaymentTest
 
         $payload->setCustomer($Customer);
 
-        $response  = PaymentRequest::Carnet($payload);
+        $response = PaymentRequest::Carnet($payload);
 
-        echo (json_encode($response));
+        echo(json_encode($response));
     }
 
     public static function CarnetLot()
     {
 
-        $lote  = new CarnetLot();
+        $lote = new CarnetLot();
 
         $lote->setCallbackUrl("https://callbacks.exemplo.com.br/api/Notify");
 
-        $transactions =  array();
+        $transactions = array();
 
         for ($x = 0; $x <= 10; $x++) {
 
             //Inicializar método de pagamento
-            $payload  = new Transaction();
+            $payload = new Transaction();
             //Ambiente de homologação
             $payload->setIsSandbox(true);
             //Descrição geral 
@@ -518,7 +527,7 @@ class PaymentTest
             $payload->setProducts($Products);
 
             //Customer
-            $Customer =  new Customer();
+            $Customer = new Customer();
             $Customer->setName("Teste Cliente");
             $Customer->setIdentity("01579286000174");
             $Customer->setEmail("Teste@Teste.com.br");
@@ -540,54 +549,54 @@ class PaymentTest
 
         $lote->setItems($transactions);
 
-        $response  = PaymentRequest::CarnetLot($lote);
+        $response = PaymentRequest::CarnetLot($lote);
 
-        echo (json_encode($response));
+        echo(json_encode($response));
     }
 
     public static function GetCarnet()
     {
         $Identifier = "b46b36865edf44e0acd240057d858745";
 
-        $response  = PaymentRequest::GetCarnet($Identifier);
+        $response = PaymentRequest::GetCarnet($Identifier);
 
-        echo (json_encode($response));
+        echo(json_encode($response));
     }
 
     public static function GetCarnetAsync()
     {
         $Identifier = "cddb9c4cde4446ae91ba6a8dd157853e";
 
-        $response  = PaymentRequest::GetCarnetAsync($Identifier);
+        $response = PaymentRequest::GetCarnetAsync($Identifier);
 
-        echo (json_encode($response));
+        echo(json_encode($response));
     }
 
     public static function ResendCarnet()
     {
         $Identifier = "4b9d8c72e9474f53910af6a27bf7000b";
 
-        $response  = PaymentRequest::ResendCarnet($Identifier);
+        $response = PaymentRequest::ResendCarnet($Identifier);
 
-        echo (json_encode($response));
+        echo(json_encode($response));
     }
 
     public static function CancelCarnet()
     {
         $Identifier = "4b9d8c72e9474f53910af6a27bf7000b";
 
-        $response  = PaymentRequest::CancelCarnet($Identifier);
+        $response = PaymentRequest::CancelCarnet($Identifier);
 
-        echo (json_encode($response));
+        echo(json_encode($response));
     }
 
     public static function CancelCarnetLot()
     {
         $Identifier = "cddb9c4cde4446ae91ba6a8dd157853e";
 
-        $response  = PaymentRequest::CancelCarnetLot($Identifier);
+        $response = PaymentRequest::CancelCarnetLot($Identifier);
 
-        echo (json_encode($response));
+        echo(json_encode($response));
     }
 }
 

@@ -50,11 +50,10 @@ class PaymentRequest{
 
         switch ($type) {
             case RefundType::DEBIT:
-            $response = Client::HttpClient('DELETE', "CreditCard/Cancel/{$Id}", null, false);
+            $response = Client::HttpClient('DELETE', "DebitCard/Cancel/{$Id}", null, false);
                 break;
             case RefundType::CREDIT:
-
-            $response = Client::HttpClient('DELETE', "DebitCard/Cancel/{$Id}", null, false);
+            $response = Client::HttpClient('DELETE', "CreditCard/Cancel/{$Id}", null, false);
                 break;
             case RefundType::BANKSLIP:
             $response = Client::HttpClient('DELETE', "BankSlip/WriteOffBankSlip?idTransaction={$Id}", null, false);
@@ -62,6 +61,7 @@ class PaymentRequest{
             default:
                 return "Payment method type to be refunded was not entered";
         }
+
         return  $response;
     }
 

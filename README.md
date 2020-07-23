@@ -3,7 +3,6 @@
 
 ![Safe2Pay](https://safe2pay.com.br/static/img/banner-github.png)
 
-
 ## Principais recursos
 
 * [x] Consulta de transações.
@@ -16,13 +15,9 @@
 * [x] Gerenciamento de subcontas para Marketplace.
 * [x] Venda simples.
 
-
 ## Utilização
 
-composer config minimum-stability dev
-
 composer require safe2pay/sdk
-
 
 ## Utilização
 

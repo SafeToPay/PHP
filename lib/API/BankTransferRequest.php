@@ -22,9 +22,7 @@ class BankTransferRequest{
      */
     public static function Transfer($transfer){
 
-        $request = Client:: HttpClient('POST','transfer', $transfer,true);
-        $response = json_decode($request , true);
-        return $response;
+        return Client:: HttpClient('POST','transfer', $transfer,true);
     }
 
 }

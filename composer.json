@@ -19,6 +19,7 @@
     }
   ],
   "minimum-stability": "dev",
+  "prefer-stable": false,
   "autoload": {
     "classmap": [
       "./lib/"

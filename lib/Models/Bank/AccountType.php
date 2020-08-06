@@ -3,11 +3,11 @@
 namespace Safe2Pay\Models\Bank;
 
 /**
- * Class Bank
+ * Class AccountType
  *
  * @package Safe2Pay\Models
  */
-class Bank implements \JsonSerializable
+class AccountType implements \JsonSerializable
 {
     private $Code;
 

@@ -11,11 +11,11 @@ namespace Safe2Pay\Models\Bank;
 class BankData implements \JsonSerializable
 {
     private $Bank;
+    private $AccountType;
     private $BankAgency;
     private $BankAgencyDigit;
     private $BankAccount;
     private $BankAccountDigit;
-    private $Operation;
 
     public function getBank()
     {
@@ -25,6 +25,16 @@ class BankData implements \JsonSerializable
     public function setBank($Bank)
     {
         $this->Bank = $Bank;
+    }
+
+    public function getAccountType()
+    {
+        return $this->AccountType;
+    }
+
+    public function setAccountType($AccountType)
+    {
+        $this->AccountType = $AccountType;
     }
 
     public function getBankAgency()
@@ -67,25 +77,15 @@ class BankData implements \JsonSerializable
         $this->BankAccountDigit = $BankAccountDigit;
     }
 
-    public function getOperation()
-    {
-        return $this->Operation;
-    }
-
-    public function setOperation($Operation)
-    {
-        $this->Operation = $Operation;
-    }
-
     public function JsonSerialize()
     {
         return [
             'Bank' =>  $this->Bank,
+            'AccountType' =>  $this->AccountType,
             'BankAgency' => (string) $this->BankAgency,
             'BankAgencyDigit' => (string) $this->BankAgencyDigit,
             'BankAccount' => (string) $this->BankAccount,
             'BankAccountDigit' => (string) $this->BankAccountDigit,
-            'Operation' => (string) $this->Operation
         ];
     }
 }

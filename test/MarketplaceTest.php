@@ -5,6 +5,7 @@ namespace Safe2Pay\Test;
 require_once '../vendor/autoload.php';
 
 use Safe2Pay\API\MarketplaceRequest;
+use Safe2Pay\Models\Bank\AccountType;
 use Safe2Pay\Models\General\Address;
 use Safe2Pay\Models\Bank\Bank;
 use Safe2Pay\Models\Bank\BankData;
@@ -54,11 +55,11 @@ class MarketplaceTest
         
         $bankData = new BankData();
         $bankData->setBank(new Bank("041"));
+        $bankData->setAccountType(new AccountType("CC"));
         $bankData->setBankAccount("1676");
         $bankData->setBankAccountDigit("0");
         $bankData->setBankAgency("41776");
         $bankData->setBankAgencyDigit("7");
-        $bankData->setOperation("3");
         //Split de taxas
         //Código da forma de pagamento
         // 1 - Boleto bancário

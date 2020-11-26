@@ -23,6 +23,7 @@ class Base
     private $Customer;
     private $Products;
     private $Splits;
+    private $IsPreAuthorization;
 
     public function getId()
     {
@@ -144,5 +145,14 @@ class Base
     public function setAuthenticate($Authenticate)
     {
         $this->Authenticate = $Authenticate;
+    }
+    public function getIsPreAuthorization()
+    {
+        return $this->IsPreAuthorization;
+    }
+
+    public function setIsPreAuthorization($IsPreAuthorization)
+    {
+        $this->IsPreAuthorization = $IsPreAuthorization;
     }
 }

@@ -34,6 +34,7 @@ class Transaction extends Base implements \JsonSerializable
             'Products' => $this->getProducts(),
             'Splits' => $this->getSplits(),
             'Authenticate' => (bool) $this->getAuthenticate(),
+            'IsPreAuthorization' => (bool) $this->getIsPreAuthorization()
         ];
     }
 }

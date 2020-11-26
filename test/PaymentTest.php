@@ -166,7 +166,7 @@ class PaymentTest
         // 4 - Cartão de débito 
         $payload->setPaymentMethod("2");
 
-        $CreditCard = new CreditCard("João da Silva", "4024007153763191", "12/2019", "241", 2);
+        $CreditCard = new CreditCard("João da Silva", "4024007153763191", "12/2021", "241", 2, true);
 
         //Objeto de pagamento - para boleto bancário
         $payload->setPaymentObject($CreditCard);
@@ -185,6 +185,7 @@ class PaymentTest
         };
 
         $payload->setProducts($Products);
+
 
         //Customer
         $Customer = new Customer();
@@ -603,7 +604,7 @@ class PaymentTest
 
 //PaymentTest::GetPaymentMethods();
 //PaymentTest::BankSlip();
-//PaymentTest::CreditCard();
+PaymentTest::CreditCard();
 //PaymentTest::CryptoCurrency();
 //PaymentTest::DebitCard();
 //PaymentTest::Refund();

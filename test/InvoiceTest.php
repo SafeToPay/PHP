@@ -82,8 +82,8 @@ class InvoiceTest
 
         $singleSale->setCallbackUrl("https://safe2pay.com.br/api/Notify");
 
-        $singleSale->setExpirationDate("2019-10-16");
-        $singleSale->setDueDate("2019-10-16");
+        $singleSale->setExpirationDate("2021-10-16");
+        $singleSale->setDueDate("2021-10-16");
         $singleSale->setReference("teste");
         $singleSale->setPenaltyAmount("1.00");
         $singleSale->setInterestAmount("1.00");
@@ -191,8 +191,8 @@ class InvoiceTest
     }
 }
 
-//InvoiceTest::Cancel();
-//InvoiceTest::Get();
-//InvoiceTest::Add();
-//InvoiceTest::Update();
-//InvoiceTest::Resend();
+InvoiceTest::Cancel();
+InvoiceTest::Get();
+InvoiceTest::Add();
+InvoiceTest::Update();
+InvoiceTest::Resend();

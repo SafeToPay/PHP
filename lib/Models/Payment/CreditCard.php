@@ -14,13 +14,16 @@ class CreditCard  implements \JsonSerializable
     private $SecurityCode;       
     private $Token;  
     private $InstallmentQuantity;
+    private $IsPreAuthorization;
 
-    function __construct($Holder,$CardNumber,$ExpirationDate,$SecurityCode,$InstallmentQuantity) {
+	function __construct($Holder,$CardNumber,$ExpirationDate,$SecurityCode,$InstallmentQuantity,
+						$IsPreAuthorization) {
         $this->Holder = $Holder;
 		$this->CardNumber = $CardNumber;
         $this->ExpirationDate = $ExpirationDate;
 		$this->SecurityCode = $SecurityCode;
 		$this->InstallmentQuantity = $InstallmentQuantity;
+		$this->IsPreAuthorization = $IsPreAuthorization;
 	}
 	
     public function getHolder(){
@@ -70,6 +73,13 @@ class CreditCard  implements \JsonSerializable
 	public function setInstallmentQuantity($InstallmentQuantity){
 		$this->InstallmentQuantity = $InstallmentQuantity;
 	}
+	public function getIsPreAuthorization(){
+		return $this->IsPreAuthorization;
+	}
+
+	public function setIsPreAuthorization($IsPreAuthorization){
+		$this->IsPreAuthorization = $IsPreAuthorization;
+	}
 	
 	public function JsonSerialize()
     {
@@ -79,7 +89,8 @@ class CreditCard  implements \JsonSerializable
 				'ExpirationDate' => $this->ExpirationDate,
 				'SecurityCode' => $this->SecurityCode,
 				'Token' => $this->Token,
-				'InstallmentQuantity' =>(int) $this->InstallmentQuantity
+				'InstallmentQuantity' =>(int) $this->InstallmentQuantity,
+				'IsPreAuthorization' =>(bool) $this->IsPreAuthorization
         ];
     }
 }

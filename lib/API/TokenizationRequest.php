@@ -25,5 +25,15 @@ class TokenizationRequest {
 
         return $response; 
     }
+    /**
+     * Get the bank account details 
+     * @return Response
+     */
+    public static function ListToken($pageNumber, $rowsPerPage)
+    {
+        $response = Client::HttpClient('GET', "Token/List?PageNumber={$pageNumber}&RowsPerPage={$rowsPerPage}", null, false);
+
+        return $response;
+    }
 }
 ?>

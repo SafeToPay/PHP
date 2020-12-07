@@ -604,7 +604,7 @@ class PaymentTest
 
 //PaymentTest::GetPaymentMethods();
 //PaymentTest::BankSlip();
-PaymentTest::CreditCard();
+//PaymentTest::CreditCard();
 //PaymentTest::CryptoCurrency();
 //PaymentTest::DebitCard();
 //PaymentTest::Refund();

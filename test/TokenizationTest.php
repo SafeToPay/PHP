@@ -24,13 +24,23 @@ class TokenizationTest
     public static function Create()
     {
         //Cria uma instância do objeto do cartão para realizar a tokenização
-        $CreditCard = new CreditCard("João da Silva", "4024007153763191", "12/2019", "241", null);
+        $CreditCard = new CreditCard("João da Silva", "4444 3333 2222 1111", "12/2021", "241", null, false);
         //Realiza a tokenização e traz o retorno
 
         $response  = TokenizationRequest::Create($CreditCard);
 
         echo (json_encode($response));
     }
+    public static function GetListToken(){
+
+         $pageNumber = 1;
+         $rowsPerPage = 5;
+
+        $response = TokenizationRequest::ListToken($pageNumber, $rowsPerPage);
+
+        echo (json_encode($response));
+    }
 }
 
-TokenizationTest::Create();
+//TokenizationTest::Create();
+//TokenizationTest::GetListToken();

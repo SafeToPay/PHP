@@ -29,17 +29,18 @@ class MarketplaceTest
     {
 
         $Merchant = new Merchant();
-        $Merchant->setIdentity("53797700000115");
+        $Merchant->setIdentity("72618919000154");
         $Merchant->setName("Francisco e Laís Filmagens ME");
         $Merchant->setCommercialName("Empresa Teste");
+        $Merchant->setIsPanelRestricted(false);
         //Dados do responsável 
         $Merchant->setResponsibleIdentity("04270435062");
         $Merchant->setResponsibleName("Lucas");
-        $Merchant->setEmail("4ba9b027579f@HOTMAIL.COM");
+        $Merchant->setEmail("4ba9b0275sdf79f@HOTMasdfasdf.com");
         //Dados do responsável técnico
         $Merchant->setTechIdentity("32001774117");
         $Merchant->setTechName("Responsável técnico");
-        $Merchant->setTechEmail("4ba9beeeee027579f@teste.com");
+        $Merchant->setTechEmail("4ba9beeeee02757sdfg9f@tedfgdfgste.cdfgom");
 
         //Endereço
         $Merchant->Address = new Address();
@@ -172,5 +173,5 @@ class MarketplaceTest
  //MarketplaceTest::Get();
  //MarketplaceTest::List();
  //MarketplaceTest::Delete();
- //MarketplaceTest::Add();
+//MarketplaceTest::Add();
 //MarketplaceTest::Update();

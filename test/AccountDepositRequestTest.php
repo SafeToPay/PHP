@@ -58,7 +58,7 @@ class AccountDepositTest
 
 }
 
- //AccountDepositTest::GetBankAccount();
+//AccountDepositTest::GetBankAccount();
 //AccountDepositTest::GetListDeposits();
 //AccountDepositTest::GetListDetailsDeposits();
 //AccountDepositTest::GetTransferDetail();

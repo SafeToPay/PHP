@@ -20,7 +20,7 @@ class TransactionTest
 
     public static function Get()
     { 
-        $Id=535489;
+        $Id=8497120;
        
         $response =TransactionRequest::Get($Id);
 
@@ -40,6 +40,6 @@ class TransactionTest
 
 }
 
- TransactionTest::Get();
- TransactionTest::GetByReference();
+ //TransactionTest::Get();
+ //TransactionTest::GetByReference();
 ?>

@@ -57,41 +57,6 @@ class DebitCard implements \JsonSerializable
         $this->SecurityCode = $SecurityCode;
     }
 
-    public function getToken()
-    {
-        return $this->Token;
-    }
-
-    public function setToken($Token)
-    {
-        $this->Token = $Token;
-    }
-
-    public function getAuthenticate()
-    {
-        return $this->Authenticate;
-    }
-
-    public function setAuthenticate($Authenticate)
-    {
-        $this->Authenticate = $Authenticate;
-    }
-
-    public function getInstallmentQuantity()
-    {
-        return $this->InstallmentQuantity;
-    }
-
-    public function setInstallmentQuantity($InstallmentQuantity)
-    {
-        $this->InstallmentQuantity = $InstallmentQuantity;
-    }
-
-    public function getIsRecurrence()
-    {
-        return $this->IsRecurrence;
-    }
-
     function __construct($Holder, $CardNumber, $ExpirationDate, $SecurityCode)
     {
         $this->Holder = $Holder;
@@ -106,11 +71,9 @@ class DebitCard implements \JsonSerializable
             'Holder' => $this->Holder,
             'CardNumber' => $this->CardNumber,
             'ExpirationDate' => $this->ExpirationDate,
-            'SecurityCode' => $this->SecurityCode,
-            'Token' => $this->Token
+            'SecurityCode' => $this->SecurityCode
         ];
     }
-
 }
 
 ?>

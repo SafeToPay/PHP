@@ -70,14 +70,14 @@ class CreditCard  implements \JsonSerializable
 		return $this->InstallmentQuantity;
 	}
 
-	public function setInstallmentQuantity($InstallmentQuantity){
+	public function setInstallmentQuantity($InstallmentQuantity = 1){
 		$this->InstallmentQuantity = $InstallmentQuantity;
 	}
 	public function getIsPreAuthorization(){
 		return $this->IsPreAuthorization;
 	}
 
-	public function setIsPreAuthorization($IsPreAuthorization){
+	public function setIsPreAuthorization($IsPreAuthorization = false){
 		$this->IsPreAuthorization = $IsPreAuthorization;
 	}
 	

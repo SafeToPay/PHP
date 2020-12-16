@@ -129,7 +129,7 @@ class BankSlip  implements \JsonSerializable
 		return $this->PenaltyRate;
 	}
 
-	public function setPenaltyRate($PenaltyRate){
+	public function setPenaltyRate($PenaltyRate = 0){
 		$this->PenaltyRate = $PenaltyRate;
 	}
 
@@ -137,7 +137,7 @@ class BankSlip  implements \JsonSerializable
 		return $this->InterestRate;
 	}
 
-	public function setInterestRate($InterestRate){
+	public function setInterestRate($InterestRate = 0){
 		$this->InterestRate = $InterestRate;
 	}
 
@@ -153,7 +153,7 @@ class BankSlip  implements \JsonSerializable
 		return $this->CancelAfterDue;
 	}
 
-	public function setCancelAfterDue($CancelAfterDue){
+	public function setCancelAfterDue($CancelAfterDue = false){
 		$this->CancelAfterDue = $CancelAfterDue;
 	}
 
@@ -161,7 +161,7 @@ class BankSlip  implements \JsonSerializable
 		return $this->IsEnablePartialPayment;
 	}
 
-	public function setIsEnablePartialPayment($IsEnablePartialPayment){
+	public function setIsEnablePartialPayment($IsEnablePartialPayment = false){
 		$this->IsEnablePartialPayment = $IsEnablePartialPayment;
 	}
 
@@ -169,7 +169,7 @@ class BankSlip  implements \JsonSerializable
 		return $this->DaysBeforeCancel;
 	}
 
-	public function setDaysBeforeCancel($DaysBeforeCancel){
+	public function setDaysBeforeCancel($DaysBeforeCancel = 29){
 		$this->DaysBeforeCancel = $DaysBeforeCancel;
 	}
 

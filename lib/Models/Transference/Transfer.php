@@ -1,76 +1,44 @@
 <?php
 
-namespace Safe2Pay\Models\SingleSale;
+namespace Safe2Pay\Models\Transference;
 /**
- * Class Transfer
- *
- * @package Safe2Pay\Models
- */
-class Transfer
+* Class TransferRegister
+*
+* @package Safe2Pay\Models
+*/
+class Transfer implements \JsonSerializable
 {
-    private $Id;
-    private $Sequence;
-    private $Amount;
-    private $CreatedDate;
-    private $Filename;
-    private $File;
-    private $TransferRegister;
-    
-    public function getId(){
-		return $this->Id;
-	}
+	private $IsUseCheckingaccount;
+	private $TransferRegisters;
 
-	public function setId($Id){
-		$this->Id = $Id;
+	public function getIsUseCheckingaccount(){
+		return $this->IsUseCheckingaccount;
 	}
-
-	public function getSequence(){
-		return $this->Sequence;
+	
+	public function setIsUseCheckingaccount($IsUseCheckingaccount){
+		$this->IsUseCheckingaccount = $IsUseCheckingaccount;
 	}
-
-	public function setSequence($Sequence){
-		$this->Sequence = $Sequence;
+	public function getTransferRegisters(){
+		return $this->IdMerchantRequester;
 	}
-
-	public function getAmount(){
-		return $this->Amount;
+	
+	public function setTransferRegisters($TransferRegisters){
+		$this->TransferRegisters = $TransferRegisters;
 	}
-
-	public function setAmount($Amount){
-		$this->Amount = $Amount;
+	
+	public function __construct($IsUseCheckingaccount,$TransferRegisters)
+	{
+		$this->IsUseCheckingaccount = $IsUseCheckingaccount;
+		$this->TransferRegisters = $TransferRegisters;
 	}
-
-	public function getCreatedDate(){
-		return $this->CreatedDate;
-	}
-
-	public function setCreatedDate($CreatedDate){
-		$this->CreatedDate = $CreatedDate;
-	}
-
-	public function getFilename(){
-		return $this->Filename;
-	}
-
-	public function setFilename($Filename){
-		$this->Filename = $Filename;
-	}
-
-	public function getFile(){
-		return $this->File;
-	}
-
-	public function setFile($File){
-		$this->File = $File;
-	}
-
-	public function getTransferRegister(){
-		return $this->TransferRegister;
-	}
-
-	public function setTransferRegister($TransferRegister){
-		$this->TransferRegister = $TransferRegister;
+	
+	public function JsonSerialize()
+	{
+		
+		return [
+			'IsUseCheckingaccount' =>(bool) $this->IsUseCheckingaccount,
+			'TransferRegisters' => (array) $this->TransferRegisters
+		];
 	}
 }
-
 ?>

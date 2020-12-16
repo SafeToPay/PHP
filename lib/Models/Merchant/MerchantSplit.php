@@ -62,8 +62,6 @@ class MerchantSplit implements \JsonSerializable
 				'Taxes' =>(array) $this->Taxes
         ];
     }
-
-
 }
 
 ?>

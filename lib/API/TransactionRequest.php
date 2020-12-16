@@ -32,7 +32,7 @@ class TransactionRequest {
      * @return Response
      */
     public static function GetByRefeference($reference){ 
- 
+
         $response = Client:: HttpClient('GET',"transaction/Reference?reference={$reference}", null, false);
 
         return $response; 

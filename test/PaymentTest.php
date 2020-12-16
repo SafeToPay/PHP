@@ -58,6 +58,7 @@ class PaymentTest
         // 2 - Cartão de crédito
         // 3 - Criptomoeda
         // 4 - Cartão de débito 
+        // 6 - Pix
         $payload->setPaymentMethod("1");
 
         //Informa o objeto de pagamento
@@ -164,9 +165,10 @@ class PaymentTest
         // 2 - Cartão de crédito
         // 3 - Criptomoeda
         // 4 - Cartão de débito 
+        // 6 - Pix
         $payload->setPaymentMethod("2");
 
-        $CreditCard = new CreditCard("João da Silva", "4024007153763191", "12/2021", "241", 2, true);
+        $CreditCard = new CreditCard("João da Silva", "4024007153763191", "12/2021", "241", 2, false);
 
         //Objeto de pagamento - para boleto bancário
         $payload->setPaymentObject($CreditCard);
@@ -232,6 +234,7 @@ class PaymentTest
         // 2 - Cartão de crédito
         // 3 - Criptomoeda
         // 4 - Cartão de débito 
+        // 6 - Pix
         $payload->setPaymentMethod("3");
 
         $CryptoCoin = new Cryptocoin("LTC");
@@ -300,12 +303,76 @@ class PaymentTest
         // 2 - Cartão de crédito
         // 3 - Criptomoeda
         // 4 - Cartão de débito 
+        // 6 - Pix
         $payload->setPaymentMethod("4");
 
-        $CreditCard = new DebitCard("João da Silva", "4024007153763191", "12/2019", "241");
+        $DebitCard = new DebitCard("João da Silva", "4024007153763191", "12/2019", "241");
 
         //Objeto de pagamento - para boleto bancário
-        $payload->setPaymentObject($CreditCard);
+        $payload->setPaymentObject($DebitCard);
+
+        $Products = array();
+
+        for ($i = 0; $i < 10; $i++) {
+
+            $payloadProduct = new Product();
+            $payloadProduct->setCode($i + 1);
+            $payloadProduct->setDescription("Produto " . ($i + 1));
+            $payloadProduct->setUnitPrice(2.50);
+            $payloadProduct->setQuantity(2);
+
+            array_push($Products, $payloadProduct);
+        };
+
+        $payload->setProducts($Products);
+
+        //Customer
+        $Customer = new Customer();
+        $Customer->setName("Teste Cliente");
+        $Customer->setIdentity("01579286000174");
+        $Customer->setEmail("Teste@Teste.com.br");
+        $Customer->setPhone("51999999999");
+
+        $Customer->Address = new Address();
+        $Customer->Address->setZipCode("90620000");
+        $Customer->Address->setStreet("Avenida Princesa Isabel");
+        $Customer->Address->setNumber("828");
+        $Customer->Address->setComplement("Lado B");
+        $Customer->Address->setDistrict("Santana");
+        $Customer->Address->setStateInitials("RS");
+        $Customer->Address->setCityName("Porto Alegre");
+        $Customer->Address->setCountryName("Brasil");
+
+
+        $payload->setCustomer($Customer);
+
+        $response = PaymentRequest::CreatePayment($payload);
+
+        echo(json_encode($response));
+    }
+
+    //Pix
+    public static function Pix()
+    {
+
+        //Inicializar método de pagamento
+        $payload = new Transaction();
+        //Ambiente de homologação
+        $payload->setIsSandbox(true);
+        //Descrição geral 
+        $payload->setApplication("Teste SDK PHP");
+        //Nome do vendedor
+        $payload->setVendor("João da Silva");
+        //Url de callback
+        $payload->setCallbackUrl("https://callbacks.exemplo.com.br/api/Notify");
+
+        //Código da forma de pagamento
+        // 1 - Boleto bancário
+        // 2 - Cartão de crédito
+        // 3 - Criptomoeda
+        // 4 - Cartão de débito 
+        // 6 - Pix
+        $payload->setPaymentMethod("6");
 
         $Products = array();
 
@@ -615,3 +682,4 @@ class PaymentTest
 //PaymentTest::ResendCarnet();
 //PaymentTest::CancelCarnet();
 //PaymentTest::CancelCarnetLot();
+//PaymentTest::Pix();

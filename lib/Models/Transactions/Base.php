@@ -136,23 +136,4 @@ class Base
     {
         $this->Splits = $Splits;
     }
-
-    public function getAuthenticate()
-    {
-        return $this->Authenticate;
-    }
-
-    public function setAuthenticate($Authenticate)
-    {
-        $this->Authenticate = $Authenticate;
-    }
-    public function getIsPreAuthorization()
-    {
-        return $this->IsPreAuthorization;
-    }
-
-    public function setIsPreAuthorization($IsPreAuthorization)
-    {
-        $this->IsPreAuthorization = $IsPreAuthorization;
-    }
 }

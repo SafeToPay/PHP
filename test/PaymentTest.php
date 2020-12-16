@@ -286,8 +286,6 @@ class PaymentTest
         $payload = new Transaction();
         //Ambiente de homologação
         $payload->setIsSandbox(true);
-        //Débito autenticado
-        $payload->setAuthenticate(true);
         //Descrição geral 
         $payload->setApplication("Teste SDK PHP");
         //Nome do vendedor

@@ -14,16 +14,22 @@ class CreditCard  implements \JsonSerializable
     private $SecurityCode;       
     private $Token;  
     private $InstallmentQuantity;
-    private $IsPreAuthorization;
+	private $IsPreAuthorization;
+	private $IsApplyInterest;
+	private $InterestRate;
+	private $SoftDescriptor;
 
 	function __construct($Holder,$CardNumber,$ExpirationDate,$SecurityCode,$InstallmentQuantity,
-						$IsPreAuthorization) {
+						$IsPreAuthorization, $IsApplyInterest, $InterestRate, $SoftDescriptor) {
         $this->Holder = $Holder;
 		$this->CardNumber = $CardNumber;
         $this->ExpirationDate = $ExpirationDate;
 		$this->SecurityCode = $SecurityCode;
 		$this->InstallmentQuantity = $InstallmentQuantity;
 		$this->IsPreAuthorization = $IsPreAuthorization;
+		$this->IsApplyInterest = $IsApplyInterest;
+		$this->InterestRate = $InterestRate;
+		$this->SoftDescriptor = $SoftDescriptor;
 	}
 	
     public function getHolder(){
@@ -80,7 +86,31 @@ class CreditCard  implements \JsonSerializable
 	public function setIsPreAuthorization($IsPreAuthorization = false){
 		$this->IsPreAuthorization = $IsPreAuthorization;
 	}
-	
+
+	public function getIsApplyInterest(){
+		return $this->IsApplyInterest;
+	}
+
+	public function setIsApplyInterest($IsApplyInterest = false){
+		$this->IsApplyInterest= $IsApplyInterest;
+	}
+
+	public function getInterestRate(){
+		return $this->InterestRate;
+	}
+
+	public function setInterestRate($InterestRate = null){
+		$this->InterestRate = $InterestRate;
+	}
+
+	public function getSoftDescriptor(){
+		return $this->SoftDescriptor;
+	}
+
+	public function setSoftDescriptor($SoftDescriptor = ""){
+		$this->SoftDescriptor = $SoftDescriptor;
+	}
+
 	public function JsonSerialize()
     {
         return [
@@ -90,7 +120,10 @@ class CreditCard  implements \JsonSerializable
 				'SecurityCode' => $this->SecurityCode,
 				'Token' => $this->Token,
 				'InstallmentQuantity' =>(int) $this->InstallmentQuantity,
-				'IsPreAuthorization' =>(bool) $this->IsPreAuthorization
+				'IsPreAuthorization' =>(bool) $this->IsPreAuthorization,
+				'IsApplyInterest' => (bool) $this->IsApplyInterest,
+				'InterestRate' => (float) $this->InterestRate,
+				'SoftDescriptor' => $this->SoftDescriptor
         ];
     }
 }

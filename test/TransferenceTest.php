@@ -15,7 +15,7 @@ use Safe2Pay\Models\Bank\Bank;
 use Safe2Pay\Models\Core\Config as Enviroment;
 
 $enviroment = new Enviroment();
-$enviroment->setAPIKEY('5325F24FD8A0402D8BF6362C489C66F7');
+$enviroment->setAPIKEY('x-api-key');
 
 /**
  * Class TransferenceTest

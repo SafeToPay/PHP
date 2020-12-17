@@ -23,7 +23,7 @@ use Safe2Pay\Models\Core\Config as Enviroment;
 use Safe2Pay\Models\Payment\CarnetBankslip;
 
 $enviroment = new Enviroment();
-$enviroment->setAPIKEY('x-api-key');
+$enviroment->setAPIKEY('5A3A044DE838403F9566BDFBEE9DE763');
 
 /**
  * Class PaymentTest
@@ -168,7 +168,10 @@ class PaymentTest
         // 6 - Pix
         $payload->setPaymentMethod("2");
 
-        $CreditCard = new CreditCard("João da Silva", "4024007153763191", "12/2021", "241", 2, false);
+        //Inicialização do cartão de crédito (Holder, CardNumber, ExpirationDate, SecurityCode, InstallmentQuantity
+        //                                    , IsPreAuthorization, IsApplyInterest, InterestRate, SoftDescriptor)
+        $CreditCard = new CreditCard("João da Silva", "4024007153763191", "12/2021", "241", 2, false, true, 2.32
+                                     , "Teste");
 
         //Objeto de pagamento - para boleto bancário
         $payload->setPaymentObject($CreditCard);

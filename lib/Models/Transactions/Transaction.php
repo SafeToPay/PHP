@@ -25,6 +25,7 @@ class Transaction extends Base implements \JsonSerializable
         return[
             'PaymentObject' => $this->getPaymentObject(),
             'Application' => $this->getApplication(),
+            'IpAddress' => $this->getIpAddress(),
             'Vendor' => $this->getVendor(),
             'Reference' => $this->getReference(),
             'IsSandbox' => $this->getIsSandbox(),

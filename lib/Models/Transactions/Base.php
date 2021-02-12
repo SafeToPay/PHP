@@ -16,7 +16,7 @@ class Base
     private $Authenticate;
     private $IdTransaction;
     private $IpAddress;
-    private $VisitorID;
+    private $VisitorId;
     private $IsSandbox;
     private $Application;
     private $Reference;

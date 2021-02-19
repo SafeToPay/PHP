@@ -15,6 +15,8 @@ class Base
     private $Id;
     private $Authenticate;
     private $IdTransaction;
+    private $IpAddress;
+    private $VisitorId;
     private $IsSandbox;
     private $Application;
     private $Reference;
@@ -43,6 +45,26 @@ class Base
     public function setIdTransaction($IdTransaction)
     {
         $this->IdTransaction = $IdTransaction;
+    }
+
+    public function getIpAddress()
+    {
+        return $this->IpAddress;
+    }
+
+    public function setIpAddress($IpAddress)
+    {
+        $this->IpAddress = $IpAddress;
+    }
+
+    public function getVisitorId()
+    {
+        return $this->VisitorId;
+    }
+
+    public function setVisitorId($VisitorId)
+    {
+        $this->VisitorId = $VisitorId;
     }
 
     public function getIsSandbox()

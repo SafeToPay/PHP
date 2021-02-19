@@ -13,6 +13,7 @@ use Safe2Pay\Models\Payment\CreditCard;
 use Safe2Pay\Models\Payment\DebitCard;
 use Safe2Pay\Models\Payment\Carnet;
 use Safe2Pay\Models\Payment\CarnetLot;
+use Safe2Pay\Models\Payment\Pix;
 use Safe2Pay\Models\Transactions\Splits;
 use Safe2Pay\Models\Transactions\Transaction;
 use Safe2Pay\Models\General\Customer;
@@ -390,6 +391,11 @@ class PaymentTest
 
         $payload->setProducts($Products);
 
+        $Pix = new Pix(3600);
+
+        //Objeto de pagamento - para PIX
+        $payload->setPaymentObject($Pix);
+
         //Customer
         $Customer = new Customer();
         $Customer->setName("Teste Cliente");
@@ -406,7 +412,6 @@ class PaymentTest
         $Customer->Address->setStateInitials("RS");
         $Customer->Address->setCityName("Porto Alegre");
         $Customer->Address->setCountryName("Brasil");
-
 
         $payload->setCustomer($Customer);
 
@@ -683,4 +688,4 @@ class PaymentTest
 //PaymentTest::ResendCarnet();
 //PaymentTest::CancelCarnet();
 //PaymentTest::CancelCarnetLot();
-//PaymentTest::Pix();
+PaymentTest::Pix();

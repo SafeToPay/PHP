@@ -9,27 +9,16 @@ namespace Safe2Pay\Models\Payment;
  */
 class Pix
 {
-    private $QrCode;
-    private $Key;
+    private $Expiration;
 
-    public function getQrCode()
-    {
-        return $this->QrCode;
-    }
+    public function getExpiration()
+	{
+		return $this->Expiration;
+	}
 
-    public function setQrCode($QrCode)
-    {
-        $this->QrCode = $QrCode;
-    }
-
-    public function getKey()
-    {
-        return $this->Key;
-    }
-
-    public function setKey($Key)
-    {
-        $this->Key = $Key;
-    }
+	public function setExpiration($Expiration)
+	{
+		$this->Expiration = $Expiration;
+	}
 
 }

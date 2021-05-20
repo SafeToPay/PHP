@@ -6,124 +6,147 @@ namespace Safe2Pay\Models\Payment;
  *
  * @package Safe2Pay\Models
  */
-class CreditCard  implements \JsonSerializable
+class CreditCard implements \JsonSerializable
 {
     private $Holder;
     private $CardNumber;
-    private $ExpirationDate;  
-    private $SecurityCode;       
-    private $Token;  
+    private $ExpirationDate;
+    private $SecurityCode;
+    private $Token;
     private $InstallmentQuantity;
-	private $IsPreAuthorization;
-	private $IsApplyInterest;
-	private $InterestRate;
-	private $SoftDescriptor;
+    private $IsPreAuthorization;
+    private $IsApplyInterest;
+    private $InterestRate;
+    private $SoftDescriptor;
 
-	function __construct($Holder,$CardNumber,$ExpirationDate,$SecurityCode,$InstallmentQuantity,
-						$IsPreAuthorization, $IsApplyInterest, $InterestRate, $SoftDescriptor) {
+    function __construct($Holder, $CardNumber, $ExpirationDate, $SecurityCode, $Token, $InstallmentQuantity,
+                         $IsPreAuthorization, $IsApplyInterest, $InterestRate, $SoftDescriptor)
+    {
         $this->Holder = $Holder;
-		$this->CardNumber = $CardNumber;
+        $this->CardNumber = $CardNumber;
         $this->ExpirationDate = $ExpirationDate;
-		$this->SecurityCode = $SecurityCode;
-		$this->InstallmentQuantity = $InstallmentQuantity;
-		$this->IsPreAuthorization = $IsPreAuthorization;
-		$this->IsApplyInterest = $IsApplyInterest;
-		$this->InterestRate = $InterestRate;
-		$this->SoftDescriptor = $SoftDescriptor;
-	}
-	
-    public function getHolder(){
-		return $this->Holder;
-	}
+        $this->SecurityCode = $SecurityCode;
+        $this->Token = $Token;
+        $this->InstallmentQuantity = $InstallmentQuantity;
+        $this->IsPreAuthorization = $IsPreAuthorization;
+        $this->IsApplyInterest = $IsApplyInterest;
+        $this->InterestRate = $InterestRate;
+        $this->SoftDescriptor = $SoftDescriptor;
+    }
 
-	public function setHolder($Holder){
-		$this->Holder = $Holder;
-	}
+    public function getHolder()
+    {
+        return $this->Holder;
+    }
 
-	public function getCardNumber(){
-		return $this->CardNumber;
-	}
+    public function setHolder($Holder)
+    {
+        $this->Holder = $Holder;
+    }
 
-	public function setCardNumber($CardNumber){
-		$this->CardNumber = $CardNumber;
-	}
+    public function getCardNumber()
+    {
+        return $this->CardNumber;
+    }
 
-	public function getExpirationDate(){
-		return $this->ExpirationDate;
-	}
+    public function setCardNumber($CardNumber)
+    {
+        $this->CardNumber = $CardNumber;
+    }
 
-	public function setExpirationDate($ExpirationDate){
-		$this->ExpirationDate = $ExpirationDate;
-	}
+    public function getExpirationDate()
+    {
+        return $this->ExpirationDate;
+    }
 
-	public function getSecurityCode(){
-		return $this->SecurityCode;
-	}
+    public function setExpirationDate($ExpirationDate)
+    {
+        $this->ExpirationDate = $ExpirationDate;
+    }
 
-	public function setSecurityCode($SecurityCode){
-		$this->SecurityCode = $SecurityCode;
-	}
+    public function getSecurityCode()
+    {
+        return $this->SecurityCode;
+    }
 
-	public function getToken(){
-		return $this->Token;
-	}
+    public function setSecurityCode($SecurityCode)
+    {
+        $this->SecurityCode = $SecurityCode;
+    }
 
-	public function setToken($Token){
-		$this->Token = $Token;
-	}
+    public function getToken()
+    {
+        return $this->Token;
+    }
 
-	public function getInstallmentQuantity(){
-		return $this->InstallmentQuantity;
-	}
+    public function setToken($Token)
+    {
+        $this->Token = $Token;
+    }
 
-	public function setInstallmentQuantity($InstallmentQuantity = 1){
-		$this->InstallmentQuantity = $InstallmentQuantity;
-	}
-	public function getIsPreAuthorization(){
-		return $this->IsPreAuthorization;
-	}
+    public function getInstallmentQuantity()
+    {
+        return $this->InstallmentQuantity;
+    }
 
-	public function setIsPreAuthorization($IsPreAuthorization = false){
-		$this->IsPreAuthorization = $IsPreAuthorization;
-	}
+    public function setInstallmentQuantity($InstallmentQuantity = 1)
+    {
+        $this->InstallmentQuantity = $InstallmentQuantity;
+    }
 
-	public function getIsApplyInterest(){
-		return $this->IsApplyInterest;
-	}
+    public function getIsPreAuthorization()
+    {
+        return $this->IsPreAuthorization;
+    }
 
-	public function setIsApplyInterest($IsApplyInterest = false){
-		$this->IsApplyInterest= $IsApplyInterest;
-	}
+    public function setIsPreAuthorization($IsPreAuthorization = false)
+    {
+        $this->IsPreAuthorization = $IsPreAuthorization;
+    }
 
-	public function getInterestRate(){
-		return $this->InterestRate;
-	}
+    public function getIsApplyInterest()
+    {
+        return $this->IsApplyInterest;
+    }
 
-	public function setInterestRate($InterestRate = null){
-		$this->InterestRate = $InterestRate;
-	}
+    public function setIsApplyInterest($IsApplyInterest = false)
+    {
+        $this->IsApplyInterest = $IsApplyInterest;
+    }
 
-	public function getSoftDescriptor(){
-		return $this->SoftDescriptor;
-	}
+    public function getInterestRate()
+    {
+        return $this->InterestRate;
+    }
 
-	public function setSoftDescriptor($SoftDescriptor = ""){
-		$this->SoftDescriptor = $SoftDescriptor;
-	}
+    public function setInterestRate($InterestRate = null)
+    {
+        $this->InterestRate = $InterestRate;
+    }
 
-	public function JsonSerialize()
+    public function getSoftDescriptor()
+    {
+        return $this->SoftDescriptor;
+    }
+
+    public function setSoftDescriptor($SoftDescriptor = "")
+    {
+        $this->SoftDescriptor = $SoftDescriptor;
+    }
+
+    public function JsonSerialize()
     {
         return [
-                'Holder' => $this->Holder,
-				'CardNumber' => $this->CardNumber,
-				'ExpirationDate' => $this->ExpirationDate,
-				'SecurityCode' => $this->SecurityCode,
-				'Token' => $this->Token,
-				'InstallmentQuantity' =>(int) $this->InstallmentQuantity,
-				'IsPreAuthorization' =>(bool) $this->IsPreAuthorization,
-				'IsApplyInterest' => (bool) $this->IsApplyInterest,
-				'InterestRate' => (float) $this->InterestRate,
-				'SoftDescriptor' => $this->SoftDescriptor
+            'Holder' => $this->Holder,
+            'CardNumber' => $this->CardNumber,
+            'ExpirationDate' => $this->ExpirationDate,
+            'SecurityCode' => $this->SecurityCode,
+            'Token' => $this->Token,
+            'InstallmentQuantity' => (int)$this->InstallmentQuantity,
+            'IsPreAuthorization' => (bool)$this->IsPreAuthorization,
+            'IsApplyInterest' => (bool)$this->IsApplyInterest,
+            'InterestRate' => (float)$this->InterestRate,
+            'SoftDescriptor' => $this->SoftDescriptor
         ];
     }
 }

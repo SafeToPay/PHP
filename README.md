@@ -12,6 +12,7 @@
     * [x] Cartão de crédito.
     * [x] Bitcoin.
     * [x] Cartão de débito.
+    * [x] Pix.
 * [x] Gerenciamento de subcontas para Marketplace.
 * [x] Venda simples.
 

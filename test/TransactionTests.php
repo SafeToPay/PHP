@@ -38,8 +38,36 @@ class TransactionTest
         echo (json_encode($response));
     }
 
+    //Listagem geral das transações
+    public static function GetList()
+    {
+        //--------Obrigatórios:--------
+        $pageNumber            = '1';
+        $rowsPerPage           = '10';
+        $isSandbox             = 'false';
+
+        // --------Opcionais--------
+        $createdDateInitial    = '2021-06-01';
+        $createdDateEnd        = '2021-06-02';
+        $paymentDateInitial    = '2021-06-02';
+        $paymentDateEnd        = '2021-06-02';
+        $Id                    =  0;
+        $reference             = 'Teste SDK PHP';
+        $customerName          = 'Joao da Silva';
+        $customerIdentity      = '12345678910';
+        $paymentMethodCode     = '1';
+        $transactionStatusCode = '3';
+       
+        $response = TransactionRequest::List($pageNumber, $rowsPerPage, $isSandbox, $createdDateInitial, $createdDateEnd, 
+                                             $paymentDateInitial, $paymentDateEnd, $Id, $reference, $customerName,
+                                             $customerIdentity, $paymentMethodCode, $transactionStatusCode);
+
+        //echo (json_encode($response));
+    }
+
 }
 
  //TransactionTest::Get();
  //TransactionTest::GetByReference();
+ //TransactionTest::GetList();
 ?>

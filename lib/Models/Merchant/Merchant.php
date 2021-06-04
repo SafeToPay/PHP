@@ -195,7 +195,7 @@ class Merchant implements \JsonSerializable
 		return $this->IsTransferCheckingAccountDisabled;
 	}
 
-	public function setIIsTransferCheckingAccountDisabled($IsTransferCheckingAccountDisabled = false){
+	public function setIsTransferCheckingAccountDisabled($IsTransferCheckingAccountDisabled = false){
 		$this->IsTransferCheckingAccountDisabled = $IsTransferCheckingAccountDisabled;
 	}
 

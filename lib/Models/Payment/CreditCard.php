@@ -19,8 +19,8 @@ class CreditCard implements \JsonSerializable
     private $InterestRate;
     private $SoftDescriptor;
 
-    function __construct($Holder, $CardNumber, $ExpirationDate, $SecurityCode, $Token, $InstallmentQuantity,
-                         $IsPreAuthorization, $IsApplyInterest, $InterestRate, $SoftDescriptor)
+    function __construct($Holder, $CardNumber, $ExpirationDate, $SecurityCode, $Token = null, $InstallmentQuantity = 1,
+                         $IsPreAuthorization = false, $IsApplyInterest = false, $InterestRate = 0, $SoftDescriptor = null)
     {
         $this->Holder = $Holder;
         $this->CardNumber = $CardNumber;

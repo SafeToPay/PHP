@@ -29,6 +29,7 @@ class Merchant implements \JsonSerializable
     public $MerchantSplit;
 	public $IsRemoved;
     public $IsPanelRestricted;
+    public $IsTransferCheckingAccountDisabled;
 	
 	public function getId(){
 		return $this->Id;
@@ -190,6 +191,14 @@ class Merchant implements \JsonSerializable
 		$this->IsPanelRestricted = $IsPanelRestricted;
 	}
 
+	public function getIsTransferCheckingAccountDisabled(){
+		return $this->IsTransferCheckingAccountDisabled;
+	}
+
+	public function setIsTransferCheckingAccountDisabled($IsTransferCheckingAccountDisabled = false){
+		$this->IsTransferCheckingAccountDisabled = $IsTransferCheckingAccountDisabled;
+	}
+
 	public function JsonSerialize()
     {
         return [
@@ -207,6 +216,7 @@ class Merchant implements \JsonSerializable
 				'BankData' => $this->BankData,
 				'MerchantSplit' => $this->MerchantSplit,
 				'IsPanelRestricted' => $this->IsPanelRestricted,
+				'IsTransferCheckingAccountDisabled' => $this->IsTransferCheckingAccountDisabled
         ];
     }
 

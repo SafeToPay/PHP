@@ -46,7 +46,7 @@ class PaymentTest
         //Inicializar método de pagamento
         $payload = new Transaction();
         //Ambiente de homologação
-        $payload->setIsSandbox(true);
+        $payload->setIsSandbox(false);
         //Descrição geral 
         $payload->setApplication("Teste SDK PHP");
         //Nome do vendedor
@@ -65,7 +65,7 @@ class PaymentTest
         //Informa o objeto de pagamento
         $BankSlip = new BankSlip();
         //Data de vencimento
-        $BankSlip->setDueDate("16/10/2019");
+        $BankSlip->setDueDate("16/10/2021");
         //Instrução
         $BankSlip->setInstruction("Instrução de Exemplo");
         //Multa
@@ -76,6 +76,11 @@ class PaymentTest
         $BankSlip->setCancelAfterDue(false);
         //Pagamento parcial
         $BankSlip->setIsEnablePartialPayment(false);
+        //desconto
+        $BankSlip->setDiscountAmount(5);
+        $BankSlip->setDiscountType(1);
+        $BankSlip->setDiscountDue("16/10/2021");
+
         //Mensagens
         $BankSlip->setMessage(array(
             "mensagem 1",
@@ -143,7 +148,9 @@ class PaymentTest
 
         $response = PaymentRequest::CreatePayment($payload);
 
-        echo(json_encode($response));
+        //echo(json_encode($response));
+
+        echo(json_encode($payload));
     }
 
     //Cartão de crédito
@@ -688,4 +695,4 @@ class PaymentTest
 //PaymentTest::ResendCarnet();
 //PaymentTest::CancelCarnet();
 //PaymentTest::CancelCarnetLot();
-PaymentTest::Pix();
+//PaymentTest::Pix();

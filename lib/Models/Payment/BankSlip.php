@@ -27,6 +27,9 @@ class BankSlip  implements \JsonSerializable
     private $CancelAfterDue;
     private $IsEnablePartialPayment;
     private $DaysBeforeCancel;
+	private $DiscountAmount;
+	private $DiscountType;
+	private $DiscountDue;
     private $IdMerchant;
 
     public function getId(){
@@ -173,6 +176,30 @@ class BankSlip  implements \JsonSerializable
 		$this->DaysBeforeCancel = $DaysBeforeCancel;
 	}
 
+	public function getDiscountAmount(){
+		return $this->DaysBeforeCancel;
+	}
+
+	public function setDiscountAmount($DiscountAmount){
+		$this->DiscountAmount = $DiscountAmount;
+	}
+
+	public function getDiscountType(){
+		return $this->DiscountType;
+	}
+
+	public function setDiscountType($DiscountType){
+		$this->DiscountType = $DiscountType;
+	}
+
+	public function getDiscountDue(){
+		return $this->DiscountDue;
+	}
+
+	public function setDiscountDue($DiscountDue){
+		$this->DiscountDue = $DiscountDue;
+	}
+
 	public function getIdMerchant(){
 		return $this->IdMerchant;
 	}
@@ -191,7 +218,10 @@ class BankSlip  implements \JsonSerializable
             "PenaltyRate"   => $this->PenaltyRate,
 			"InterestRate" => $this->InterestRate,
 			"Instruction" => $this->Instruction,
-			"Message" => $this->Message
+			"Message" => $this->Message,
+			"DiscountAmount" => $this->DiscountAmount,
+			"DiscountType" => $this->DiscountType,
+			"DiscountDue" => $this->DiscountDue
         ];
     }
 

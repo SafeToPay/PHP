@@ -259,13 +259,16 @@ class BankSlip implements \JsonSerializable
         $PaymentObject["DueDate"] = $this->DueDate;
         $PaymentObject["CancelAfterDue"] = $this->CancelAfterDue;
         $PaymentObject["IsEnablePartialPayment"] = $this->IsEnablePartialPayment;
-        $PaymentObject["PenaltyRate"] = $this->PenaltyRate;
-        $PaymentObject["InterestRate"] = $this->InterestRate;
         $PaymentObject["Instruction"] = $this->Instruction;
         $PaymentObject["Message"] = $this->Message;
 
-        if ($this->DiscountAmount > 0)
-        {
+        if ($this->InterestRate > 0)
+            $PaymentObject["InterestRate"] = $this->InterestRate;
+
+        if ($this->PenaltyRate > 0)
+            $PaymentObject["PenaltyRate"] = $this->PenaltyRate;
+
+        if ($this->DiscountAmount > 0) {
             $PaymentObject["DiscountAmount"] = $this->DiscountAmount;
             $PaymentObject["DiscountType"] = $this->DiscountType;
             $PaymentObject["DiscountDue"] = $this->DiscountDue;

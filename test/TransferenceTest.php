@@ -2,7 +2,6 @@
 
 namespace Safe2Pay\Test;
 
-
 require_once '../vendor/autoload.php';
 
 use Safe2Pay\API\TransferenceRequest;
@@ -79,4 +78,3 @@ class TransferenceTest
 //TransferenceTest::GetListLot();
 //TransferenceTest::GetDetailLot();
 //TransferenceTest::CreateTransference();
-?>

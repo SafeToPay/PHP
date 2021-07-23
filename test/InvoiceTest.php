@@ -102,7 +102,7 @@ class InvoiceTest
            $Customer->setIdentity("01579286000174");
            $Customer->setEmail("Teste@Teste.com.br");
            $Customer->setPhone("51999999999");
-   
+
            $Customer->Address = new Address();
            $Customer->Address->setZipCode("90620000");
            $Customer->Address->setStreet("Avenida Princesa Isabel");
@@ -112,12 +112,12 @@ class InvoiceTest
            $Customer->Address->setStateInitials("RS");
            $Customer->Address->setCityName("Porto Alegre");
            $Customer->Address->setCountryName("Brasil");
-   
-   
+
+
            $singleSale = new SingleSale();
-   
+
            $singleSale->setCustomer($Customer);
-   
+
            $singleSale->setPaymentMethods(
                (array(
                    new SingleSalePaymentMethod("1"),
@@ -126,7 +126,7 @@ class InvoiceTest
                    new SingleSalePaymentMethod("4"),
                ))
            );
-   
+
            $singleSale->setProducts(
                (array(
                    new SingleSaleProduct(1, "teste", "1", "1.00"),
@@ -141,25 +141,25 @@ class InvoiceTest
                    "Message 3",
                )
            );
-   
+
            //Lista de emails
            $singleSale->setEmails(
                (array(
                    "lucas@safe2pay.com"
                ))
            );
-   
+
            $singleSale->setCallbackUrl("https://safe2pay.com.br/api/Notify");
-   
+
            $singleSale->setExpirationDate("2019-10-16");
            $singleSale->setDueDate("2019-10-16");
            $singleSale->setReference("teste");
            $singleSale->setPenaltyAmount("1.00");
            $singleSale->setInterestAmount("1.00");
            $singleSale->setSingleSaleHash("5f29ac6809d34e82bc1b97477261eaa0");
-   
+
            $response  = InvoiceRequest::Update($singleSale);
-   
+
            echo (json_encode($response));
     }
 

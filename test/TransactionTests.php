@@ -19,20 +19,19 @@ class TransactionTest
 {
 
     public static function Get()
-    { 
-        $Id=8497120;
-       
-        $response =TransactionRequest::Get($Id);
+    {
+        $Id = 8497120;
+
+        $response = TransactionRequest::Get($Id);
 
         echo (json_encode($response));
-
     }
 
 
     public static function GetByReference()
-    { 
-        $reference='1059856';
-       
+    {
+        $reference = '1059856';
+
         $response = TransactionRequest::GetByRefeference($reference);
 
         echo (json_encode($response));
@@ -57,17 +56,27 @@ class TransactionTest
         $customerIdentity      = '12345678910';
         $paymentMethodCode     = '1';
         $transactionStatusCode = '3';
-       
-        $response = TransactionRequest::List($pageNumber, $rowsPerPage, $isSandbox, $createdDateInitial, $createdDateEnd, 
-                                             $paymentDateInitial, $paymentDateEnd, $Id, $reference, $customerName,
-                                             $customerIdentity, $paymentMethodCode, $transactionStatusCode);
+
+        $response = TransactionRequest::List(
+            $pageNumber,
+            $rowsPerPage,
+            $isSandbox,
+            $createdDateInitial,
+            $createdDateEnd,
+            $paymentDateInitial,
+            $paymentDateEnd,
+            $Id,
+            $reference,
+            $customerName,
+            $customerIdentity,
+            $paymentMethodCode,
+            $transactionStatusCode
+        );
 
         //echo (json_encode($response));
     }
-
 }
 
  //TransactionTest::Get();
  //TransactionTest::GetByReference();
  //TransactionTest::GetList();
-?>

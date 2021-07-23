@@ -2,7 +2,6 @@
 
 namespace Safe2Pay\Models\Merchant;
 
-
 /**
  * Class MerchantSplit
  *
@@ -15,53 +14,59 @@ class MerchantSplit implements \JsonSerializable
     private $IsSubaccountTaxPayer;
     private $Taxes;
 
-    public function getPaymentMethodCode(){
-		return $this->PaymentMethodCode;
-	}
+    public function getPaymentMethodCode()
+    {
+        return $this->PaymentMethodCode;
+    }
 
-	public function setPaymentMethodCode($PaymentMethodCode){
-		$this->PaymentMethodCode = $PaymentMethodCode;
-	}
+    public function setPaymentMethodCode($PaymentMethodCode)
+    {
+        $this->PaymentMethodCode = $PaymentMethodCode;
+    }
 
-	public function getPaymentMethod(){
-		return $this->PaymentMethod;
-	}
+    public function getPaymentMethod()
+    {
+        return $this->PaymentMethod;
+    }
 
-	public function setPaymentMethod($PaymentMethod){
-		$this->PaymentMethod = $PaymentMethod;
-	}
+    public function setPaymentMethod($PaymentMethod)
+    {
+        $this->PaymentMethod = $PaymentMethod;
+    }
 
-	public function getIsSubaccountTaxPayer(){
-		return $this->IsSubaccountTaxPayer;
-	}
+    public function getIsSubaccountTaxPayer()
+    {
+        return $this->IsSubaccountTaxPayer;
+    }
 
-	public function setIsSubaccountTaxPayer($IsSubaccountTaxPayer){
-		$this->IsSubaccountTaxPayer = $IsSubaccountTaxPayer;
-	}
+    public function setIsSubaccountTaxPayer($IsSubaccountTaxPayer)
+    {
+        $this->IsSubaccountTaxPayer = $IsSubaccountTaxPayer;
+    }
 
-	public function getTaxes(){
-		return $this->Taxes;
-	}
+    public function getTaxes()
+    {
+        return $this->Taxes;
+    }
 
-	public function setTaxes($Taxes){
-		$this->Taxes = $Taxes;
-	}
+    public function setTaxes($Taxes)
+    {
+        $this->Taxes = $Taxes;
+    }
 
-	public function __construct($IsSubaccountTaxPayer,$PaymentMethodCode,$Taxes)
-	{
-		$this->IsSubaccountTaxPayer = $IsSubaccountTaxPayer;
-		$this->PaymentMethodCode = $PaymentMethodCode;
-		$this->Taxes = $Taxes;
-	}
+    public function __construct($IsSubaccountTaxPayer, $PaymentMethodCode, $Taxes)
+    {
+        $this->IsSubaccountTaxPayer = $IsSubaccountTaxPayer;
+        $this->PaymentMethodCode = $PaymentMethodCode;
+        $this->Taxes = $Taxes;
+    }
 
-	public function JsonSerialize()
+    public function JsonSerialize()
     {
         return [
                 'IsSubaccountTaxPayer' => (bool) $this->IsSubaccountTaxPayer,
-				'PaymentMethodCode' =>(string) $this->PaymentMethodCode,
-				'Taxes' =>(array) $this->Taxes
+                'PaymentMethodCode' => (string) $this->PaymentMethodCode,
+                'Taxes' => (array) $this->Taxes
         ];
     }
 }
-
-?>

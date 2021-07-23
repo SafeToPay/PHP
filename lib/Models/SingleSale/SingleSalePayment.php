@@ -1,5 +1,7 @@
 <?php
+
 namespace Safe2Pay\Models\SingleSale;
+
 /**
  * Class SingleSalePayment
  *
@@ -9,23 +11,25 @@ namespace Safe2Pay\Models\SingleSale;
 class SingleSalePayment
 {
     private $PaymentMethod;
-    private $PaymentDate; 
+    private $PaymentDate;
 
-    public function getPaymentMethod(){
-		return $this->PaymentMethod;
-	}
+    public function getPaymentMethod()
+    {
+        return $this->PaymentMethod;
+    }
 
-	public function setPaymentMethod($PaymentMethod){
-		$this->PaymentMethod = $PaymentMethod;
-	}
+    public function setPaymentMethod($PaymentMethod)
+    {
+        $this->PaymentMethod = $PaymentMethod;
+    }
 
-	public function getPaymentDate(){
-		return $this->PaymentDate;
-	}
+    public function getPaymentDate()
+    {
+        return $this->PaymentDate;
+    }
 
-	public function setPaymentDate($PaymentDate){
-		$this->PaymentDate = $PaymentDate;
-	}
+    public function setPaymentDate($PaymentDate)
+    {
+        $this->PaymentDate = $PaymentDate;
+    }
 }
-
-?>

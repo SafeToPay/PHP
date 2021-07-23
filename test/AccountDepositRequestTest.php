@@ -29,7 +29,7 @@ class AccountDepositTest
         $month = 5;
         $year = 2019;
 
-        $response  = AccountDepositRequest::GetListDeposits($month,$year);
+        $response  = AccountDepositRequest::GetListDeposits($month, $year);
 
         echo (json_encode($response));
     }
@@ -42,7 +42,7 @@ class AccountDepositTest
         $page = 1;
         $RowsPerPage = 100;
 
-        $response  = AccountDepositRequest::GetListDetailsDeposits($day, $month,$year,$page,$RowsPerPage);
+        $response  = AccountDepositRequest::GetListDetailsDeposits($day, $month, $year, $page, $RowsPerPage);
 
         echo (json_encode($response));
     }
@@ -55,7 +55,6 @@ class AccountDepositTest
 
         echo (json_encode($response));
     }
-
 }
 
 //AccountDepositTest::GetBankAccount();

@@ -2,7 +2,6 @@
 
 namespace Safe2Pay\Test;
 
-
 require_once '../vendor/autoload.php';
 
 use Safe2Pay\Models\Payment\CreditCard as CreditCard;
@@ -31,7 +30,8 @@ class TokenizationTest
 
         echo (json_encode($response));
     }
-    public static function GetListToken(){
+    public static function GetListToken()
+    {
 
          $pageNumber = 1;
          $rowsPerPage = 5;

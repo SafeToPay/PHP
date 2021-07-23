@@ -1,6 +1,7 @@
 <?php
 
 namespace Safe2Pay\Models\Response;
+
 /**
  * Class InvoiceResponse
  *
@@ -13,5 +14,3 @@ class Response
     public $Error;
     public $ResponseDetail;
 }
-
-?>

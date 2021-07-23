@@ -4,14 +4,15 @@ namespace Safe2Pay\API;
 
 use Safe2Pay\Models\Core\Client;
 
-require_once __DIR__.'/../Models/Core/Client.php';
+require_once __DIR__ . '/../Models/Core/Client.php';
 
 /**
  * Class TransferenceRequest
  *
  * @package  Api
  */
-class TransferenceRequest{
+class TransferenceRequest
+{
 
     /**
      * Get Transference Methods
@@ -20,7 +21,7 @@ class TransferenceRequest{
      * @return Array
      */
     public static function GetTransference($IdTransferRegister)
-    {   
+    {
         $response = Client::HttpClient('GET', "Transfer/Get?Id={$IdTransferRegister}", null, false);
         return $response;
     }
@@ -31,7 +32,7 @@ class TransferenceRequest{
      * @return Array
      */
     public static function GetListLot($PageNumber, $RowsPerPage)
-    {   
+    {
         $response = Client::HttpClient('GET', "Transfer/ListLot?PageNumber={$PageNumber}&RowsPerPage={$RowsPerPage}", null, false);
         return $response;
     }
@@ -42,7 +43,7 @@ class TransferenceRequest{
      * @return Array
      */
     public static function GetDetailLot($IdTransferRegisterLot, $PageNumber, $RowsPerPage)
-    {   
+    {
         $response = Client::HttpClient('GET', "Transfer/List?Object.IdTransferRegisterLot={$IdTransferRegisterLot}&PageNumber={$PageNumber}&RowsPerPage={$RowsPerPage}", null, false);
         return $response;
     }
@@ -59,4 +60,3 @@ class TransferenceRequest{
         return $response;
     }
 }
-?>

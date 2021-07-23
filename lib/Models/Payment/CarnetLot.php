@@ -1,6 +1,7 @@
 <?php
 
 namespace Safe2Pay\Models\Payment;
+
 /**
  * Class CarnetLot
  *
@@ -10,118 +11,137 @@ class CarnetLot implements \JsonSerializable
 {
     private $Id;
     private $IdMerchant;
-    private $Merchant;  
-    private $JsonGzip;       
-    private $Identifier;  
-    private $CallbackUrl;  
+    private $Merchant;
+    private $JsonGzip;
+    private $Identifier;
+    private $CallbackUrl;
     private $IsProcessed;
     private $CreatedDate;
-    private $Items;  
-    private $Carnets;       
-    private $ApiVersion;   
+    private $Items;
+    private $Carnets;
+    private $ApiVersion;
 
-    public function getId(){
-		return $this->Id;
-	}
+    public function getId()
+    {
+        return $this->Id;
+    }
 
-	public function setId($Id){
-		$this->Id = $Id;
-	}
+    public function setId($Id)
+    {
+        $this->Id = $Id;
+    }
 
-	public function getIdMerchant(){
-		return $this->IdMerchant;
-	}
+    public function getIdMerchant()
+    {
+        return $this->IdMerchant;
+    }
 
-	public function setIdMerchant($IdMerchant){
-		$this->IdMerchant = $IdMerchant;
-	}
+    public function setIdMerchant($IdMerchant)
+    {
+        $this->IdMerchant = $IdMerchant;
+    }
 
-	public function getMerchant(){
-		return $this->Merchant;
-	}
+    public function getMerchant()
+    {
+        return $this->Merchant;
+    }
 
-	public function setMerchant($Merchant){
-		$this->Merchant = $Merchant;
-	}
+    public function setMerchant($Merchant)
+    {
+        $this->Merchant = $Merchant;
+    }
 
-	public function getJsonGzip(){
-		return $this->JsonGzip;
-	}
+    public function getJsonGzip()
+    {
+        return $this->JsonGzip;
+    }
 
-	public function setJsonGzip($JsonGzip){
-		$this->JsonGzip = $JsonGzip;
-	}
+    public function setJsonGzip($JsonGzip)
+    {
+        $this->JsonGzip = $JsonGzip;
+    }
 
-	public function getIdentifier(){
-		return $this->Identifier;
-	}
+    public function getIdentifier()
+    {
+        return $this->Identifier;
+    }
 
-	public function setIdentifier($Identifier){
-		$this->Identifier = $Identifier;
-	}
+    public function setIdentifier($Identifier)
+    {
+        $this->Identifier = $Identifier;
+    }
 
-	public function getCallbackUrl(){
-		return $this->CallbackUrl;
-	}
+    public function getCallbackUrl()
+    {
+        return $this->CallbackUrl;
+    }
 
-	public function setCallbackUrl($CallbackUrl){
-		$this->CallbackUrl = $CallbackUrl;
-	}
+    public function setCallbackUrl($CallbackUrl)
+    {
+        $this->CallbackUrl = $CallbackUrl;
+    }
 
-	public function getIsProcessed(){
-		return $this->IsProcessed;
-	}
+    public function getIsProcessed()
+    {
+        return $this->IsProcessed;
+    }
 
-	public function setIsProcessed($IsProcessed){
-		$this->IsProcessed = $IsProcessed;
-	}
+    public function setIsProcessed($IsProcessed)
+    {
+        $this->IsProcessed = $IsProcessed;
+    }
 
-	public function getCreatedDate(){
-		return $this->CreatedDate;
-	}
+    public function getCreatedDate()
+    {
+        return $this->CreatedDate;
+    }
 
-	public function setCreatedDate($CreatedDate){
-		$this->CreatedDate = $CreatedDate;
-	}
+    public function setCreatedDate($CreatedDate)
+    {
+        $this->CreatedDate = $CreatedDate;
+    }
 
-	public function getItems(){
-		return $this->Items;
-	}
+    public function getItems()
+    {
+        return $this->Items;
+    }
 
-	public function setItems($Items){
-		$this->Items = $Items;
-	}
+    public function setItems($Items)
+    {
+        $this->Items = $Items;
+    }
 
-	public function getCarnets(){
-		return $this->Carnets;
-	}
+    public function getCarnets()
+    {
+        return $this->Carnets;
+    }
 
-	public function setCarnets($Carnets){
-		$this->Carnets = $Carnets;
-	}
+    public function setCarnets($Carnets)
+    {
+        $this->Carnets = $Carnets;
+    }
 
-	public function getApiVersion(){
-		return $this->ApiVersion;
-	}
+    public function getApiVersion()
+    {
+        return $this->ApiVersion;
+    }
 
-	public function setApiVersion($ApiVersion){
-		$this->ApiVersion = $ApiVersion;
-	}
+    public function setApiVersion($ApiVersion)
+    {
+        $this->ApiVersion = $ApiVersion;
+    }
 
-	public function JsonSerialize()
+    public function JsonSerialize()
     {
         return [
-				'Id' => (int) $this->Id,
-				'IdMerchant' =>(int) $this->IdMerchant,
-				'Identifier' => (string) $this->Identifier,
-				'CallbackUrl' => (string) $this->CallbackUrl,
-				'IsProcessed' => (bool) $this->IsProcessed,
-				'Items' => (array) $this->Items,
-				'Carnets' => (array) $this->Carnets,
-				'ApiVersion' => (int) $this->ApiVersion,
+                'Id' => (int) $this->Id,
+                'IdMerchant' => (int) $this->IdMerchant,
+                'Identifier' => (string) $this->Identifier,
+                'CallbackUrl' => (string) $this->CallbackUrl,
+                'IsProcessed' => (bool) $this->IsProcessed,
+                'Items' => (array) $this->Items,
+                'Carnets' => (array) $this->Carnets,
+                'ApiVersion' => (int) $this->ApiVersion,
         ];
-    } 
+    }
 }
-
-
-?>

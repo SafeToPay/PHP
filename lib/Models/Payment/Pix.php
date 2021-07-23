@@ -12,13 +12,12 @@ class Pix
     private $Expiration;
 
     public function getExpiration()
-	{
-		return $this->Expiration;
-	}
+    {
+        return $this->Expiration;
+    }
 
-	public function setExpiration($Expiration)
-	{
-		$this->Expiration = $Expiration;
-	}
-
+    public function setExpiration($Expiration)
+    {
+        $this->Expiration = $Expiration;
+    }
 }

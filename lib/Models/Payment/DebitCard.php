@@ -1,6 +1,7 @@
 <?php
 
 namespace Safe2Pay\Models\Payment;
+
 /**
  * Class DebitCard
  *
@@ -75,5 +76,3 @@ class DebitCard implements \JsonSerializable
         ];
     }
 }
-
-?>

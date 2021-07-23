@@ -69,7 +69,7 @@ class Customer implements \JsonSerializable
 
     public function jsonSerialize()
     {
-        return 
+        return
         [
             "Name"   => $this->Name,
             "Identity" => $this->Identity,
@@ -79,5 +79,3 @@ class Customer implements \JsonSerializable
         ];
     }
 }
-
-?>

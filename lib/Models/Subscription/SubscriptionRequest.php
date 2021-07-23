@@ -1,5 +1,7 @@
 <?php
+
 namespace Safe2Pay\Models\Subscription;
+
 /**
  * Class SubscriptionRequest
  *
@@ -12,12 +14,11 @@ class SubscriptionRequest implements \JsonSerializable
     public $ChargeDate;
     public $Customer;
     public $SubscriptionObject;
-
     public function getPlan()
     {
         return $this->Plan;
     }
-    
+
 
     public function setPlan($Plan)
     {
@@ -55,5 +56,3 @@ class SubscriptionRequest implements \JsonSerializable
         ];
     }
 }
-
-?>

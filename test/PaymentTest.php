@@ -2,7 +2,6 @@
 
 namespace Safe2Pay\Test;
 
-
 require_once '../vendor/autoload.php';
 
 use Safe2Pay\API\PaymentRequest;
@@ -47,7 +46,7 @@ class PaymentTest
         $payload = new Transaction();
         //Ambiente de homologação
         $payload->setIsSandbox(false);
-        //Descrição geral 
+        //Descrição geral
         $payload->setApplication("Teste SDK PHP");
         //Nome do vendedor
         $payload->setVendor("João da Silva");
@@ -58,7 +57,7 @@ class PaymentTest
         // 1 - Boleto bancário
         // 2 - Cartão de crédito
         // 3 - Criptomoeda
-        // 4 - Cartão de débito 
+        // 4 - Cartão de débito
         // 6 - Pix
         $payload->setPaymentMethod("1");
 
@@ -94,7 +93,6 @@ class PaymentTest
         $Products = array();
 
         for ($i = 0; $i < 10; $i++) {
-
             $payloadProduct = new Product();
             $payloadProduct->setCode($i + 1);
             $payloadProduct->setDescription("Produto " . ($i + 1));
@@ -161,7 +159,7 @@ class PaymentTest
         $payload = new Transaction();
         //Ambiente de homologação
         $payload->setIsSandbox(true);
-        //Descrição geral 
+        //Descrição geral
         $payload->setApplication("Teste SDK PHP");
         //Nome do vendedor
         $payload->setVendor("João da Silva");
@@ -172,14 +170,23 @@ class PaymentTest
         // 1 - Boleto bancário
         // 2 - Cartão de crédito
         // 3 - Criptomoeda
-        // 4 - Cartão de débito 
+        // 4 - Cartão de débito
         // 6 - Pix
         $payload->setPaymentMethod("2");
 
         //Inicialização do cartão de crédito (Holder, CardNumber, ExpirationDate, SecurityCode, InstallmentQuantity
         //                                    , IsPreAuthorization, IsApplyInterest, InterestRate, SoftDescriptor)
-        $CreditCard = new CreditCard("João da Silva", "4024007153763191", "12/2021", "241", 2, false, true, 2.32
-                                     , "Teste");
+        $CreditCard = new CreditCard(
+            "João da Silva",
+            "4024007153763191",
+            "12/2021",
+            "241",
+            2,
+            false,
+            true,
+            2.32,
+            "Teste"
+        );
 
         //Objeto de pagamento - para boleto bancário
         $payload->setPaymentObject($CreditCard);
@@ -187,7 +194,6 @@ class PaymentTest
         $Products = array();
 
         for ($i = 0; $i < 10; $i++) {
-
             $payloadProduct = new Product();
             $payloadProduct->setCode($i + 1);
             $payloadProduct->setDescription("Produto " . ($i + 1));
@@ -233,7 +239,7 @@ class PaymentTest
         $payload = new Transaction();
         //Ambiente de homologação
         $payload->setIsSandbox(true);
-        //Descrição geral 
+        //Descrição geral
         $payload->setApplication("Teste SDK PHP");
         //Nome do vendedor
         $payload->setVendor("João da Silva");
@@ -244,7 +250,7 @@ class PaymentTest
         // 1 - Boleto bancário
         // 2 - Cartão de crédito
         // 3 - Criptomoeda
-        // 4 - Cartão de débito 
+        // 4 - Cartão de débito
         // 6 - Pix
         $payload->setPaymentMethod("3");
 
@@ -256,7 +262,6 @@ class PaymentTest
         $Products = array();
 
         for ($i = 0; $i < 10; $i++) {
-
             $payloadProduct = new Product();
             $payloadProduct->setCode($i + 1);
             $payloadProduct->setDescription("Produto " . ($i + 1));
@@ -300,7 +305,7 @@ class PaymentTest
         $payload = new Transaction();
         //Ambiente de homologação
         $payload->setIsSandbox(true);
-        //Descrição geral 
+        //Descrição geral
         $payload->setApplication("Teste SDK PHP");
         //Nome do vendedor
         $payload->setVendor("João da Silva");
@@ -311,7 +316,7 @@ class PaymentTest
         // 1 - Boleto bancário
         // 2 - Cartão de crédito
         // 3 - Criptomoeda
-        // 4 - Cartão de débito 
+        // 4 - Cartão de débito
         // 6 - Pix
         $payload->setPaymentMethod("4");
 
@@ -323,7 +328,6 @@ class PaymentTest
         $Products = array();
 
         for ($i = 0; $i < 10; $i++) {
-
             $payloadProduct = new Product();
             $payloadProduct->setCode($i + 1);
             $payloadProduct->setDescription("Produto " . ($i + 1));
@@ -368,7 +372,7 @@ class PaymentTest
         $payload = new Transaction();
         //Ambiente de homologação
         $payload->setIsSandbox(true);
-        //Descrição geral 
+        //Descrição geral
         $payload->setApplication("Teste SDK PHP");
         //Nome do vendedor
         $payload->setVendor("João da Silva");
@@ -379,14 +383,13 @@ class PaymentTest
         // 1 - Boleto bancário
         // 2 - Cartão de crédito
         // 3 - Criptomoeda
-        // 4 - Cartão de débito 
+        // 4 - Cartão de débito
         // 6 - Pix
         $payload->setPaymentMethod("6");
 
         $Products = array();
 
         for ($i = 0; $i < 10; $i++) {
-
             $payloadProduct = new Product();
             $payloadProduct->setCode($i + 1);
             $payloadProduct->setDescription("Produto " . ($i + 1));
@@ -447,7 +450,7 @@ class PaymentTest
         $payload = new Transaction();
         //Ambiente de homologação
         $payload->setIsSandbox(true);
-        //Descrição geral 
+        //Descrição geral
         $payload->setApplication("Teste SDK PHP");
         //Nome do vendedor
         $payload->setVendor("João da Silva");
@@ -458,8 +461,8 @@ class PaymentTest
         // 1 - Boleto bancário
         // 2 - Cartão de crédito
         // 3 - Criptomoeda
-        // 4 - Cartão de débito 
-        // 10 - Débito em conta 
+        // 4 - Cartão de débito
+        // 10 - Débito em conta
 
         //Informa o objeto de pagamento
         $carnet = new Carnet();
@@ -495,7 +498,6 @@ class PaymentTest
         $Products = array();
 
         for ($i = 0; $i < 3; $i++) {
-
             $payloadProduct = new Product();
             $payloadProduct->setCode($i + 1);
             $payloadProduct->setDescription("Produto " . ($i + 1));
@@ -542,12 +544,11 @@ class PaymentTest
         $transactions = array();
 
         for ($x = 0; $x <= 10; $x++) {
-
             //Inicializar método de pagamento
             $payload = new Transaction();
             //Ambiente de homologação
             $payload->setIsSandbox(true);
-            //Descrição geral 
+            //Descrição geral
             $payload->setApplication("Teste SDK PHP");
             //Nome do vendedor
             $payload->setVendor("João da Silva");
@@ -558,8 +559,8 @@ class PaymentTest
             // 1 - Boleto bancário
             // 2 - Cartão de crédito
             // 3 - Criptomoeda
-            // 4 - Cartão de débito 
-            // 10 - Débito em conta 
+            // 4 - Cartão de débito
+            // 10 - Débito em conta
 
             //Informa o objeto de pagamento
             $carnet = new Carnet();
@@ -595,7 +596,6 @@ class PaymentTest
             $Products = array();
 
             for ($i = 0; $i < 3; $i++) {
-
                 $payloadProduct = new Product();
                 $payloadProduct->setCode($i + 1);
                 $payloadProduct->setDescription("Produto " . ($i + 1));

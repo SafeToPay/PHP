@@ -33,7 +33,7 @@ class MarketplaceTest
         $Merchant->setName("Francisco e Laís Filmagens ME");
         $Merchant->setCommercialName("Empresa Teste");
         $Merchant->setIsPanelRestricted(false);
-        //Dados do responsável 
+        //Dados do responsável
         $Merchant->setResponsibleIdentity("04270435062");
         $Merchant->setResponsibleName("Lucas");
         $Merchant->setEmail("4ba9b0275sdf79f@HOTMasdfasdf.com");
@@ -53,7 +53,7 @@ class MarketplaceTest
         $Merchant->Address->setCityName("Porto Alegre");
         $Merchant->Address->setCountryName("Brasil");
 
-        
+
         $bankData = new BankData();
         $bankData->setBank(new Bank("041"));
         $bankData->setAccountType(new AccountType("CC"));
@@ -66,13 +66,13 @@ class MarketplaceTest
         // 1 - Boleto bancário
         // 2 - Cartão de crédito
         // 3 - Criptomoeda
-        // 4 - Cartão de débito 
+        // 4 - Cartão de débito
         $merchantSplit =  array(
-            new MerchantSplit(false,"1",array(new MerchantSplitTax("1","1.00"))),
-            new MerchantSplit(false,"2",array(new MerchantSplitTax("1","1.75"))),
-            new MerchantSplit(false,"3",array(new MerchantSplitTax("1","1.50"))),
-            new MerchantSplit(false,"4",array(new MerchantSplitTax("1","1.50"))),
-        ); 
+            new MerchantSplit(false, "1", array(new MerchantSplitTax("1", "1.00"))),
+            new MerchantSplit(false, "2", array(new MerchantSplitTax("1", "1.75"))),
+            new MerchantSplit(false, "3", array(new MerchantSplitTax("1", "1.50"))),
+            new MerchantSplit(false, "4", array(new MerchantSplitTax("1", "1.50"))),
+        );
 
 
         $Merchant->setBankData($bankData);
@@ -85,13 +85,13 @@ class MarketplaceTest
 
     public static function Update()
     {
-       
+
         $Merchant = new Merchant();
         $Merchant->setId(5280);
         $Merchant->setIdentity("53797700000115");
         $Merchant->setName("Francisco e Laís Filmagens ME");
         $Merchant->setCommercialName("Empresa Teste");
-        //Dados do responsável 
+        //Dados do responsável
         $Merchant->setResponsibleIdentity("04270435062");
         $Merchant->setResponsibleName("Lucas");
         $Merchant->setEmail("4ba9b029f@HOTMAIL.COM");
@@ -111,7 +111,7 @@ class MarketplaceTest
         $Merchant->Address->setCityName("Porto Alegre");
         $Merchant->Address->setCountryName("Brasil");
 
-        
+
         $bankData = new BankData();
         $bankData->setBank(new Bank("041"));
         $bankData->setBankAccount("1676");
@@ -125,13 +125,13 @@ class MarketplaceTest
         // 1 - Boleto bancário
         // 2 - Cartão de crédito
         // 3 - Criptomoeda
-        // 4 - Cartão de débito 
+        // 4 - Cartão de débito
         $merchantSplit =  array(
-            new MerchantSplit(false,"1",array(new MerchantSplitTax("1","1.00"))),
-            new MerchantSplit(false,"2",array(new MerchantSplitTax("1","1.75"))),
-            new MerchantSplit(false,"3",array(new MerchantSplitTax("1","1.50"))),
-            new MerchantSplit(false,"4",array(new MerchantSplitTax("1","1.50"))),
-        ); 
+            new MerchantSplit(false, "1", array(new MerchantSplitTax("1", "1.00"))),
+            new MerchantSplit(false, "2", array(new MerchantSplitTax("1", "1.75"))),
+            new MerchantSplit(false, "3", array(new MerchantSplitTax("1", "1.50"))),
+            new MerchantSplit(false, "4", array(new MerchantSplitTax("1", "1.50"))),
+        );
 
 
         $Merchant->setBankData($bankData);
@@ -155,7 +155,7 @@ class MarketplaceTest
         $PageNumber = 1;
         $RowsPage = 10;
 
-        $response  = MarketplaceRequest::List($PageNumber,$RowsPage);
+        $response  = MarketplaceRequest::List($PageNumber, $RowsPage);
 
         echo (json_encode($response));
     }

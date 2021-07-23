@@ -4,14 +4,15 @@ namespace Safe2Pay\API;
 
 use Safe2Pay\Models\Core\Client;
 
-require_once __DIR__.'/../Models/Core/Client.php';
+require_once __DIR__ . '/../Models/Core/Client.php';
 
 /**
  * Class TokenizationRequest
  *
  * @package Api
  */
-class TokenizationRequest {
+class TokenizationRequest
+{
 
      /**
      * Tokenization Credit Card
@@ -19,14 +20,15 @@ class TokenizationRequest {
      * @param [CreditCard] $data
      * @return Response
      */
-    public static function Create($data){ 
-        
-        $response = Client:: HttpClient('POST','token', $data, true);
+    public static function Create($data)
+    {
 
-        return $response; 
+        $response = Client:: HttpClient('POST', 'token', $data, true);
+
+        return $response;
     }
     /**
-     * Get the bank account details 
+     * Get the bank account details
      * @return Response
      */
     public static function ListToken($pageNumber, $rowsPerPage)
@@ -36,4 +38,3 @@ class TokenizationRequest {
         return $response;
     }
 }
-?>

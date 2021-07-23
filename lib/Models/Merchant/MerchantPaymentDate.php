@@ -15,35 +15,43 @@ class MerchantPaymentDate
     private $PaymentDay;
 
 
-    public function getId(){
-		return $this->Id;
-	}
+    public function getId()
+    {
+        return $this->Id;
+    }
 
-	public function setId($Id){
-		$this->Id = $Id;
-	}
+    public function setId($Id)
+    {
+        $this->Id = $Id;
+    }
 
-	public function getMerchant(){
-		return $this->Merchant;
-	}
+    public function getMerchant()
+    {
+        return $this->Merchant;
+    }
 
-	public function setMerchant($Merchant){
-		$this->Merchant = $Merchant;
-	}
+    public function setMerchant($Merchant)
+    {
+        $this->Merchant = $Merchant;
+    }
 
-	public function getPlanFrequence(){
-		return $this->PlanFrequence;
-	}
+    public function getPlanFrequence()
+    {
+        return $this->PlanFrequence;
+    }
 
-	public function setPlanFrequence($PlanFrequence){
-		$this->PlanFrequence = $PlanFrequence;
-	}
+    public function setPlanFrequence($PlanFrequence)
+    {
+        $this->PlanFrequence = $PlanFrequence;
+    }
 
-	public function getPaymentDay(){
-		return $this->PaymentDay;
-	}
+    public function getPaymentDay()
+    {
+        return $this->PaymentDay;
+    }
 
-	public function setPaymentDay($PaymentDay){
-		$this->PaymentDay = $PaymentDay;
-	} 
+    public function setPaymentDay($PaymentDay)
+    {
+        $this->PaymentDay = $PaymentDay;
+    }
 }

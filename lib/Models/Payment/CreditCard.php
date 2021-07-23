@@ -1,6 +1,7 @@
 <?php
 
 namespace Safe2Pay\Models\Payment;
+
 /**
  * Class CreditCard
  *
@@ -19,9 +20,18 @@ class CreditCard implements \JsonSerializable
     private $InterestRate;
     private $SoftDescriptor;
 
-    function __construct($Holder, $CardNumber, $ExpirationDate, $SecurityCode, $Token = null, $InstallmentQuantity = 1,
-                         $IsPreAuthorization = false, $IsApplyInterest = false, $InterestRate = 0, $SoftDescriptor = null)
-    {
+    function __construct(
+        $Holder,
+        $CardNumber,
+        $ExpirationDate,
+        $SecurityCode,
+        $Token = null,
+        $InstallmentQuantity = 1,
+        $IsPreAuthorization = false,
+        $IsApplyInterest = false,
+        $InterestRate = 0,
+        $SoftDescriptor = null
+    ) {
         $this->Holder = $Holder;
         $this->CardNumber = $CardNumber;
         $this->ExpirationDate = $ExpirationDate;
@@ -150,5 +160,3 @@ class CreditCard implements \JsonSerializable
         ];
     }
 }
-
-?>

@@ -4,14 +4,15 @@ namespace Safe2Pay\API;
 
 use Safe2Pay\Models\Core\Client;
 
-require_once __DIR__.'/../Models/Core/Client.php';
+require_once __DIR__ . '/../Models/Core/Client.php';
 
 /**
  * Class PaymentRequest
  *
  * @package  Api
  */
-class PaymentRequest{
+class PaymentRequest
+{
 
     /**
      * Get Payment Methods
@@ -20,7 +21,7 @@ class PaymentRequest{
      * @return Array
      */
     public static function GetPaymentMethods()
-    {   
+    {
         $response = Client::HttpClient('GET', 'MerchantPaymentMethod/List', null, false);
         return $response;
     }
@@ -50,13 +51,13 @@ class PaymentRequest{
 
         switch ($type) {
             case RefundType::DEBIT:
-            $response = Client::HttpClient('DELETE', "DebitCard/Cancel/{$Id}", null, false);
+                $response = Client::HttpClient('DELETE', "DebitCard/Cancel/{$Id}", null, false);
                 break;
             case RefundType::CREDIT:
-            $response = Client::HttpClient('DELETE', "CreditCard/Cancel/{$Id}", null, false);
+                $response = Client::HttpClient('DELETE', "CreditCard/Cancel/{$Id}", null, false);
                 break;
             case RefundType::BANKSLIP:
-            $response = Client::HttpClient('DELETE', "BankSlip/WriteOffBankSlip?idTransaction={$Id}", null, false);
+                $response = Client::HttpClient('DELETE', "BankSlip/WriteOffBankSlip?idTransaction={$Id}", null, false);
                 break;
             default:
                 return "Payment method type to be refunded was not entered";
@@ -66,7 +67,7 @@ class PaymentRequest{
     }
 
 /**===============================================Initial Carnet Methods================================================== */
-    
+
     /**
      * Carnet Sale
      *
@@ -96,7 +97,7 @@ class PaymentRequest{
     }
 
   /**
-     * Carnet Get 
+     * Carnet Get
      *
      * @param [Payment] $payment
      * @return Response
@@ -110,7 +111,7 @@ class PaymentRequest{
 
 
   /**
-     * Carnet Async Get 
+     * Carnet Async Get
      *
      * @param [Payment] $payment
      * @return Response
@@ -125,7 +126,7 @@ class PaymentRequest{
 
 
 /**
-     * Resend Carnet 
+     * Resend Carnet
      *
      * @param [Payment] $payment
      * @return Response
@@ -139,7 +140,7 @@ class PaymentRequest{
     }
 
     /**
-     * Cancel Carnet 
+     * Cancel Carnet
      *
      * @param [Payment] $payment
      * @return Response
@@ -153,7 +154,7 @@ class PaymentRequest{
     }
 
        /**
-     * Cancel Carnet Lot 
+     * Cancel Carnet Lot
      *
      * @param [Payment] $payment
      * @return Response
@@ -166,7 +167,6 @@ class PaymentRequest{
         return $response;
     }
 /**===============================================END Carnet Methods================================================== */
-
 }
 
 
@@ -176,4 +176,3 @@ class RefundType
     public const CREDIT = 'CREDIT';
     public const BANKSLIP = 'BANKSLIP';
 }
-

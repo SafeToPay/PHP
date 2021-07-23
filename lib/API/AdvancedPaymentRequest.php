@@ -1,9 +1,10 @@
 <?php
+
 namespace Safe2Pay\API;
 
 use Safe2Pay\Models\Core\Client;
 
-require_once __DIR__.'/../Models/Core/Client.php';
+require_once __DIR__ . '/../Models/Core/Client.php';
 
 
 /**
@@ -11,15 +12,19 @@ require_once __DIR__.'/../Models/Core/Client.php';
  *
  * @package Safe2Pay\Api
  */
-class AdvancedPaymentRequest{
+class AdvancedPaymentRequest
+{
+
+
 
     /**
      * Advanced Payment Simulation
      * @return Response
      */
-    public static function Simulation(){
+    public static function Simulation()
+    {
 
-        $response = Client:: HttpClient('GET',"AdvancePayment/Simulation", null,false);
+        $response = Client:: HttpClient('GET', "AdvancePayment/Simulation", null, false);
         return $response;
     }
 
@@ -28,9 +33,10 @@ class AdvancedPaymentRequest{
      * Advanced Payment Simulation
      * @return Response
      */
-    public static function AdvancedPaymentRequire(){
+    public static function AdvancedPaymentRequire()
+    {
 
-        $response = Client:: HttpClient('GET',"AdvancePayment/Require", null,false);
+        $response = Client:: HttpClient('GET', "AdvancePayment/Require", null, false);
         return $response;
     }
 }

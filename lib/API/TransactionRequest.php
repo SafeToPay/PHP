@@ -4,25 +4,27 @@ namespace Safe2Pay\API;
 
 use Safe2Pay\Models\Core\Client;
 
-require_once __DIR__.'/../Models/Core/Client.php';
+require_once __DIR__ . '/../Models/Core/Client.php';
 /**
  * Class TransactionRequest
  *
  * @package Api
  */
-class TransactionRequest {
-    
+class TransactionRequest
+{
+
     /**
      * Get transaction register
      *
      * @param [int] $Id
      * @return Response
      */
-    public static function Get($Id){ 
- 
-        $response = Client:: HttpClient('GET',"transaction/Get?Id={$Id}", null, false);
+    public static function Get($Id)
+    {
 
-        return $response; 
+        $response = Client:: HttpClient('GET', "transaction/Get?Id={$Id}", null, false);
+
+        return $response;
     }
 
       /**
@@ -31,53 +33,74 @@ class TransactionRequest {
      * @param [int] $reference
      * @return Response
      */
-    public static function GetByRefeference($reference){ 
+    public static function GetByRefeference($reference)
+    {
 
-        $response = Client:: HttpClient('GET',"transaction/Reference?reference={$reference}", null, false);
+        $response = Client:: HttpClient('GET', "transaction/Reference?reference={$reference}", null, false);
 
-        return $response; 
+        return $response;
     }
 
-    public static function List($pageNumber, $rowsPerPage, $isSandbox, $createdDateInitial, $createdDateEnd, 
-                                $paymentDateInitial, $paymentDateEnd, $Id, $reference, $customerName,
-                                $customerIdentity, $paymentMethodCode, $transactionStatusCode){
-        
+    public static function List(
+        $pageNumber,
+        $rowsPerPage,
+        $isSandbox,
+        $createdDateInitial,
+        $createdDateEnd,
+        $paymentDateInitial,
+        $paymentDateEnd,
+        $Id,
+        $reference,
+        $customerName,
+        $customerIdentity,
+        $paymentMethodCode,
+        $transactionStatusCode
+    ) {
+
         $request = "Transaction/List?PageNumber={$pageNumber}&RowsPerPage={$rowsPerPage}&Object.IsSandbox={$isSandbox}";
-        
-        if($createdDateInitial != null)
-            $request = $request."&CreatedDateInitial={$createdDateInitial}";
 
-        if($createdDateEnd != null)
-            $request = $request."&CreatedDateEnd={$createdDateEnd}";
-        
-        if($paymentDateInitial != null)
-            $request = $request."&PaymentDateInitial={$paymentDateInitial}";
+        if ($createdDateInitial != null) {
+            $request = $request . "&CreatedDateInitial={$createdDateInitial}";
+        }
 
-        if($paymentDateEnd != null)
-            $request = $request."&PaymentDateEnd={$paymentDateEnd}";
+        if ($createdDateEnd != null) {
+            $request = $request . "&CreatedDateEnd={$createdDateEnd}";
+        }
 
-        if($Id != 0)
-            $request = $request."&Object.Id={$Id}";
+        if ($paymentDateInitial != null) {
+            $request = $request . "&PaymentDateInitial={$paymentDateInitial}";
+        }
 
-        if($reference != null)
-            $request = $request."&Object.Reference={$reference}";
-        
-        if($customerName != null)
-            $request = $request."&Object.Customer.Name={$customerName}";
+        if ($paymentDateEnd != null) {
+            $request = $request . "&PaymentDateEnd={$paymentDateEnd}";
+        }
 
-        if($customerIdentity != null)
-            $request = $request."&Object.Customer.Identity={$customerIdentity}";
-        
-        if($paymentMethodCode != null)
-            $request = $request."&Object.PaymentMethod.Code={$paymentMethodCode}";
+        if ($Id != 0) {
+            $request = $request . "&Object.Id={$Id}";
+        }
 
-        if($transactionStatusCode != null)
-            $request = $request."&Object.TransactionStatus.Code={$transactionStatusCode}";
+        if ($reference != null) {
+            $request = $request . "&Object.Reference={$reference}";
+        }
 
-        $response = Client:: HttpClient('GET',$request, null, false);
+        if ($customerName != null) {
+            $request = $request . "&Object.Customer.Name={$customerName}";
+        }
 
-        return $response; 
+        if ($customerIdentity != null) {
+            $request = $request . "&Object.Customer.Identity={$customerIdentity}";
+        }
+
+        if ($paymentMethodCode != null) {
+            $request = $request . "&Object.PaymentMethod.Code={$paymentMethodCode}";
+        }
+
+        if ($transactionStatusCode != null) {
+            $request = $request . "&Object.TransactionStatus.Code={$transactionStatusCode}";
+        }
+
+        $response = Client:: HttpClient('GET', $request, null, false);
+
+        return $response;
     }
 }
-
-?>

@@ -216,7 +216,7 @@ class Merchant implements \JsonSerializable
 				'BankData' => $this->BankData,
 				'MerchantSplit' => $this->MerchantSplit,
 				'IsPanelRestricted' => $this->IsPanelRestricted,
-				'IsTransferCheckingAccountDisabled' => $this->IsTransferCheckingAccountDisabled
+				'IsTransferCheckingAccountDisabled' => (bool)$this->IsTransferCheckingAccountDisabled
         ];
     }
 

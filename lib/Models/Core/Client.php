@@ -1,7 +1,10 @@
 <?php
+
 namespace Safe2Pay\Models\Core;
 
-require_once __DIR__.'/../Response/Response.php';
+require_once __DIR__ . '/../Response/Response.php';
+
+use Exception;
 use Safe2Pay\Models\Response\Response;
 
 
@@ -17,10 +20,10 @@ class Client
 
       $curl = curl_init();
 
-      if($data != null){
+      if ($data != null) {
          $data =  json_encode($data);
       }
-         
+
 
       switch ($method) {
          case "POST":
@@ -54,24 +57,26 @@ class Client
 
       $result = curl_exec($curl);
       if (!$result) {
-         die("Connection Failure");
+         throw new Exception("Connection Failure");
       }
 
       curl_close($curl);
 
       $response = new Response();
 
-      foreach (json_decode($result , true) as $key => $value) $response->{$key} = $value;
+      foreach (json_decode($result, true) as $key => $value) $response->{$key} = $value;
 
       return $response;
    }
 
-   public static function SetEnviroment($Token){
+   public static function SetEnviroment($Token)
+   {
       self::$APIKEY = $Token;
    }
 
-   private static function GetEnviroment(){
-     return self::$APIKEY;
+   private static function GetEnviroment()
+   {
+      return self::$APIKEY;
    }
 
    private static function GetWebMethodUri($IsPayment)

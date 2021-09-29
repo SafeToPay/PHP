@@ -30,6 +30,8 @@ class Merchant implements \JsonSerializable
 	public $IsRemoved;
     public $IsPanelRestricted;
     public $IsTransferCheckingAccountDisabled;
+    public $ExtensionLogotipo;
+    public $Logotipo;
 	
 	public function getId(){
 		return $this->Id;
@@ -199,6 +201,22 @@ class Merchant implements \JsonSerializable
 		$this->IsTransferCheckingAccountDisabled = $IsTransferCheckingAccountDisabled;
 	}
 
+	public function getExtensionLogotipo(){
+		return $this->ExtensionLogotipo;
+	}
+
+	public function setExtensionLogotipo($ExtensionLogotipo = ""){
+		$this->ExtensionLogotipo = $ExtensionLogotipo;
+	}
+
+	public function getLogotipo(){
+		return $this->ExtensionLogotipo;
+	}
+
+	public function setLogotipo($Logotipo = ""){
+		$this->Logotipo = $Logotipo;
+	}
+
 	public function JsonSerialize()
     {
         return [
@@ -216,7 +234,9 @@ class Merchant implements \JsonSerializable
 				'BankData' => $this->BankData,
 				'MerchantSplit' => $this->MerchantSplit,
 				'IsPanelRestricted' => $this->IsPanelRestricted,
-				'IsTransferCheckingAccountDisabled' => (bool)$this->IsTransferCheckingAccountDisabled
+				'IsTransferCheckingAccountDisabled' => (bool)$this->IsTransferCheckingAccountDisabled,
+				'ExtensionLogotipo' => $this->ExtensionLogotipo,
+				'Logotipo' => $this->Logotipo
         ];
     }
 

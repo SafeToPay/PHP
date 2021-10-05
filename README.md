@@ -18,7 +18,7 @@
 
 ## Utilização
 
-composer require safe2pay/sdk
+`composer require safe2pay/sdk:dev-master`
 
 ## Utilização
 

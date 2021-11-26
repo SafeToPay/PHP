@@ -31,7 +31,7 @@ Após o envio, a própria chamada devolverá a resposta em um objeto completo co
 
 ## Dependências
 
-* PHP >= 5.6
+* PHP >= 7.1
 
 ## Pagamentos / Transações
 

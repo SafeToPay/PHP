@@ -18,7 +18,9 @@
 
 ## Utilização
 
+```sh
 composer require safe2pay/sdk
+```
 
 ## Utilização
 

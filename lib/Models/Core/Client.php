@@ -79,8 +79,8 @@ class Client
 
       if (!$IsPayment) {
          return "https://api.safe2pay.com.br/v2/";
-      } else {
-         return "https://payment.safe2pay.com.br/v2/";
       }
+       
+      return "https://payment.safe2pay.com.br/v2/";
    }
 }

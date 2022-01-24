@@ -58,6 +58,9 @@ class PaymentRequest{
             case RefundType::BANKSLIP:
             $response = Client::HttpClient('DELETE', "BankSlip/WriteOffBankSlip?idTransaction={$Id}", null, false);
                 break;
+            case RefundType::PIX:
+            $response = Client::HttpClient('DELETE', "Pix/Cancel/{$Id}", null, false);
+                break;                  
             default:
                 return "Payment method type to be refunded was not entered";
         }
@@ -175,5 +178,6 @@ class RefundType
     public const DEBIT = 'DEBIT';
     public const CREDIT = 'CREDIT';
     public const BANKSLIP = 'BANKSLIP';
+    public const PIX = 'PIX';
 }
 

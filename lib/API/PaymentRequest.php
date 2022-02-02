@@ -4,14 +4,15 @@ namespace Safe2Pay\API;
 
 use Safe2Pay\Models\Core\Client;
 
-require_once __DIR__.'/../Models/Core/Client.php';
+require_once __DIR__ . '/../Models/Core/Client.php';
 
 /**
  * Class PaymentRequest
  *
  * @package  Api
  */
-class PaymentRequest{
+class PaymentRequest
+{
 
     /**
      * Get Payment Methods
@@ -20,7 +21,7 @@ class PaymentRequest{
      * @return Array
      */
     public static function GetPaymentMethods()
-    {   
+    {
         $response = Client::HttpClient('GET', 'MerchantPaymentMethod/List', null, false);
         return $response;
     }
@@ -38,7 +39,7 @@ class PaymentRequest{
         return $response;
     }
 
-     /**
+    /**
      * Refund a payment
      *
      * @param [int] $Id
@@ -50,13 +51,16 @@ class PaymentRequest{
 
         switch ($type) {
             case RefundType::DEBIT:
-            $response = Client::HttpClient('DELETE', "DebitCard/Cancel/{$Id}", null, false);
+                $response = Client::HttpClient('DELETE', "DebitCard/Cancel/{$Id}", null, false);
                 break;
             case RefundType::CREDIT:
-            $response = Client::HttpClient('DELETE', "CreditCard/Cancel/{$Id}", null, false);
+                $response = Client::HttpClient('DELETE', "CreditCard/Cancel/{$Id}", null, false);
                 break;
             case RefundType::BANKSLIP:
-            $response = Client::HttpClient('DELETE', "BankSlip/WriteOffBankSlip?idTransaction={$Id}", null, false);
+                $response = Client::HttpClient('DELETE', "BankSlip/WriteOffBankSlip?idTransaction={$Id}", null, false);
+                break;
+            case RefundType::PIX:
+                $response = Client::HttpClient('DELETE', "Pix/Cancel/{$Id}", null, false);
                 break;
             default:
                 return "Payment method type to be refunded was not entered";
@@ -65,8 +69,8 @@ class PaymentRequest{
         return  $response;
     }
 
-/**===============================================Initial Carnet Methods================================================== */
-    
+    /**===============================================Initial Carnet Methods================================================== */
+
     /**
      * Carnet Sale
      *
@@ -95,7 +99,7 @@ class PaymentRequest{
         return $response;
     }
 
-  /**
+    /**
      * Carnet Get 
      *
      * @param [Payment] $payment
@@ -109,7 +113,7 @@ class PaymentRequest{
     }
 
 
-  /**
+    /**
      * Carnet Async Get 
      *
      * @param [Payment] $payment
@@ -124,7 +128,7 @@ class PaymentRequest{
     }
 
 
-/**
+    /**
      * Resend Carnet 
      *
      * @param [Payment] $payment
@@ -152,7 +156,7 @@ class PaymentRequest{
         return $response;
     }
 
-       /**
+    /**
      * Cancel Carnet Lot 
      *
      * @param [Payment] $payment
@@ -165,8 +169,7 @@ class PaymentRequest{
 
         return $response;
     }
-/**===============================================END Carnet Methods================================================== */
-
+    /**===============================================END Carnet Methods================================================== */
 }
 
 
@@ -175,5 +178,5 @@ class RefundType
     public const DEBIT = 'DEBIT';
     public const CREDIT = 'CREDIT';
     public const BANKSLIP = 'BANKSLIP';
+    public const PIX = 'PIX';
 }
-

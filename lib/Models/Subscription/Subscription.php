@@ -111,16 +111,16 @@ class Subscription implements \JsonSerializable
     public function JsonSerialize()
     {
         return [
-            'Plan' => $this->Plan,
-            'PaymentMethod' => $this->PaymentMethod,
-            'Customer' => $this->Customer,
-            'IsSendSMS' => $this->IsSendSMS,
-            'IsSendEmail' => $this->IsSendEmail,
-            'Emails' => $this->Emails,
-            'IsSandbox' => $this->IsSandbox,
-            'FirstChargeDate' => $this->FirstChargeDate,
-            'Token' => $this->Token,
-            'CreditCard' => $this->CreditCard
+            'Plan' => (int) $this->Plan,
+            'PaymentMethod' => (string) $this->PaymentMethod,
+            'Customer' => (array) $this->Customer,
+            'IsSendSMS' => (bool) $this->IsSendSMS,
+            'IsSendEmail' => (bool) $this->IsSendEmail,
+            'Emails' => (array) $this->Emails,
+            'IsSandbox' => (bool) $this->IsSandbox,
+            'FirstChargeDate' => (string) $this->FirstChargeDate,
+            'Token' => (string) $this->Token,
+            'CreditCard' => (array) $this->CreditCard
         ];
     }
 }

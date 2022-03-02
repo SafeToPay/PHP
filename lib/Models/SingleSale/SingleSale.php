@@ -31,6 +31,7 @@ class SingleSale implements \JsonSerializable
     private $Products;
     private $PaymentMethods;
     private $IdSubscription;
+    private $InstallmentQuantity;
 
     public function getMerchant(){
 		return $this->Merchant;
@@ -216,6 +217,14 @@ class SingleSale implements \JsonSerializable
 		$this->IdSubscription = $IdSubscription;
 	}
 
+	public function getInstallmentQuantity(){
+		return $this->InstallmentQuantity;
+	}
+
+	public function setInstallmentQuantity($InstallmentQuantity){
+		$this->InstallmentQuantity = $InstallmentQuantity;
+	}
+
 	public function JsonSerialize()
     {
         return [
@@ -231,7 +240,8 @@ class SingleSale implements \JsonSerializable
 				'Messages' =>(array) $this->Messages,
 				'Instruction' => $this->Instruction,
 				'SingleSaleHash' =>(string)  $this->SingleSaleHash,
-				'CallbackUrl' =>(string) $this->CallbackUrl
+				'CallbackUrl' =>(string) $this->CallbackUrl,
+				'InstallmentQuantity' =>(int) $this->InstallmentQuantity
         ];
     }
 }

@@ -38,6 +38,25 @@ class TransactionRequest {
         return $response; 
     }
 
+    /**
+     * Capture Payment
+     *
+     * @param [int] $idTransaction
+     * @param [double] $amount
+     * @return Response
+     */
+    public static function CapturePayment($idTransaction, $amount = 0)
+    {
+        $query = $amount != null || $amount != 0 ? "CreditCard/Capture/{$idTransaction}/{$amount}" 
+                                                 : "CreditCard/Capture/{$idTransaction}";
+
+                                                 echo($query);
+
+        $response = Client::HttpClient('PUT', "CreditCard/Capture/{$idTransaction}", null, false);
+
+        return $response;
+    }
+
     public static function List($pageNumber, $rowsPerPage, $isSandbox, $createdDateInitial, $createdDateEnd, 
                                 $paymentDateInitial, $paymentDateEnd, $Id, $reference, $customerName,
                                 $customerIdentity, $paymentMethodCode, $transactionStatusCode){

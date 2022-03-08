@@ -20,7 +20,6 @@ class Client
       if($data != null){
          $data =  json_encode($data);
       }
-         
 
       switch ($method) {
          case "POST":
@@ -47,6 +46,14 @@ class Client
          'X-API-KEY: ' . Client::GetEnviroment(),
          'Content-Type: application/json',
       ));
+
+      if($data == null && $method == "PUT"){
+         curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+            'X-API-KEY: ' . Client::GetEnviroment(),
+            'Content-Type: application/json',
+            'Content-Length: 0'
+         ));
+      }
 
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 

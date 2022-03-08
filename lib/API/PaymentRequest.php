@@ -38,6 +38,23 @@ class PaymentRequest{
         return $response;
     }
 
+    /**
+     * Capture Payment
+     *
+     * @param [int] $idTransaction
+     * @param [double] $amount
+     * @return Response
+     */
+    public static function CapturePayment($idTransaction, $amount = 0)
+    {
+        $query = $amount == null || $amount == 0 ? "CreditCard/Capture/{$idTransaction}" 
+                                                 : "CreditCard/Capture/{$idTransaction}/{$amount}";
+
+        $response = Client::HttpClient('PUT', $query, null, false);
+
+        return $response;
+    }
+
      /**
      * Refund a payment
      *

@@ -66,8 +66,9 @@ class Client
       if (!$result){
          $response->HasError = true;
          $response->ErrorCode = 99999;
-         $response->Error = 'Connection Failure';
-         $response->ResponseDetail = [];
+         $response->Error = curl_errno($curl) ? curl_errno($curl) . ' - ' . curl_error($curl) : curl_getinfo($curl, CURLINFO_HTTP_CODE) . ' - Connection Failure';
+         $response->ResponseDetail = curl_getinfo($curl);
+         curl_close($curl);
          return $response;
       }
 

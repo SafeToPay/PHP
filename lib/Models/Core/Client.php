@@ -60,13 +60,18 @@ class Client
       curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 
       $result = curl_exec($curl);
-      if (!$result) {
-         die("Connection Failure");
+
+      $response = new Response();
+
+      if (!$result){
+         $response->HasError = true;
+         $response->ErrorCode = 99999;
+         $response->Error = 'Connection Failure';
+         $response->ResponseDetail = [];
+         return $response;
       }
 
       curl_close($curl);
-
-      $response = new Response();
 
       foreach (json_decode($result , true) as $key => $value) $response->{$key} = $value;
 

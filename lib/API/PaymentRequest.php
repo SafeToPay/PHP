@@ -61,7 +61,7 @@ class PaymentRequest{
      * @param [int] $Id
      * @return Response
      */
-    public static function Refund($Id, $type)
+    public static function Refund($Id, $type, $amount = null)
     {
         $response = null;
 
@@ -71,6 +71,9 @@ class PaymentRequest{
                 break;
             case RefundType::CREDIT:
             $response = Client::HttpClient('DELETE', "CreditCard/Cancel/{$Id}", null, false);
+                break;
+            case RefundType::PARTIALCREDIT:
+                $response = Client::HttpClient('DELETE', "CreditCard/Cancel/{$Id}/{$amount}", null, false);
                 break;
             case RefundType::BANKSLIP:
             $response = Client::HttpClient('DELETE', "BankSlip/WriteOffBankSlip?idTransaction={$Id}", null, false);
@@ -194,6 +197,7 @@ class RefundType
 {
     public const DEBIT = 'DEBIT';
     public const CREDIT = 'CREDIT';
+    public const PARTIALCREDIT = 'PARTIALCREDIT';
     public const BANKSLIP = 'BANKSLIP';
     public const PIX = 'PIX';
 }

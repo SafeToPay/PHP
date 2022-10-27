@@ -8,7 +8,7 @@ trigger:
 - none
 
 pool:
-  vmImage: windows-latest
+  vmImage: ubuntu-latest
 
 steps:
 - script: echo Hello, world!
@@ -19,18 +19,12 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-- task: gitsync@1
-  inputs:
-    GitRepoUrl: 'https://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@github.com/SafeToPay/PHP.git#master'
-
-# - task: PowerShell@2
-#   displayName: Push git changes
+# - task: gitsync@1
 #   inputs:
-#     targetType: 'inline'
-#     script: |
-#       git config user.email "giovanni.bonacina@safe2pay.com.br"
-#       git config user.name "giovannis2p"
-#       git add --all
-#       git commit -m "Sync Github"
-#       git push https://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@github.com/SafeToPay/PHP.git master
-#     workingDirectory: '$(Pipeline.Workspace)'
+#     GitRepoUrl: 'https://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@github.com/SafeToPay/PHP.git#master'
+
+- bash: |
+    git push --prune https://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@github.com/SafeToPay/PHP.git \
+        +refs/remotes/origin/master
+  displayName: 'Copy to Github'
+    # condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')

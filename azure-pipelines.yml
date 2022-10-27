@@ -21,16 +21,16 @@ steps:
 
 - task: gitsync@1
   inputs:
-    GitRepoUrl: 'https://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@github.com/SafeToPay/PHP.git'
+    GitRepoUrl: 'https://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@github.com/SafeToPay/PHP.git master'
 
-- task: PowerShell@2
-  displayName: Push git changes
-  inputs:
-    targetType: 'inline'
-    script: |
-      git config user.email "giovanni.bonacina@safe2pay.com.br"
-      git config user.name "giovannis2p"
-      git add --all
-      git commit -m "Sync Github"
-      git push https://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@github.com/SafeToPay/PHP.git master
-    workingDirectory: '$(Pipeline.Workspace)'
+# - task: PowerShell@2
+#   displayName: Push git changes
+#   inputs:
+#     targetType: 'inline'
+#     script: |
+#       git config user.email "giovanni.bonacina@safe2pay.com.br"
+#       git config user.name "giovannis2p"
+#       git add --all
+#       git commit -m "Sync Github"
+#       git push https://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@github.com/SafeToPay/PHP.git master
+#     workingDirectory: '$(Pipeline.Workspace)'

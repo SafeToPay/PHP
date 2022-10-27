@@ -23,9 +23,27 @@ steps:
 #   inputs:
 #     GitRepoUrl: 'https://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@github.com/SafeToPay/PHP.git#master'
 
-- bash: |
-    git fetch --unshallow upstream https://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@github.com/SafeToPay/PHP.git
-    git push https://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@github.com/SafeToPay/PHP.git \
-        +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
-  displayName: 'Copy to Github'
+# - bash: |
+#     git push https://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@github.com/SafeToPay/PHP.git \
+#         +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
+#   displayName: 'Copy to Github'
     # condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+          Write-Host Starting the synchronization process
+          mkdir copyrepo
+          $sourceURL = "https://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@github.com/SafeToPay/PHP.git"
+          $destURL = "https://Safe2Pay@dev.azure.com/Safe2Pay/Safe2Pay/_git/sdk-php"
+          Set-Location "$(Build.SourcesDirectory)/copyrepo"
+          git clone --mirror $sourceURL
+          Set-Location "$(Build.SourcesDirectory)/copyrepo/$(PHP)/"
+          Write-Host "*****Git removing remote origin****"
+          git remote rm origin
+          Write-Output "*****Git remote add****"
+          git remote add --mirror=fetch origin $destURL
+          Write-Output "*****Git fetch origin****"
+          git fetch $sourceURL
+          Write-Output "*****Git push to Azure Repos****"
+          git push origin --all -f

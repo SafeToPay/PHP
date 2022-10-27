@@ -25,6 +25,6 @@ steps:
 
 - bash: |
     git push --prune https://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@github.com/SafeToPay/PHP.git \
-        +refs/remotes/origin/master
+        refs/remotes/origin/master
   displayName: 'Copy to Github'
     # condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')

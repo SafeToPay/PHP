@@ -21,7 +21,7 @@ steps:
 
 - task: gitsync@1
   inputs:
-    GitRepoUrl: 'https://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@github.com/SafeToPay/PHP.git master'
+    GitRepoUrl: 'https://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@github.com/SafeToPay/PHP.git@master'
 
 # - task: PowerShell@2
 #   displayName: Push git changes

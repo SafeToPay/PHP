@@ -34,11 +34,11 @@ steps:
     script: |
           Write-Host Starting the synchronization process
           mkdir copyrepo
-          $sourceURL = "https://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@github.com/SafeToPay/PHP.git"
-          $destURL = "https://Safe2Pay@dev.azure.com/Safe2Pay/Safe2Pay/_git/sdk-php"
+          $sourceURL = "https://Safe2Pay@dev.azure.com/Safe2Pay/Safe2Pay/_git/sdk-php"
+          $destURL = "https://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@github.com/SafeToPay/PHP.git"
           Set-Location "$(Build.SourcesDirectory)/copyrepo"
           git clone --mirror $sourceURL
-          Set-Location "$(Build.SourcesDirectory)/copyrepo/$(PHP)/"
+          Set-Location "$(Build.SourcesDirectory)/copyrepo/$(sdk.php)/"
           Write-Host "*****Git removing remote origin****"
           git remote rm origin
           Write-Output "*****Git remote add****"

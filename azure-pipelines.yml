@@ -38,12 +38,12 @@ steps:
           $destURL = "https://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@github.com/SafeToPay/PHP.git"
           Set-Location "$(Build.SourcesDirectory)/copyrepo"
           git clone --mirror $sourceURL
-          Set-Location "$(Build.SourcesDirectory)/copyrepo/"
+          Set-Location "$(Build.SourcesDirectory)/copyrepo/php-sdk"
           Write-Host "*****Git removing remote origin****"
           git remote rm origin
           Write-Output "*****Git remote add****"
-          git remote add --mirror=fetch master $destURL
+          git remote add --mirror=fetch origin $destURL
           Write-Output "*****Git fetch origin****"
           git fetch $sourceURL
-          Write-Output "*****Git push to Github****"
+          Write-Output "*****Git push to Azure Repos****"
           git push origin --all -f

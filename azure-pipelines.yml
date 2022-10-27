@@ -34,7 +34,7 @@ steps:
     script: |
           Write-Host Starting the synchronization process
           mkdir copyrepo
-          $sourceURL = "https://Safe2Pay@dev.azure.com/Safe2Pay/Safe2Pay/_git/sdk-php"
+          $sourceURL = "https://uo5k6easlly7wn5i3kh37upepntsd2wfitaqohsib5th5ymsx4fa@dev.azure.com/Safe2Pay/Safe2Pay/_git/sdk-php"
           $destURL = "https://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@github.com/SafeToPay/PHP.git"
           Set-Location "$(Build.SourcesDirectory)/copyrepo"
           git clone --mirror $sourceURL

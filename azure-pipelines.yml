@@ -46,4 +46,4 @@ steps:
           Write-Output "*****Git fetch origin****"
           git fetch $sourceURL
           Write-Output "*****Git push to Github****"
-          git push $destURL --all -f
+          git push origin --all -f

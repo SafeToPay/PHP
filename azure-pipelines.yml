@@ -45,5 +45,5 @@ steps:
           git remote add --mirror=fetch origin $destURL
           Write-Output "*****Git fetch origin****"
           git fetch $sourceURL
-          Write-Output "*****Git push to Azure Repos****"
-          git push origin --all -f
+          Write-Output "*****Git push to Github****"
+          git push $destURL --all -f

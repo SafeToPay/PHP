@@ -29,7 +29,7 @@ steps:
 
           mkdir copyrepo
           $sourceURL = "https://uo5k6easlly7wn5i3kh37upepntsd2wfitaqohsib5th5ymsx4fa@dev.azure.com/Safe2Pay/Safe2Pay/_git/sdk-php"
-          $destURL = "https://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@github.com/SafeToPay/PHP.git"
+          $destURL = "https://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@github.com/SafeToPay/PHP.git@master"
           Set-Location "$(Build.SourcesDirectory)/copyrepo"
           git clone --mirror $sourceURL
           # Set-Location "$(Build.SourcesDirectory)/copyrepo/php-sdk"
@@ -40,7 +40,7 @@ steps:
           Write-Output "*****Git fetch origin****"
           git fetch $sourceURL
           Write-Output "*****Git push to Azure Repos****"
-          git push origin master --all -f
+          git push origin main -f
 
 # - task: mirror-git-repository-vsts-task@1
 #   inputs:

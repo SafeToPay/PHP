@@ -36,11 +36,11 @@ steps:
           Write-Host "*****Git removing remote origin****"
           git remote rm origin
           Write-Output "*****Git remote add****"
-          git remote add --mirror=fetch -m $destURL
+          git remote add --mirror=fetch --master $destURL
           Write-Output "*****Git fetch origin****"
           git fetch $sourceURL
           Write-Output "*****Git push to Azure Repos****"
-          git push origin --all -f
+          git push master --all -f
 
 # - task: mirror-git-repository-vsts-task@1
 #   inputs:

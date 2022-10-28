@@ -32,7 +32,7 @@ steps:
           $destURL = "https://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@github.com/SafeToPay/PHP.git"
           Set-Location "$(Build.SourcesDirectory)/copyrepo"
           git clone --mirror $sourceURL
-          Set-Location "$(Build.SourcesDirectory)/copyrepo/php-sdk"
+          # Set-Location "$(Build.SourcesDirectory)/copyrepo/php-sdk"
           Write-Host "*****Git removing remote origin****"
           git remote rm origin
           Write-Output "*****Git remote add****"

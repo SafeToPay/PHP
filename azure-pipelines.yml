@@ -11,6 +11,8 @@ pool:
   vmImage: windows-latest
 
 steps:
+- checkout: self
+  persistCredentials: true
 
 # - task: gitsync@1
 #   inputs:

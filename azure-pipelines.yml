@@ -34,9 +34,9 @@ steps:
           $destination = $githubDir +"\"+"sdk-php.git"
           #please provide your username
           #Please make sure, you remove https from azure-repo-clone-url
-          $sourceURL = 'https://uo5k6easlly7wn5i3kh37upepntsd2wfitaqohsib5th5ymsx4fa@dev.azure.com/Safe2Pay/Safe2Pay/_git/sdk-php'
+          $sourceURL = 'https://uo5k6easlly7wn5i3kh37upepntsd2wfitaqohsib5th5ymsx4fa@dev.azure.com/Safe2Pay/Safe2Pay/_git/sdk-php?version=GBmain'
           #Please make sure, you remove https from github-repo-clone-url
-          $destURL = 'https://' + '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' + '@github.com/SafeToPay/PHP.git'
+          $destURL = 'https://' + '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' + '@github.com/SafeToPay/PHP.git/tree/master'
           #Check if the parent directory exists and delete
           if((Test-Path -path $githubDir))
           {
@@ -56,7 +56,7 @@ steps:
           Write-Output '*****Git removing remote secondary****'
           git remote rm secondary
           Write-Output '*****Git remote add****'
-          git remote add --mirror=fetch -m master secondary $destURL
+          git remote add --mirror=fetch secondary $destURL
           Write-Output '*****Git fetch origin****'
           git fetch $sourceURL
           Write-Output '*****Git push secondary****'

@@ -40,7 +40,7 @@ steps:
           Write-Output "*****Git fetch origin****"
           git fetch $sourceURL
           Write-Output "*****Git push to Azure Repos****"
-          git push origin main -f
+          git push origin master -f
 
 # - task: mirror-git-repository-vsts-task@1
 #   inputs:

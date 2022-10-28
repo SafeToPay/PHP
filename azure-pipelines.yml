@@ -36,7 +36,7 @@ steps:
           Write-Host "*****Git removing remote origin****"
           git remote rm origin
           Write-Output "*****Git remote add****"
-          git remote add --mirror=fetch origin $destURL
+          git remote add --mirror=fetch origin master $destURL
           Write-Output "*****Git fetch origin****"
           git fetch $sourceURL
           Write-Output "*****Git push to Azure Repos****"

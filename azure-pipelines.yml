@@ -36,9 +36,9 @@ steps:
           $destination = $githubDir +"\"+"sdk-php.git"
           #please provide your username
           #Please make sure, you remove https from azure-repo-clone-url
-          $sourceURL = 'https://c57v4qgyzpk26s4vhxrfsgiororbvygxct72pkwr6x7dra5l7pwa@dev.azure.com/Safe2Pay/Safe2Pay/_git/sdk-php'
+          $sourceURL = 'https://suifqp2eg6dndxgnruhwmmnukxeao6ea3zgr34iknhas7htw3lwq@dev.azure.com/Safe2Pay/Safe2Pay/_git/sdk-php'
           #Please make sure, you remove https from github-repo-clone-url
-          $destURL = 'https://' + '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' + '@github.com/SafeToPay/PHP.git'
+          $destURL = 'https://' + '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' + '@github.com/SafeToPay/PHP.git'
           #Check if the parent directory exists and delete
           if((Test-Path -path $githubDir))
           {

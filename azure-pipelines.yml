@@ -11,13 +11,6 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
 
 # - task: gitsync@1
 #   inputs:
@@ -28,22 +21,27 @@ steps:
 #         +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
 #   displayName: 'Copy to Github'
     # condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
-- task: PowerShell@2
+# - task: PowerShell@2
+#   inputs:
+#     targetType: 'inline'
+#     script: |
+#           Write-Host Starting the synchronization process
+#           mkdir copyrepo
+#           $sourceURL = "https://uo5k6easlly7wn5i3kh37upepntsd2wfitaqohsib5th5ymsx4fa@dev.azure.com/Safe2Pay/Safe2Pay/_git/sdk-php"
+#           $destURL = "https://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@github.com/SafeToPay/PHP.git"
+#           Set-Location "$(Build.SourcesDirectory)/copyrepo"
+#           git clone --mirror $sourceURL
+#           Set-Location "$(Build.SourcesDirectory)/copyrepo/php-sdk"
+#           Write-Host "*****Git removing remote origin****"
+#           git remote rm origin
+#           Write-Output "*****Git remote add****"
+#           git remote add --mirror=fetch origin $destURL
+#           Write-Output "*****Git fetch origin****"
+#           git fetch $sourceURL
+#           Write-Output "*****Git push to Azure Repos****"
+#           git push origin --all -f
+
+- task: mirror-git-repository-vsts-task@1
   inputs:
-    targetType: 'inline'
-    script: |
-          Write-Host Starting the synchronization process
-          mkdir copyrepo
-          $sourceURL = "https://uo5k6easlly7wn5i3kh37upepntsd2wfitaqohsib5th5ymsx4fa@dev.azure.com/Safe2Pay/Safe2Pay/_git/sdk-php"
-          $destURL = "https://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@github.com/SafeToPay/PHP.git"
-          Set-Location "$(Build.SourcesDirectory)/copyrepo"
-          git clone --mirror $sourceURL
-          Set-Location "$(Build.SourcesDirectory)/copyrepo/php-sdk"
-          Write-Host "*****Git removing remote origin****"
-          git remote rm origin
-          Write-Output "*****Git remote add****"
-          git remote add --mirror=fetch origin $destURL
-          Write-Output "*****Git fetch origin****"
-          git fetch $sourceURL
-          Write-Output "*****Git push to Azure Repos****"
-          git push origin --all -f
+    destinationGitRepositoryUri: 'https://github.com/SafeToPay/PHP.git'
+    destinationGitRepositoryPersonalAccessToken: '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'

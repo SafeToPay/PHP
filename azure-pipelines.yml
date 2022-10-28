@@ -25,22 +25,66 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-          Write-Host Starting the synchronization process
-
-          mkdir copyrepo
-          $sourceURL = "https://uo5k6easlly7wn5i3kh37upepntsd2wfitaqohsib5th5ymsx4fa@dev.azure.com/Safe2Pay/Safe2Pay/_git/sdk-php"
-          $destURL = "https://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@github.com/SafeToPay/PHP.git"
-          Set-Location "$(Build.SourcesDirectory)/copyrepo"
-          git clone --mirror $sourceURL
-          # Set-Location "$(Build.SourcesDirectory)/copyrepo/php-sdk"
-          Write-Host "*****Git removing remote origin****"
-          git remote rm origin
-          Write-Output "*****Git remote add****"
-          git remote add --mirror=fetch -t master origin $destURL
-          Write-Output "*****Git fetch origin****"
+          # Write your PowerShell commands here.
+          Write-Host ' - - - - - - - - - - - - - - - - - - - - - - - - -'
+          Write-Host ' reflect Azure Devops repo changes to GitHub repo'
+          Write-Host ' - - - - - - - - - - - - - - - - - - - - - - - - - '
+          $stageDir = '$(Build.SourcesDirectory)' | Split-Path
+          $githubDir = $stageDir +"\"+"gitHub"
+          $destination = $githubDir +"\"+"sdk-php.git"
+          #please provide your username
+          #Please make sure, you remove https from azure-repo-clone-url
+          $sourceURL = 'https://uo5k6easlly7wn5i3kh37upepntsd2wfitaqohsib5th5ymsx4fa@dev.azure.com/Safe2Pay/Safe2Pay/_git/sdk-php'
+          #Please make sure, you remove https from github-repo-clone-url
+          $destURL = 'https://' + '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' + '@github.com/SafeToPay/PHP.git'
+          #Check if the parent directory exists and delete
+          if((Test-Path -path $githubDir))
+          {
+            Remove-Item -Path $githubDir -Recurse -force
+          }
+          if(!(Test-Path -path $githubDir))
+          {
+            New-Item -ItemType directory -Path $githubDir
+            Set-Location $githubDir
+            git clone --mirror $sourceURL
+          }
+          else
+          {
+            Write-Host "The given folder path $githubDir already exists";
+          }
+          Set-Location $destination
+          Write-Output '*****Git removing remote secondary****'
+          git remote rm secondary
+          Write-Output '*****Git remote add****'
+          git remote add --mirror=fetch secondary $destURL
+          Write-Output '*****Git fetch origin****'
           git fetch $sourceURL
-          Write-Output "*****Git push to Azure Repos****"
-          git push --all -f
+          Write-Output '*****Git push secondary****'
+          git push secondary --all
+          Write-Output '**Azure Devops repo synced with Github repo**'
+          Set-Location $stageDir
+          if((Test-Path -path $githubDir))
+          {
+          Remove-Item -Path $githubDir -Recurse -force
+          }
+
+
+          # Write-Host Starting the synchronization process
+
+          # mkdir copyrepo
+          # $sourceURL = "https://uo5k6easlly7wn5i3kh37upepntsd2wfitaqohsib5th5ymsx4fa@dev.azure.com/Safe2Pay/Safe2Pay/_git/sdk-php"
+          # $destURL = "https://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@github.com/SafeToPay/PHP.git"
+          # Set-Location "$(Build.SourcesDirectory)/copyrepo"
+          # git clone --mirror $sourceURL
+          # # Set-Location "$(Build.SourcesDirectory)/copyrepo/php-sdk"
+          # Write-Host "*****Git removing remote origin****"
+          # git remote rm origin
+          # Write-Output "*****Git remote add****"
+          # git remote add --mirror=fetch -t master origin $destURL
+          # Write-Output "*****Git fetch origin****"
+          # git fetch $sourceURL
+          # Write-Output "*****Git push to Azure Repos****"
+          # git push --all -f
 
 # - task: mirror-git-repository-vsts-task@1
 #   inputs:

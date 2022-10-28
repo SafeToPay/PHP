@@ -45,7 +45,7 @@ steps:
 - task: mirror-git-repository-vsts-task@1
   inputs:
     sourceGitRepositoryUri: '$(Build.Repository.Uri)'
-    sourceGitRepositoryPersonalAccessToken: '4mtokwke3mmyu7zt2r4gu6pel673xb2rtubjvowwxnqb3hhjyjsa'
-    sourceGitRepositoryCloneDirectoryName: 'https://dev.azure.com/Safe2Pay/Safe2Pay/_git/sdk-php'
-    destinationGitRepositoryUri: 'https://github.com/SafeToPay/PHP.git'
-    destinationGitRepositoryPersonalAccessToken: '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'
+    sourceGitRepositoryPersonalAccessToken: 4mtokwke3mmyu7zt2r4gu6pel673xb2rtubjvowwxnqb3hhjyjsa
+    sourceGitRepositoryCloneDirectoryName: https://dev.azure.com/Safe2Pay/Safe2Pay/_git/sdk-php
+    destinationGitRepositoryUri: https://github.com/SafeToPay/PHP.git
+    destinationGitRepositoryPersonalAccessToken: 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

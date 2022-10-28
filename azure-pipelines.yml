@@ -26,6 +26,7 @@ steps:
 #     targetType: 'inline'
 #     script: |
 #           Write-Host Starting the synchronization process
+
 #           mkdir copyrepo
 #           $sourceURL = "https://uo5k6easlly7wn5i3kh37upepntsd2wfitaqohsib5th5ymsx4fa@dev.azure.com/Safe2Pay/Safe2Pay/_git/sdk-php"
 #           $destURL = "https://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@github.com/SafeToPay/PHP.git"
@@ -43,5 +44,8 @@ steps:
 
 - task: mirror-git-repository-vsts-task@1
   inputs:
+    sourceGitRepositoryUri: '$(Build.Repository.Uri)'
+    sourceGitRepositoryPersonalAccessToken: '4mtokwke3mmyu7zt2r4gu6pel673xb2rtubjvowwxnqb3hhjyjsa'
+    sourceGitRepositoryCloneDirectoryName: 'https://dev.azure.com/Safe2Pay/Safe2Pay/_git/sdk-php'
     destinationGitRepositoryUri: 'https://github.com/SafeToPay/PHP.git'
     destinationGitRepositoryPersonalAccessToken: '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'

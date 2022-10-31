@@ -18,7 +18,6 @@ pool:
   vmImage: 'windows-latest'
 
 stages:
-  
   - template: templates/stages/github-repository-sync.yml@template
     parameters:
       githubRepositoryName: 'PHP'

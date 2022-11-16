@@ -398,7 +398,7 @@ class PaymentTest
 
         $payload->setProducts($Products);
 
-        $Pix = new Pix(3600);
+        $Pix = new Pix(86400);
 
         //Objeto de pagamento - para PIX
         $payload->setPaymentObject($Pix);

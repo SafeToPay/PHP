@@ -22,6 +22,11 @@ class Pix implements \JsonSerializable
         $this->Expiration = $Expiration;
     }
 
+    function __construct($Expiration = null)
+    {
+        $this->Expiration = $Expiration;
+    }
+
     public function jsonSerialize()
     {
         return [
